@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
+  "testRunner": "xunit",
+  "dependencies": {
+    "xunit": "2.2.0-beta2-build3300",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          //"type": "platform", //remove this line if trying to build a native app via runtime section
+          "version": "1.0.1"
+        }
+        
+      },
+      "imports": "dnxcore50"
+    }
+  },
+  "runtimes": { //this section allows you to specify runtime for native build output, note these will not generate unless type:"platform" is commented out in dependancies
+    "win10-x64": {},
+    "osx.10.11-x64": {}
+  }
+}
+/*
+{
+    "version": "1.0.0-*",
+    "testRunner": "xunit",
+    "dependencies": {
+        "xunit": "2.2.0-beta2-build3300",
+        "dotnet-test-xunit": "2.2.0-preview2-build1029"
+    },
+    "frameworks": {
+        "netcoreapp1.0": {
+            "dependencies": {
+                "Microsoft.NETCore.App": {
+                    "type": "platform",
+                    "version": "1.0.0"
+                }
+            }
+        }
+    }
+}
+
+*/
