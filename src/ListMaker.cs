@@ -16,7 +16,7 @@ namespace ConsoleApplication
             foreach (string file in files)
             {
                 number += 1;
-                fil
+                
                 string fileSize = base.GetSizeOfFile(file);
                 
             }
