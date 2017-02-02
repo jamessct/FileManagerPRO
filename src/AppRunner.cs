@@ -16,7 +16,6 @@ namespace ConsoleApplication
         
         public void Menu(string[] array, string back, int menu)
         {
-
             Console.ForegroundColor = ConsoleColor.White;
 
             int number = 0;
