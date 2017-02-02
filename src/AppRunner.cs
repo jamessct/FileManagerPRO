@@ -5,15 +5,18 @@ namespace ConsoleApplication
 {
     public class AppRunner
     {
-        AppHelper app = new AppHelper();
-        string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
-        string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
-        string[] foldersMenu = {"Create folder", "Delete folder"};
-        string quit = "Press 'Q' to quit.";
-        string menu = "Press 'M' to return to the main menu.";
+        public string menu;
+        public string quit;
+        public AppRunner()
+        {            
+            quit = "Press 'Q' to quit.";
+            menu = "Press 'M' to return to the main menu.";
+        }
+        
         
         public void Menu(string[] array, string back, int menu)
         {
+
             Console.ForegroundColor = ConsoleColor.White;
 
             int number = 0;
@@ -61,6 +64,12 @@ namespace ConsoleApplication
 
         public void MainMenuOptions(char response)
         {
+            AppRunner AppRunner = new AppRunner();
+            AppHelper app = new AppHelper();
+            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
+            string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
+            string[] foldersMenu = {"Create folder", "Delete folder"};
+
             switch(response)
             {
                 case '1':
@@ -179,6 +188,11 @@ namespace ConsoleApplication
             
         public void ManageFiles(char response)
         {
+            AppRunner AppRunner = new AppRunner();
+            AppHelper app = new AppHelper();
+            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
+            string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
+
             switch(response)
             {
                 //CreateFile
@@ -358,6 +372,11 @@ namespace ConsoleApplication
 
         public void ManageFolders(char response)
         {
+            AppRunner AppRunner = new AppRunner();
+            AppHelper app = new AppHelper();
+            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
+            string[] foldersMenu = {"Create folder", "Delete folder"};
+
             switch(response)
             {
                 //Create Folder
