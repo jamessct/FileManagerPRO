@@ -4,7 +4,12 @@ namespace ConsoleApplication
 {
     public class TableMaker 
     {
-        int tableWidth = 80;
+        int tableWidth;
+
+        public TableMaker()
+        {
+            tableWidth = 140;
+        }
 
         public void PrintLine()
         {
