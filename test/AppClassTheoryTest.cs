@@ -90,7 +90,23 @@ namespace MyApp
             Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.ListFilesInDirectory(folderPath));
 
             //Assert
-            Assert.Equal(exception.Message, "This folder is empty");
+            Assert.Equal(exception.Message, "There are no files in this directory");
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\Projects")]
+        public void CanGenerateListOfSubfolders(string folderPath)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            int expectedLength = 6;
+
+            //Act
+            string[] subfolderList = myInstanceOfApphelper.ListSubfoldersInDirectory(folderPath);
+            int subfolderListLength = subfolderList.Length;
+
+            //Assert
+            Assert.Equal(subfolderListLength, expectedLength);
         }
 
         [Theory]

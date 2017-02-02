@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace ConsoleApplication
@@ -33,7 +32,7 @@ namespace ConsoleApplication
             }
         }
 
-        public void ThrowExceptionIfFolderDoesntExist(string folderPath)
+        private void ThrowExceptionIfFolderDoesntExist(string folderPath)
         {
             if(this.CheckFolderExists(folderPath) == false)
             {
@@ -41,7 +40,7 @@ namespace ConsoleApplication
             }
         }
 
-        public void ThrowExceptionIfFileDoesntExist(string filePath)
+        private void ThrowExceptionIfFileDoesntExist(string filePath)
         {
             if(this.CheckFileExists(filePath) == false)
             {
@@ -57,13 +56,27 @@ namespace ConsoleApplication
 
             if(list.Length == 0)
             {
-                throw new ArgumentException("This folder is empty");
+                throw new ArgumentException("There are no files in this directory");
             }
 
             else 
             {
                 return list;
             }
+        }
+
+        public string[] ListSubfoldersInDirectory(string folderPath)
+        {
+            this.ThrowExceptionIfFolderDoesntExist(folderPath);
+
+            string[] list = Directory.GetDirectories(folderPath);
+
+            if(list.Length == 0)
+            {
+                throw new ArgumentException("There are no subfolders in this directory");
+            }
+            
+            else return list;
         }
 
         public string GetSizeOfFile(string filePath)
@@ -209,7 +222,7 @@ namespace ConsoleApplication
             Directory.CreateDirectory(newFolderPath);
         }
 
-        public void ClearFilesFromFolder(DirectoryInfo directory)
+        private void ClearFilesFromFolder(DirectoryInfo directory)
         {
             foreach(FileInfo file in directory.GetFiles())
             {
