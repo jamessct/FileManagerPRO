@@ -10,9 +10,11 @@ namespace ConsoleApplication
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to File Manager Pro! To proceed, please select a number from the list below:");
             Console.WriteLine();
-            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
+            ListMaker list = new ListMaker();
             var app = new AppRunner();
-            app.Menu(mainMenu, "To quit, press 'Q'.", 1);  
+            // string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
+            
+            app.Menu(AppRunner.mainMenu, "To quit, press 'Q'.", 1);  
         }
     }
 }

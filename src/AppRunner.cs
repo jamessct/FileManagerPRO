@@ -3,16 +3,18 @@ using System.Threading;
 
 namespace ConsoleApplication
 {
-    public class AppRunner
+    public class AppRunner : Program
     {
         public string menu;
         public string quit;
+        public static string userInput;
+        public static string[] mainMenu  = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
+            
         public AppRunner()
-        {            
+        {   
             quit = "Press 'Q' to quit.";
             menu = "Press 'M' to return to the main menu.";
         }
-        
         
         public void Menu(string[] array, string back, int menu)
         {
@@ -65,7 +67,7 @@ namespace ConsoleApplication
         {
             AppRunner AppRunner = new AppRunner();
             AppHelper app = new AppHelper();
-            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
+            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
             string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
             string[] foldersMenu = {"Create folder", "Delete folder"};
 
@@ -116,10 +118,12 @@ namespace ConsoleApplication
                 {
                     Console.WriteLine("Please enter a directory path: ");
                     string input = Console.ReadLine();
+                    userInput = input;
                     
                     try
                     {
-                        var answer = app.ListFilesInDirectory(input);
+                        var list = new ListMaker();
+                        var answer = list.ListFilesInDirectory();
                         string answerStringified = app.ConvertStringToArray(answer);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(answerStringified);
@@ -130,10 +134,16 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        this.Menu(mainMenu, "To quit, press 'Q'", 1);
+                        this.Menu(mainMenu, quit, 1);
                         break;
                     }
                 }   
+                //List subfolders in directory
+                case '7': 
+                {
+
+                    break;
+                }
                 case '4':
                 {
                     Console.WriteLine("FILE MANAGER");
@@ -272,7 +282,7 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to move doesn't exist!");
-                        this.Menu(mainMenu, "To quit, press 'Q'", 1);
+                        this.Menu(mainMenu, quit, 1);
                         break;
                     } 
                 }
@@ -355,7 +365,7 @@ namespace ConsoleApplication
                 //Return to menu
                 case 'm':
                 {
-                    this.Menu(mainMenu, "To quit, press 'Q'", 1);
+                    this.Menu(mainMenu, quit, 1);
                     break;
                 }
                 //else
