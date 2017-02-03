@@ -38,7 +38,7 @@ namespace MyApp
         public void DoesFolderExistTheory_KnownToExist(string folderPath)
         {
             //Assign
-            bool folderExists = false;
+            bool folderExists;
             var myInstanceOfApphelper = new AppHelper();
 
             //Act
@@ -53,7 +53,7 @@ namespace MyApp
         public void DoesFileExist_KnownToExist(string filePath)
         {
             //Assign
-            bool fileExists = false;
+            bool fileExists;
             var myInstanceOfApphelper = new AppHelper();
 
             //Act
@@ -68,7 +68,7 @@ namespace MyApp
         public void CanLoadListOfFilesInFolder(string folderPath)
         {
             //Assign
-            int fileListLength = 0;
+            int fileListLength;
             var myInstanceOfApphelper = new AppHelper();
 
             //Act
@@ -145,7 +145,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string fileListSize = "";
+            string fileListSize;
 
             //Act
             fileListSize = myInstanceOfApphelper.GetSizeOfFileList(folderPath);
@@ -174,7 +174,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string totalSizeOfDirectory = "";
+            string totalSizeOfDirectory;
 
             //Act
             totalSizeOfDirectory = myInstanceOfApphelper.GetSizeOfDirectory(folderPath);
@@ -211,7 +211,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool fileExists = false;
+            bool fileExists;
 
             //Act
             myInstanceOfApphelper.CreateNewFile(filePath);
@@ -255,7 +255,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool fileExists = true;
+            bool fileExists;
 
             //Act
             myInstanceOfApphelper.RemoveFile(filePath);
@@ -285,7 +285,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool fileExists = false;
+            bool fileExists;
 
             //Act
             myInstanceOfApphelper.MoveFile(filePath, newPath);
@@ -301,7 +301,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string text = "";
+            string text;
 
             //Act
             text = myInstanceOfApphelper.ReadTextFromFile(filePath);
@@ -316,7 +316,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool answer = false;
+            bool answer;
 
             //Act
             answer = myInstanceOfApphelper.SearchForTextInFile(filePath, searchQuery);
@@ -331,7 +331,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool answer = true;
+            bool answer;
 
             //Act
             answer = myInstanceOfApphelper.SearchForTextInFile(filePath, searchQuery);
@@ -346,7 +346,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            int answer = 0;
+            int answer;
 
             //Act
             answer = myInstanceOfApphelper.CountLinesInFile(filePath);
@@ -361,7 +361,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string finalText = "";
+            string finalText;
 
             //Act
             myInstanceOfApphelper.WriteTextToFile(filePath, text);
@@ -393,7 +393,7 @@ namespace MyApp
         {
             //Access
             var myInstanceOfApphelper = new AppHelper();
-            string answer = "";
+            string answer;
 
             //Act
             answer = myInstanceOfApphelper.GetTimeStampForLastAccess(filePath);
@@ -408,7 +408,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool folderExists = false;
+            bool folderExists;
 
             //Act
             myInstanceOfApphelper.CreateNewFolder(newFolderPath);
@@ -424,7 +424,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool folderExists = true;
+            bool folderExists;
 
             //Act
             myInstanceOfApphelper.RemoveFolder(folderPath, recursive);
@@ -440,7 +440,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool folderExists = true;
+            bool folderExists;
 
             //Act
             myInstanceOfApphelper.RemoveFolder(folderPath, recursive);
