@@ -1,0 +1,5 @@
+1. c:\Projects\App1\Index.txt (0MB), Last accessed: 2017/02/03 10:16:28.07
+2. c:\Projects\App1\Program.cs (0MB), Last accessed: 2017/02/02 16:55:05.00
+3. c:\Projects\App1\project.json (0MB), Last accessed: 2017/01/14 14:18:08.00
+4. c:\Projects\App1\project.lock.json (0.54MB), Last accessed: 2017/01/14 14:23:52.00
+5. c:\Projects\App1\readme.txt (0MB), Last accessed: 2017/01/14 08:40:40.00

@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace ConsoleApplication
 {
     public class ListMaker : AppHelper
@@ -5,23 +9,45 @@ namespace ConsoleApplication
         public void ListSubfoldersInDirectory()
         {
             base.ListSubfoldersInDirectory(AppRunner.userInput);
-
         }
 
-        public string[] ListFilesInDirectory()
+        public void ListFilesInDirectory()
         {
+            var table = new TableMaker();
             string[] files = base.ListFilesInDirectory(AppRunner.userInput);
             int number = 0;
 
+            string[] headings = {"", "File Name", "File Size", "Last Accessed"};
+
+            table.PrintLine();
+            table.PrintRow(headings);
+
             foreach (string file in files)
             {
+                List<string> list = new List<string>();
+                
+                
                 number += 1;
+                string numberString = number + ".";
+                list.Add(numberString);
                 
-                string fileSize = base.GetSizeOfFile(file);
-                
-            }
+                list.Add(file);
 
-            return files;
+                string fileSize = base.GetSizeOfFile(file); 
+                list.Add(fileSize);
+
+                string lastAccess = base.GetTimeStampForLastAccess(file);
+                list.Add(lastAccess);
+
+                string[] listArray = list.ToArray();
+                
+                table.PrintLine();
+                table.PrintRow(listArray);
+            }
+            table.PrintLine();
+            
         }
+
+
     }
 }

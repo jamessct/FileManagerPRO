@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 namespace ConsoleApplication
 {
@@ -8,7 +9,7 @@ namespace ConsoleApplication
 
         public TableMaker()
         {
-            tableWidth = 140;
+            tableWidth = 100;
         }
 
         public void PrintLine()

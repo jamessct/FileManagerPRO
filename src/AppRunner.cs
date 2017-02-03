@@ -123,10 +123,9 @@ namespace ConsoleApplication
                     try
                     {
                         var list = new ListMaker();
-                        var answer = list.ListFilesInDirectory();
-                        string answerStringified = app.ConvertStringToArray(answer);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine(answerStringified);
+                        list.ListFilesInDirectory();
+                        
                         this.Menu(mainMenu, quit, 1);
                         break;
                     }
