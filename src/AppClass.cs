@@ -248,12 +248,26 @@ namespace ConsoleApplication
 
             var number = 0;
             string[] list = Directory.GetFiles(folderPath);
+            Console.WriteLine("File list");
+
             foreach(string item in list)
             {
                 var fileSize = this.GetSizeOfFile(item);
                 var lastDateAccessed = this.GetTimeStampForLastAccess(item);
-                number +=1;
+                number += 1;
                 File.AppendAllText(indexPath, number + ". " + item + " (" + fileSize + "), Last accessed: " + lastDateAccessed + "\r\n");
+            }
+
+            number = 0;
+            string[] subfolders = Directory.GetDirectories(folderPath);
+            Console.WriteLine("Folder list");
+            
+            foreach(string folder in subfolders)
+            {
+                var folderSize = this.GetSizeOfDirectory(folder);
+                var lastDateAccessed = this.GetTimeStampForLastAccess(folder);
+                number += 1;
+                File.AppendAllText(indexPath, number + ". " + folder + " (" + folderSize + "), Last accessed: " + lastDateAccessed + "\r\n");
             }
         }
 

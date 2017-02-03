@@ -59,9 +59,8 @@ namespace ConsoleApplication
         public static void MainMenuOptions(char response)
         {
             AppHelper app = new AppHelper();
-            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders"};
-            // string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
-            string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
+            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
+            string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text", "Generate index file"};
             string[] foldersMenu = {"Create folder", "Delete folder"};
 
             switch(response)
@@ -82,33 +81,8 @@ namespace ConsoleApplication
                         
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("To save a log file of this info, press 'I', press any other key to return to the MAIN MENU.");
-                        char selection = Console.ReadKey().KeyChar;
-
-                        if (selection == 'i')
-                        {
-                            try
-                            {
-                                app.CreateIndexFile(userInput);
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("SUCCESS! Your new index file has been created at " + userInput + "\\index.txt");
-                                Console.WriteLine();
-                                Menu(mainMenu, quit, 1);
-                                break;
-                            }
-                            catch(ArgumentException)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("ERROR! Invalid user input!");
-                                Menu(mainMenu, quit, 1);
-                                break;
-                            }   
-                        }
-                        else
-                        {
-                            Menu(mainMenu, quit, 1);
-                            break;
-                        }
+                        Menu(mainMenu, quit, 1);
+                        break;
                     }
                     catch(ArgumentException)
                     {
@@ -134,7 +108,6 @@ namespace ConsoleApplication
                         Menu(mainMenu, quit, 1);
                         break;
                     }
-
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -154,6 +127,28 @@ namespace ConsoleApplication
                     Console.WriteLine("FOLDER MANAGER");
                     Menu(foldersMenu, menu, 3);
                     break;
+                }
+                case '5':
+                {
+                    Console.WriteLine("This option creates a text file which compiles information on all of the files and folders in the location specified.");
+                    Console.WriteLine("To continue, please enter the directory path where you would like to create your index file:");
+                    string input = Console.ReadLine();
+
+                    try
+                    {
+                        app.CreateIndexFile(input);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("SUCCESS! Your new index file has been created at " + input + "\\index.txt");
+                        Menu(mainMenu, quit, 1);
+                        break;
+                    }
+                    catch(ArgumentException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR! Invalid user input!");
+                        Menu(mainMenu, quit, 1);
+                        break;
+                    }
                 }
                 case 'q':
                 {
@@ -175,7 +170,7 @@ namespace ConsoleApplication
         private static void ManageFiles(char response)
         {
             AppHelper app = new AppHelper();
-            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
+            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
             string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
 
             switch(response)
@@ -358,7 +353,7 @@ namespace ConsoleApplication
         private static void ManageFolders(char response)
         {
             AppHelper app = new AppHelper();
-            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
+            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
             string[] foldersMenu = {"Create folder", "Delete folder"};
 
             switch(response)
