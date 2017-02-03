@@ -145,13 +145,14 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string fileListSize;
+            long fileListSize;
 
             //Act
             fileListSize = myInstanceOfApphelper.GetSizeOfFileList(folderPath);
+            string answer = Utilities.SelectAppropriateFileSizeFormat(fileListSize);
 
             //Assert
-            Assert.Equal(fileListSize, "16.2MB");
+            Assert.Equal(answer, "16.203125mb");
         }
 
         [Theory]
@@ -174,13 +175,14 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string totalSizeOfDirectory;
+            long totalSizeOfDirectory;
 
             //Act
             totalSizeOfDirectory = myInstanceOfApphelper.GetSizeOfDirectory(folderPath);
+            string answer = Utilities.SelectAppropriateFileSizeFormat(totalSizeOfDirectory);
 
             //Assert
-            Assert.Equal(totalSizeOfDirectory, "1.12MB");
+            Assert.Equal(answer, "1.11649990081787mb");
         }
 
         [Theory]

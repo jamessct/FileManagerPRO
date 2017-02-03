@@ -86,14 +86,10 @@ namespace ConsoleApplication
             FileInfo file = new FileInfo(filePath);
             long fileSize = file.Length;
 
-            // double megabytes = (fileSize / 1024f) / 1024f;
-            // double rounded = Math.Round(megabytes, 2);
-            // string answer = rounded + "MB";
-
             return fileSize;
         }
 
-        public string GetSizeOfFileList(string folderPath)
+        public long GetSizeOfFileList(string folderPath)
         {
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -106,14 +102,10 @@ namespace ConsoleApplication
                 totalSize = totalSize + file.Length;
             }
             
-            double megabytes = (totalSize / 1024f) / 1024f;
-            double rounded = Math.Round(megabytes, 2);
-            string answer = rounded + "MB";
-
-            return answer;
+            return totalSize;
         }
 
-        public string GetSizeOfDirectory(string folderPath)
+        public long GetSizeOfDirectory(string folderPath)
         {
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -126,11 +118,7 @@ namespace ConsoleApplication
                 totalSize = totalSize + file.Length;
             }
 
-            double megabytes = (totalSize / 1024f) /1024f;
-            double rounded = Math.Round(megabytes, 2);
-            string answer = rounded + "MB";
-
-            return answer;
+            return totalSize;
         }
 
         public void CreateNewFile(string filePath)

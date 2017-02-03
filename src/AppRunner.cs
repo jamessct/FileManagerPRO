@@ -95,8 +95,9 @@ namespace ConsoleApplication
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green; 
-                        Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + app.GetSizeOfFileList(input));
-                        Console.WriteLine("The total size of this directory (including subfolders contained within) is: " + app.GetSizeOfDirectory(input));
+                        
+                        long totalSize = app.GetSizeOfDirectory(input);
+                        Console.WriteLine("The total size of this directory (including subfolders contained within) is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
                         Menu(mainMenu, quit, 1);
                         break;
                     }
@@ -119,15 +120,47 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green;
                         string[] files = app.ListFilesInDirectory(userInput);
                         list.CreateListTable(files, "file");
+                        long listSize = app.GetSizeOfFileList(userInput);
+                        Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + Utilities.SelectAppropriateFileSizeFormat(listSize));
                         
-                        Menu(mainMenu, quit, 1);
-                        break;
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("To save a log file of this info, press 'I', press any other key to return to the MAIN MENU.");
+                        char selection = Console.ReadKey().KeyChar;
+
+                        if (selection == 'i')
+                        {
+                            try
+                            {
+                                app.CreateIndexFile(userInput);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("SUCCESS! Your new index file has been created at " + userInput + "\\index.txt");
+                                Console.WriteLine();
+                                Menu(mainMenu, quit, 1);
+                                break;
+                            }
+                            catch(ArgumentException)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("ERROR! Invalid user input!");
+                                Menu(mainMenu, quit, 1);
+                                break;
+                            }   
+                        }
+                        else
+                        {
+                            Menu(mainMenu, quit, 1);
+                            break;
+                        }
+                         
                     }
-                    catch(Exception)
+                    catch(ArgumentException)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR! Invalid user input!");
                         Menu(mainMenu, quit, 1);
                         break;
-                    }
+                    }   
                 }   
                 //List subfolders in directory
                 case '7': 
@@ -140,6 +173,8 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green;
                         string[] folders = app.ListSubfoldersInDirectory(userInput);
                         list.CreateListTable(folders, "folder");
+                        long totalSize = app.GetSizeOfDirectory(userInput) - app.GetSizeOfFileList(userInput);
+                        Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
 
                         Menu(mainMenu, quit, 1);
                         break;

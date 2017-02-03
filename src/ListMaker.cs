@@ -32,8 +32,9 @@ namespace ConsoleApplication
                 }
                 else
                 {
-                    string size = base.GetSizeOfFileList(item);
-                    list.Add(size);
+                    long size = base.GetSizeOfFileList(item);
+                    string answer = Utilities.SelectAppropriateFileSizeFormat(size);
+                    list.Add(answer);
                 }
 
                 string lastAccess = base.GetTimeStampForLastAccess(item);
