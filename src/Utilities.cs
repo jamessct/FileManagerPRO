@@ -17,7 +17,7 @@ namespace ConsoleApplication
             {
                 double gigabytes = (bytes / 1073741824f);
                 double rounded = Math.Round(gigabytes, 2);
-                string answer = (rounded + "mb");
+                string answer = (rounded + "gb");
                 return answer;
             }
             else
