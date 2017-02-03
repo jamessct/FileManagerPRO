@@ -9,7 +9,7 @@ namespace ConsoleApplication
 
         public TableMaker()
         {
-            tableWidth = 100;
+            tableWidth = 110;
         }
 
         public void PrintLine()

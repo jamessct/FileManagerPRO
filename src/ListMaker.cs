@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace ConsoleApplication
@@ -8,7 +6,13 @@ namespace ConsoleApplication
     {
         public void ListSubfoldersInDirectory()
         {
-            base.ListSubfoldersInDirectory(AppRunner.userInput);
+            var table = new TableMaker();
+            string[] files = base.ListSubfoldersInDirectory(AppRunner.userInput);
+            int number = 0;
+
+            string[] headings = {"", "Folder", "Folder Size", "Last Accessed"};
+            table.PrintLine();
+            table.PrintRow(headings);
         }
 
         public void ListFilesInDirectory()
@@ -31,7 +35,11 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
                 
-                list.Add(file);
+                string subString = AppRunner.userInput;
+                int subStringLength = subString.Length;
+                string fileName = file;
+                fileName = file.Remove(0, subStringLength + 1);
+                list.Add(fileName);
 
                 string fileSize = base.GetSizeOfFile(file); 
                 list.Add(fileSize);

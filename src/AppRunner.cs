@@ -140,7 +140,10 @@ namespace ConsoleApplication
                 //List subfolders in directory
                 case '7': 
                 {
-
+                    var list = new ListMaker();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    list.ListSubfoldersInDirectory();
+                    this.Menu(mainMenu, quit, 1);
                     break;
                 }
                 case '4':
