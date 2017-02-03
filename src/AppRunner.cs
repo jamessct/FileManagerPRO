@@ -117,22 +117,20 @@ namespace ConsoleApplication
                 case '3':
                 {
                     Console.WriteLine("Please enter a directory path: ");
-                    string input = Console.ReadLine();
-                    userInput = input;
+                    userInput = Console.ReadLine();
                     
                     try
                     {
                         var list = new ListMaker();
                         Console.ForegroundColor = ConsoleColor.Green;
-                        list.ListFilesInDirectory();
+                        string[] files = app.ListFilesInDirectory(userInput);
+                        list.CreateListTable(files, "file");
                         
                         this.Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(Exception)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Invalid user input!");
                         this.Menu(mainMenu, quit, 1);
                         break;
                     }
@@ -140,11 +138,27 @@ namespace ConsoleApplication
                 //List subfolders in directory
                 case '7': 
                 {
-                    var list = new ListMaker();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    list.ListSubfoldersInDirectory();
-                    this.Menu(mainMenu, quit, 1);
-                    break;
+                    Console.WriteLine("Please enter a directory:");
+                    userInput = Console.ReadLine();
+                    try
+                    {
+                        var list = new ListMaker();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        string[] folders = app.ListSubfoldersInDirectory(userInput);
+                        list.CreateListTable(folders, "folder");
+
+                        this.Menu(mainMenu, quit, 1);
+                        break;
+                    }
+
+                    catch(ArgumentException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR! Invalid user input!");
+                        this.Menu(mainMenu, quit, 1);
+                        break;
+                    }
+                    
                 }
                 case '4':
                 {

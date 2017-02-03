@@ -4,58 +4,55 @@ namespace ConsoleApplication
 {
     public class ListMaker : AppHelper
     {
-        public void ListSubfoldersInDirectory()
+        public void CreateListTable(string[] array, string type)
         {
             var table = new TableMaker();
-            string[] files = base.ListSubfoldersInDirectory(AppRunner.userInput);
             int number = 0;
 
-            string[] headings = {"", "Folder", "Folder Size", "Last Accessed"};
-            table.PrintLine();
-            table.PrintRow(headings);
-        }
-
-        public void ListFilesInDirectory()
-        {
-            var table = new TableMaker();
-            string[] files = base.ListFilesInDirectory(AppRunner.userInput);
-            int number = 0;
-
-            string[] headings = {"", "File Name", "File Size", "Last Accessed"};
-
+            string[] headings = {"", "Name", "Size", "Last Accessed"};
             table.PrintLine();
             table.PrintRow(headings);
 
-            foreach (string file in files)
+            foreach (string item in array)
             {
                 List<string> list = new List<string>();
-                
-                
+
                 number += 1;
                 string numberString = number + ".";
                 list.Add(numberString);
-                
-                string subString = AppRunner.userInput;
-                int subStringLength = subString.Length;
-                string fileName = file;
-                fileName = file.Remove(0, subStringLength + 1);
-                list.Add(fileName);
 
-                string fileSize = base.GetSizeOfFile(file); 
-                list.Add(fileSize);
+                string name = this.RemovePathFromName(item);
+                list.Add(name);
 
-                string lastAccess = base.GetTimeStampForLastAccess(file);
+                if (type == "file")
+                {
+                    string size = base.GetSizeOfFile(item);
+                    list.Add(size);
+                }
+                else
+                {
+                    string size = base.GetSizeOfFileList(item);
+                    list.Add(size);
+                }
+
+                string lastAccess = base.GetTimeStampForLastAccess(item);
                 list.Add(lastAccess);
 
                 string[] listArray = list.ToArray();
                 
                 table.PrintLine();
                 table.PrintRow(listArray);
-            }
+            }  
             table.PrintLine();
-            
         }
 
-
+        public string RemovePathFromName(string path)
+        {
+            string subString = AppRunner.userInput;
+            int subStringLength = subString.Length;
+            string fileName = path;
+            fileName = path.Remove(0, subStringLength + 1);
+            return fileName;
+        }
     }
 }
