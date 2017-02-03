@@ -79,18 +79,18 @@ namespace ConsoleApplication
             else return list;
         }
 
-        public string GetSizeOfFile(string filePath)
+        public long GetSizeOfFile(string filePath)
         {
             this.ThrowExceptionIfFileDoesntExist(filePath);
             
             FileInfo file = new FileInfo(filePath);
             long fileSize = file.Length;
 
-            double megabytes = (fileSize / 1024f) / 1024f;
-            double rounded = Math.Round(megabytes, 2);
-            string answer = rounded + "MB";
+            // double megabytes = (fileSize / 1024f) / 1024f;
+            // double rounded = Math.Round(megabytes, 2);
+            // string answer = rounded + "MB";
 
-            return answer;
+            return fileSize;
         }
 
         public string GetSizeOfFileList(string folderPath)

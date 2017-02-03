@@ -115,13 +115,14 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string fileSize = "";
+            long fileSize;
 
             //Act
             fileSize = myInstanceOfApphelper.GetSizeOfFile(filePath);
+            string answer = Utilities.SelectAppropriateFileSizeFormat(fileSize);
 
             //Assert
-            Assert.Equal(fileSize, "0.07MB");
+            Assert.Equal(answer, "68kb");
         }
 
         [Theory]

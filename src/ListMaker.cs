@@ -26,8 +26,9 @@ namespace ConsoleApplication
 
                 if (type == "file")
                 {
-                    string size = base.GetSizeOfFile(item);
-                    list.Add(size);
+                    long size = base.GetSizeOfFile(item);
+                    string answer = Utilities.SelectAppropriateFileSizeFormat(size);
+                    list.Add(answer);
                 }
                 else
                 {

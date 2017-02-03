@@ -74,7 +74,8 @@ namespace ConsoleApplication
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("This file is: " + app.GetSizeOfFile(input));
+                        long fileSize = app.GetSizeOfFile(input);
+                        Console.WriteLine("This file is: " + Utilities.SelectAppropriateFileSizeFormat(fileSize));
                         Menu(mainMenu, quit, 1);
                         break;
                     }
