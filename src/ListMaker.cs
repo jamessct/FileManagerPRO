@@ -8,7 +8,6 @@ namespace ConsoleApplication
         {
             var table = new TableMaker();
             int number = 0;
-
             string[] headings = {"", "Name", "Size", "Last Accessed"};
             table.PrintLine();
             table.PrintRow(headings);
