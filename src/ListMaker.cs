@@ -45,7 +45,7 @@ namespace ConsoleApplication
             }  
             table.PrintLine();
         }
-
+        
         public string RemovePathFromName(string path)
         {
             string subString = AppRunner.userInput;

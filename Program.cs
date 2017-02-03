@@ -11,10 +11,9 @@ namespace ConsoleApplication
             Console.WriteLine("Welcome to File Manager Pro! To proceed, please select a number from the list below:");
             Console.WriteLine();
             ListMaker list = new ListMaker();
-            var app = new AppRunner();
-            // string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
             
-            app.Menu(AppRunner.mainMenu, "To quit, press 'Q'.", 1);  
+            
+            AppRunner.Menu(AppRunner.mainMenu, "To quit, press 'Q'.", 1);  
         }
     }
 }

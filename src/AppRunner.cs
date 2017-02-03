@@ -3,20 +3,14 @@ using System.Threading;
 
 namespace ConsoleApplication
 {
-    public class AppRunner : Program
+    public static class AppRunner 
     {
-        public string menu;
-        public string quit;
+        public static string menu = "Press 'M' to access the MAIN MENU.";
+        public static string quit = "Press 'Q to quit.";
         public static string userInput;
         public static string[] mainMenu  = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
-            
-        public AppRunner()
-        {   
-            quit = "Press 'Q' to quit.";
-            menu = "Press 'M' to return to the main menu.";
-        }
         
-        public void Menu(string[] array, string back, int menu)
+        public static void Menu(string[] array, string back, int menu)
         {
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -47,25 +41,24 @@ namespace ConsoleApplication
             {
                 case 1:
                 {
-                    this.MainMenuOptions(response);
+                    MainMenuOptions(response);
                     break;
                 }
                 case 2:
                 {
-                    this.ManageFiles(response);
+                    ManageFiles(response);
                     break;
                 }
                 case 3:
                 {
-                    this.ManageFolders(response);
+                    ManageFolders(response);
                     break;
                 }
             }
         }
 
-        public void MainMenuOptions(char response)
+        public static void MainMenuOptions(char response)
         {
-            AppRunner AppRunner = new AppRunner();
             AppHelper app = new AppHelper();
             string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
             string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
@@ -82,14 +75,14 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("This file is: " + app.GetSizeOfFile(input));
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }  
@@ -103,14 +96,14 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green; 
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + app.GetSizeOfFileList(input));
                         Console.WriteLine("The total size of this directory (including subfolders contained within) is: " + app.GetSizeOfDirectory(input));
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }   
                 }  
@@ -126,12 +119,12 @@ namespace ConsoleApplication
                         string[] files = app.ListFilesInDirectory(userInput);
                         list.CreateListTable(files, "file");
                         
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(Exception)
                     {
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }   
@@ -147,7 +140,7 @@ namespace ConsoleApplication
                         string[] folders = app.ListSubfoldersInDirectory(userInput);
                         list.CreateListTable(folders, "folder");
 
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
 
@@ -155,7 +148,7 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     
@@ -163,13 +156,13 @@ namespace ConsoleApplication
                 case '4':
                 {
                     Console.WriteLine("FILE MANAGER");
-                    this.Menu(filesMenu, menu, 2);
+                    Menu(filesMenu, menu, 2);
                     break;
                 }
                 case '5':
                 {
                     Console.WriteLine("FOLDER MANAGER");
-                    this.Menu(foldersMenu, menu, 3);
+                    Menu(foldersMenu, menu, 3);
                     break;
                 }
                 case '6':
@@ -183,14 +176,14 @@ namespace ConsoleApplication
                         app.CreateIndexFile(input);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your new index file has been created at " + input + "\\index.txt");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }
@@ -205,15 +198,14 @@ namespace ConsoleApplication
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid command! Please try again.");
-                    this.Menu(mainMenu, quit, 1);
+                    Menu(mainMenu, quit, 1);
                     break;
                 }
             }
         }
             
-        public void ManageFiles(char response)
+        private static void ManageFiles(char response)
         {
-            AppRunner AppRunner = new AppRunner();
             AppHelper app = new AppHelper();
             string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
             string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
@@ -232,20 +224,20 @@ namespace ConsoleApplication
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("SUCCESS! Your file has been created.");
-                            this.Menu(mainMenu, quit, 1);
+                            Menu(mainMenu, quit, 1);
                             
                         }
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Could not create a file in this location!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Either the file already exists or you have entered an invalid file path!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }
@@ -258,7 +250,7 @@ namespace ConsoleApplication
 
                     if(input == "c" || input == "C")
                     {
-                        this.Menu(filesMenu, menu, 1);
+                        Menu(filesMenu, menu, 1);
                     }
                         
                     try
@@ -266,14 +258,14 @@ namespace ConsoleApplication
                         app.RemoveFile(input);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! File has been removed");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! This file path does not exist!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }
@@ -291,14 +283,14 @@ namespace ConsoleApplication
                         app.MoveFile(input1, input2);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("Operation successful!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to move doesn't exist!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     } 
                 }
@@ -312,14 +304,14 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(app.ReadTextFromFile(input));
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to read doesn't exist!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     
@@ -336,14 +328,14 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         app.WriteTextToFile(input1, input2);
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to write to doesn't exist!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }  
                 }
@@ -361,27 +353,27 @@ namespace ConsoleApplication
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine(input1 + " includes the phrase '" + input2 + "'");
-                            this.Menu(mainMenu, quit, 1);
+                            Menu(mainMenu, quit, 1);
                             break;
                         }
 
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine(input1 + " does NOT contain the phrase '" + input2 + "'");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;  
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! File path cannot be found!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }
                 //Return to menu
                 case 'm':
                 {
-                    this.Menu(mainMenu, quit, 1);
+                    Menu(mainMenu, quit, 1);
                     break;
                 }
                 //else
@@ -389,15 +381,14 @@ namespace ConsoleApplication
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid command! Please try again.");
-                    this.Menu(filesMenu, menu, 2);
+                    Menu(filesMenu, menu, 2);
                     break;
                 }
             }
         }
 
-        public void ManageFolders(char response)
+        private static void ManageFolders(char response)
         {
-            AppRunner AppRunner = new AppRunner();
             AppHelper app = new AppHelper();
             string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file"};
             string[] foldersMenu = {"Create folder", "Delete folder"};
@@ -415,7 +406,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green;
                         app.CreateNewFolder(input);
                         Console.WriteLine("SUCCESS! New folder created at " + input);
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
 
@@ -423,7 +414,7 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The requested directory path is invalid!");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }
@@ -436,7 +427,7 @@ namespace ConsoleApplication
 
                     if(input == "c" || input == "C")
                     {
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                     }
 
                     try
@@ -447,33 +438,33 @@ namespace ConsoleApplication
                         {   
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("SUCCESS! The specified folder has been removed.");
-                            this.Menu(mainMenu, quit, 1);
+                            Menu(mainMenu, quit, 1);
                         }
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The specified folder could not be removed.");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to remove does not exist");
-                        this.Menu(mainMenu, quit, 1);
+                        Menu(mainMenu, quit, 1);
                         break;
                     }
                 }
                 //Return to menu
                 case 'm':
                 {
-                    this.Menu(mainMenu, quit, 1);
+                    Menu(mainMenu, quit, 1);
                     break;
                 }
                 //else
                 default:
                 {
                     Console.WriteLine("Invalid command! Please try again.");
-                    this.Menu(foldersMenu, menu, 3);
+                    Menu(foldersMenu, menu, 3);
                     break;
                 }
             }
