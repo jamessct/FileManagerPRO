@@ -8,12 +8,12 @@ namespace ConsoleApplication
         {   
             Console.Title = "File Manager PRO v1.0.0";
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Welcome to File Manager Pro! To proceed, please select a number from the list below:");
+            Console.WriteLine("Welcome to File Manager PRO! To proceed, please select a number from the list below:");
             Console.WriteLine();
             ListMaker list = new ListMaker();
+            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders"};
             
-            
-            AppRunner.Menu(AppRunner.mainMenu, "To quit, press 'Q'.", 1);  
+            AppRunner.Menu(mainMenu, "To quit, press 'Q'.", 1);  
         }
     }
 }

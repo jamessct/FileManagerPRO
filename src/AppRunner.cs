@@ -8,7 +8,6 @@ namespace ConsoleApplication
         public static string menu = "Press 'M' to access the MAIN MENU.";
         public static string quit = "Press 'Q to quit.";
         public static string userInput;
-        public static string[] mainMenu  = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
         
         public static void Menu(string[] array, string back, int menu)
         {
@@ -60,56 +59,14 @@ namespace ConsoleApplication
         public static void MainMenuOptions(char response)
         {
             AppHelper app = new AppHelper();
-            string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
+            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders"};
+            // string[] mainMenu = {"Get size of file", "Get size of directory", "List files in directory", "Manage files", "Manage folders", "Create index file", "Get list of subfolders"};
             string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
             string[] foldersMenu = {"Create folder", "Delete folder"};
 
             switch(response)
             {
                 case '1':
-                {
-                    Console.WriteLine("Please enter the file path to get the size of the file:");
-                    string input = Console.ReadLine();
-
-                    try
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        long fileSize = app.GetSizeOfFile(input);
-                        Console.WriteLine("This file is: " + Utilities.SelectAppropriateFileSizeFormat(fileSize));
-                        Menu(mainMenu, quit, 1);
-                        break;
-                    }
-                    catch(ArgumentException)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Invalid user input!");
-                        Menu(mainMenu, quit, 1);
-                        break;
-                    }
-                }  
-                case '2':
-                {
-                    Console.WriteLine("Please enter a directory path to get the size of the directory: ");
-                    string input = Console.ReadLine();
-
-                    try
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green; 
-                        
-                        long totalSize = app.GetSizeOfDirectory(input);
-                        Console.WriteLine("The total size of this directory (including subfolders contained within) is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
-                        Menu(mainMenu, quit, 1);
-                        break;
-                    }
-                    catch(ArgumentException)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Invalid user input!");
-                        Menu(mainMenu, quit, 1);
-                        break;
-                    }   
-                }  
-                case '3':
                 {
                     Console.WriteLine("Please enter a directory path: ");
                     userInput = Console.ReadLine();
@@ -152,7 +109,6 @@ namespace ConsoleApplication
                             Menu(mainMenu, quit, 1);
                             break;
                         }
-                         
                     }
                     catch(ArgumentException)
                     {
@@ -162,8 +118,7 @@ namespace ConsoleApplication
                         break;
                     }   
                 }   
-                //List subfolders in directory
-                case '7': 
+                case '2': 
                 {
                     Console.WriteLine("Please enter a directory:");
                     userInput = Console.ReadLine();
@@ -186,42 +141,19 @@ namespace ConsoleApplication
                         Console.WriteLine("ERROR! Invalid user input!");
                         Menu(mainMenu, quit, 1);
                         break;
-                    }
-                    
+                    }  
                 }
-                case '4':
+                case '3':
                 {
                     Console.WriteLine("FILE MANAGER");
                     Menu(filesMenu, menu, 2);
                     break;
                 }
-                case '5':
+                case '4':
                 {
                     Console.WriteLine("FOLDER MANAGER");
                     Menu(foldersMenu, menu, 3);
                     break;
-                }
-                case '6':
-                {
-                    Console.WriteLine("This option creates a text file which compiles information on all ofthe files in the location specified.");
-                    Console.WriteLine("To continue, please enter the directory path where you would like to create your index file:");
-                    string input = Console.ReadLine();
-
-                    try
-                    {
-                        app.CreateIndexFile(input);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("SUCCESS! Your new index file has been created at " + input + "\\index.txt");
-                        Menu(mainMenu, quit, 1);
-                        break;
-                    }
-                    catch(ArgumentException)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Invalid user input!");
-                        Menu(mainMenu, quit, 1);
-                        break;
-                    }
                 }
                 case 'q':
                 {
