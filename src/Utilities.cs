@@ -1,3 +1,5 @@
+using System;
+
 namespace ConsoleApplication
 {
     public static class Utilities
@@ -7,19 +9,22 @@ namespace ConsoleApplication
             if (bytes > 1048576)
             {
                 double megabytes = (bytes / 1048576f);
-                string answer = (megabytes + "mb");
+                double rounded = Math.Round(megabytes, 2);
+                string answer = (rounded + "mb");
                 return answer;
             }
             if (bytes > 1073741824)
             {
                 double gigabytes = (bytes / 1073741824f);
-                string answer = (gigabytes + "mb");
+                double rounded = Math.Round(gigabytes, 2);
+                string answer = (rounded + "mb");
                 return answer;
             }
             else
             {
                 double kilobytes = (bytes / 1024f);
-                string answer = (kilobytes + "kb");
+                double rounded = Math.Round(kilobytes, 2);
+                string answer = (rounded + "kb");
                 return answer;
             }
         }
