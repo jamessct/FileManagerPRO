@@ -49,7 +49,8 @@ namespace ConsoleApplication
         
         public string RemovePathFromName(string path)
         {
-            string subString = AppRunner.userInput;
+            AppRunner app = new AppRunner();
+            string subString = app.userInput;
             int subStringLength = subString.Length;
             string fileName = path;
             fileName = path.Remove(0, subStringLength + 1);

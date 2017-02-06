@@ -18,8 +18,8 @@ namespace ConsoleApplication
             Console.WriteLine();
             ListMaker list = new ListMaker();
             string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
-            
-            AppRunner.Menu(mainMenu, "To quit, press 'Q'.", 1);  
+            IRunable run = new AppRunner();
+            run.Menu(mainMenu, "To quit, press 'Q'.", 1);  
         }
     }
 }
