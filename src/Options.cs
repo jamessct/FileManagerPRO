@@ -2,12 +2,11 @@ using System;
 
 namespace ConsoleApplication
 {
-    public class Options : AppRunner
+    public static class Options
     {
-        IRunable run = new AppRunner();
-        AppHelper app = new AppHelper();
-             
-        public void MainMenuOptions(char response)
+        static IRunable run = new AppRunner();
+        static AppHelper app = new AppHelper();    
+        public static void MainMenuOptions(char response)
         {
             string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
             string[] filesMenu = {"Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text", "Generate index file"};
@@ -121,13 +120,14 @@ namespace ConsoleApplication
             }
         }
 
-        public void ManageFiles(char response)
+        public static void ManageFiles(char response)
         {
             AppHelper app = new AppHelper();
             IRunable run = new AppRunner();
             string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
             string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
-            string input;
+            string quit = "Press 'Q' to quit.";
+            string menu = "Press 'M' to access the MAIN MENU.";
 
             switch(response)
             {
@@ -135,7 +135,7 @@ namespace ConsoleApplication
                 case '1':
                 {
                     Console.WriteLine("Enter the path for the file you wish to create: ");
-                    input = Console.ReadLine();
+                    string input = Console.ReadLine();
 
                     try
                     {
@@ -165,7 +165,7 @@ namespace ConsoleApplication
                 {
                     Console.WriteLine("WARNING! This function will permenantly delete the specified file. To cancel, press 'C'.");
                     Console.WriteLine("Enter the path for the file you wish to delete: ");
-                    input = Console.ReadLine();
+                    string input = Console.ReadLine();
 
                     if(input == "c" || input == "C")
                     {
@@ -217,7 +217,7 @@ namespace ConsoleApplication
                 case '4':
                 {
                     Console.WriteLine("Select file to read: ");
-                    input = Console.ReadLine();
+                    string input = Console.ReadLine();
 
                     try
                     {
@@ -306,12 +306,14 @@ namespace ConsoleApplication
             }
         }
 
-        public void ManageFolders(char response)
+        public static void ManageFolders(char response)
         {
             AppHelper app = new AppHelper();
             IRunable run = new AppRunner();
             string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
             string[] foldersMenu = {"Create folder", "Delete folder"};
+            string quit = "Press 'Q' to quit.";
+            string menu = "Press 'M' to access the MAIN MENU.";
 
             switch(response)
             {

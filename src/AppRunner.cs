@@ -16,7 +16,6 @@ namespace ConsoleApplication
         
         void IRunable.Menu(string[] array, string back, int menu)
         {
-            Options options = new Options();
 
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -47,17 +46,17 @@ namespace ConsoleApplication
             {
                 case 1:
                 {
-                    options.MainMenuOptions(response);
+                    Options.MainMenuOptions(response);
                     break;
                 }
                 case 2:
                 {
-                    options.ManageFiles(response);
+                    Options.ManageFiles(response);
                     break;
                 }
                 case 3:
                 {
-                    options.ManageFolders(response);
+                    Options.ManageFolders(response);
                     break;
                 }
             }

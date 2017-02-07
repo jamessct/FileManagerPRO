@@ -49,7 +49,6 @@ namespace ConsoleApplication
         
         public string RemovePathFromName(string path, string input)
         {
-            Options menu = new Options();
             string subString = input;
             int subStringLength = subString.Length;
             string fileName = path;
