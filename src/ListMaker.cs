@@ -51,7 +51,7 @@ namespace ConsoleApplication
         {
             string subString = input;
             int subStringLength = subString.Length;
-            string fileName = path;
+            string fileName = Options.input;
             fileName = path.Remove(0, subStringLength + 1);
             return fileName;
         }

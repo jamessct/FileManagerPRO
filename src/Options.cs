@@ -6,6 +6,7 @@ namespace ConsoleApplication
     {
         static IRunable run = new AppRunner();
         static AppHelper app = new AppHelper();    
+        public static string input;
         public static void MainMenuOptions(char response)
         {
             string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
@@ -19,7 +20,7 @@ namespace ConsoleApplication
                 case '1':
                 {
                     Console.WriteLine("Please enter a directory path: ");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
                     
                     try
                     {
@@ -48,7 +49,7 @@ namespace ConsoleApplication
                 case '2': 
                 {
                     Console.WriteLine("Please enter a directory:");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
                     try
                     {
                         var list = new ListMaker();
