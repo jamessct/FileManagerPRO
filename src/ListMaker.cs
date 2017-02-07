@@ -4,9 +4,9 @@ namespace ConsoleApplication
 {
     public class ListMaker : AppHelper
     {
-        public void CreateListTable(string[] array, string type)
+        public void CreateListTable(string input, string[] array, string type)
         {
-            var table = new TableMaker();
+            TableMaker table = new TableMaker();
             int number = 0;
             string[] headings = {"", "Name", "Size", "Last Accessed"};
             table.PrintLine();
@@ -20,7 +20,7 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = this.RemovePathFromName(item);
+                string name = this.RemovePathFromName(item, input);
                 list.Add(name);
 
                 if (type == "file")
@@ -47,10 +47,10 @@ namespace ConsoleApplication
             table.PrintLine();
         }
         
-        public string RemovePathFromName(string path)
+        public string RemovePathFromName(string path, string input)
         {
-            AppRunner app = new AppRunner();
-            string subString = app.userInput;
+            Options menu = new Options();
+            string subString = input;
             int subStringLength = subString.Length;
             string fileName = path;
             fileName = path.Remove(0, subStringLength + 1);
