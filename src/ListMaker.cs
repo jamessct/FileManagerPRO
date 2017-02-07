@@ -47,7 +47,7 @@ namespace ConsoleApplication
             table.PrintLine();
         }
         
-        public string RemovePathFromName(string path)
+        private string RemovePathFromName(string path)
         {
             string subString = Options.input;
             int subStringLength = subString.Length;

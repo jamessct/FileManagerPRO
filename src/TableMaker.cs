@@ -2,7 +2,7 @@ using System;
 
 namespace ConsoleApplication
 {
-    public class TableMaker 
+    public class TableMaker
     {
         int tableWidth;
 
@@ -29,7 +29,7 @@ namespace ConsoleApplication
             Console.WriteLine(row);
         }
 
-        public string AlignCentre(string text, int width)
+        private string AlignCentre(string text, int width)
         {
             text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
 

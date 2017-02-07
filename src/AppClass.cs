@@ -12,7 +12,6 @@ namespace ConsoleApplication
             {
                 return true;
             }
-
             else
             {
                 return false;
@@ -25,7 +24,6 @@ namespace ConsoleApplication
             {
                 return true;
             }
-
             else
             {
                 return false;
@@ -58,7 +56,6 @@ namespace ConsoleApplication
             {
                 throw new ArgumentException("There are no files in this directory");
             }
-
             else 
             {
                 return list;
@@ -75,7 +72,6 @@ namespace ConsoleApplication
             {
                 throw new ArgumentException("There are no subfolders in this directory");
             }
-            
             else return list;
         }
 
@@ -269,22 +265,6 @@ namespace ConsoleApplication
                 number += 1;
                 File.AppendAllText(indexPath, number + ". " + folder + " (" + folderSize + "), Last accessed: " + lastDateAccessed + "\r\n");
             }
-        }
-
-        public string ConvertStringToArray(string[] array)
-        {
-            StringBuilder builder = new StringBuilder();
-            var number = 0;
-
-            foreach (string value in array)
-            {
-                number +=1;
-                builder.Append(number + ". ");
-                builder.Append(value);
-                builder.Append(", ");
-            }
-
-            return builder.ToString();
         }
     }
 }

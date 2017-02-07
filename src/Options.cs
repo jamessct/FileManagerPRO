@@ -14,9 +14,12 @@ namespace ConsoleApplication
         public static string[] foldersMenu = {"Create folder", "Delete folder"};
         static Options()
         {
+            IRunable run = new AppRunner();
+            AppHelper app = new AppHelper();   
             quit = "Press 'Q' to quit.";
             menu = "Press 'M' to return to the MAIN MENU.";
         }
+
         public static void MainMenuOptions(char response)
         {
             switch(response)
