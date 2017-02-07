@@ -31,7 +31,6 @@ namespace ConsoleApplication
                     
                     try
                     {
-                        
                         Console.ForegroundColor = ConsoleColor.Green;
                         string[] files = app.ListFilesInDirectory(input);
                         Console.WriteLine("input = " + input);
@@ -113,7 +112,6 @@ namespace ConsoleApplication
                 }
                 case 'q':
                 {
-                    Console.WriteLine();
                     Console.WriteLine("GOODBYE!");
                     Environment.Exit(0);
                     break;
