@@ -7,14 +7,18 @@ namespace ConsoleApplication
         static IRunable run = new AppRunner();
         static AppHelper app = new AppHelper();    
         public static string input;
+        public static string quit;
+        public static string menu;
+        public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
+        public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text", "Generate index file"};
+        public static string[] foldersMenu = {"Create folder", "Delete folder"};
+        static Options()
+        {
+            quit = "Press 'Q' to quit.";
+            menu = "Press 'M' to return to the MAIN MENU.";
+        }
         public static void MainMenuOptions(char response)
         {
-            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
-            string[] filesMenu = {"Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text", "Generate index file"};
-            string[] foldersMenu = {"Create folder", "Delete folder"};
-            string quit = "Press 'Q' to quit.";
-            string menu = "Press 'M' to access the MAIN MENU.";
-            
             switch(response)
             {
                 case '1':
@@ -29,7 +33,7 @@ namespace ConsoleApplication
                         string[] files = app.ListFilesInDirectory(input);
                         Console.WriteLine("input = " + input);
                         var list = new ListMaker();
-                        list.CreateListTable(input, files, "file");
+                        list.CreateListTable(files, "file");
                         long listSize = app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + Utilities.SelectAppropriateFileSizeFormat(listSize));
                         
@@ -55,7 +59,7 @@ namespace ConsoleApplication
                         var list = new ListMaker();
                         Console.ForegroundColor = ConsoleColor.Green;
                         string[] folders = app.ListSubfoldersInDirectory(input);
-                        list.CreateListTable(input, folders, "folder");
+                        list.CreateListTable(folders, "folder");
                         long totalSize = app.GetSizeOfDirectory(input) - app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
 
@@ -123,13 +127,6 @@ namespace ConsoleApplication
 
         public static void ManageFiles(char response)
         {
-            AppHelper app = new AppHelper();
-            IRunable run = new AppRunner();
-            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
-            string[] filesMenu = { "Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text" };
-            string quit = "Press 'Q' to quit.";
-            string menu = "Press 'M' to access the MAIN MENU.";
-
             switch(response)
             {
                 //CreateFile
@@ -309,13 +306,6 @@ namespace ConsoleApplication
 
         public static void ManageFolders(char response)
         {
-            AppHelper app = new AppHelper();
-            IRunable run = new AppRunner();
-            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
-            string[] foldersMenu = {"Create folder", "Delete folder"};
-            string quit = "Press 'Q' to quit.";
-            string menu = "Press 'M' to access the MAIN MENU.";
-
             switch(response)
             {
                 //Create Folder

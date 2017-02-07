@@ -5,18 +5,15 @@ namespace ConsoleApplication
 {
     public class AppRunner : IRunable
     {
-        public string menu;
-        public string quit;
+        string quit;
         
         public AppRunner()
         {
-            menu = "Press 'M' to access the MAIN MENU.";
             quit = "Press 'Q to quit.";
         }
         
         void IRunable.Menu(string[] array, string back, int menu)
         {
-
             Console.ForegroundColor = ConsoleColor.White;
 
             int number = 0;
