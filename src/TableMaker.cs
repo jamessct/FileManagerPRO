@@ -13,7 +13,6 @@ namespace ConsoleApplication
 
         public string PrintLine()
         {
-           Console.WriteLine(new string('-', tableWidth));
            return new string('-', tableWidth);
         }
 
@@ -27,7 +26,6 @@ namespace ConsoleApplication
                 row += AlignCentre(column, width) + "|";
             }
 
-            Console.WriteLine(row);
             return row;
         }
 
@@ -42,6 +40,14 @@ namespace ConsoleApplication
             else
             {
                 return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
+            }
+        }
+
+        public void PrintTableToConsole(string[] table)
+        {
+            foreach (string row in table)
+            {
+                Console.WriteLine(row);
             }
         }
     }

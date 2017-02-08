@@ -51,6 +51,7 @@ namespace ConsoleApplication
             string[] answer = result.ToArray();
             return answer;
         }
+
         private string RemovePathFromName(string path)
         {
             string subString = Options.input;

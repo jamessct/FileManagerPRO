@@ -236,36 +236,38 @@ namespace ConsoleApplication
 
         public void CreateIndexFile(string folderPath)
         {
+            Console.WriteLine(Options.input);
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
 
             string indexPath = folderPath + "\\Index.txt";
             FileStream f = File.Create(indexPath);
             f.Dispose();
-
-            var number = 0;
-            string[] list = Directory.GetFiles(folderPath);
-            File.WriteAllText(indexPath, "Files \r\n \r\n");
-
-            foreach(string item in list)
-            {
-                long rawFileSize = this.GetSizeOfFile(item);
-                string fileSize = Utilities.SelectAppropriateFileSizeFormat(rawFileSize);
-                string lastDateAccessed = this.GetTimeStampForLastAccess(item);
-                number += 1;
-                File.AppendAllText(indexPath, number + ". File: " + item + " (" + fileSize + "), Last accessed: " + lastDateAccessed + "\r\n");
-            }
-
-            number = 0;
-            string[] subfolders = Directory.GetDirectories(folderPath);
-            File.AppendAllText(indexPath, "\r\nFolders \r\n \r\n");
             
-            foreach(string folder in subfolders)
+            string[] files = this.ListFilesInDirectory(folderPath);
+            string[] subfolders = this.ListSubfoldersInDirectory(folderPath);
+            ListMaker table = new ListMaker();
+
+            string[] fileTable = table.CreateTable(files, "file");
+            string[] folderTable = table.CreateTable(subfolders, "folder");
+
+            using (StreamWriter sw = File.AppendText(indexPath))
             {
-                long rawFolderSize = this.GetSizeOfDirectory(folder);
-                string folderSize = Utilities.SelectAppropriateFileSizeFormat(rawFolderSize);
-                string lastDateAccessed = this.GetTimeStampForLastAccess(folder);
-                number += 1;
-                File.AppendAllText(indexPath, number + ". " + folder + " (" + folderSize + "), Last accessed: " + lastDateAccessed + "\r\n");
+                sw.WriteLine("Files in " + indexPath);
+                sw.WriteLine();
+
+                foreach (string row in fileTable)
+                {
+                    sw.WriteLine(row);
+                }
+
+                sw.WriteLine();
+                sw.WriteLine("Subfolders in " + indexPath);
+                sw.WriteLine();
+
+                foreach(string row in folderTable)
+                {
+                    sw.WriteLine(row);
+                }
             }
         }
     }

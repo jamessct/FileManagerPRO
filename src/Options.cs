@@ -34,8 +34,11 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green;
                         string[] files = app.ListFilesInDirectory(input);
                         Console.WriteLine("input = " + input);
-                        var list = new ListMaker();
-                        list.CreateTable(files, "file");
+                        ListMaker list = new ListMaker();
+                        TableMaker tableMaker = new TableMaker();
+                        
+                        string[] table = list.CreateTable(files, "file");
+                        tableMaker.PrintTableToConsole(table);
                         long listSize = app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + Utilities.SelectAppropriateFileSizeFormat(listSize));
                         
@@ -92,7 +95,7 @@ namespace ConsoleApplication
                 {
                     Console.WriteLine("This option creates a text file which compiles information on all of the files and folders in the location specified.");
                     Console.WriteLine("To continue, please enter the directory path where you would like to create your index file:");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
 
                     try
                     {
