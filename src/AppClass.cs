@@ -257,7 +257,7 @@ namespace ConsoleApplication
 
             number = 0;
             string[] subfolders = Directory.GetDirectories(folderPath);
-            File.AppendAllText(indexPath, "\r\n Folders \r\n \r\n");
+            File.AppendAllText(indexPath, "\r\nFolders \r\n \r\n");
             
             foreach(string folder in subfolders)
             {

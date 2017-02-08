@@ -35,7 +35,7 @@ namespace ConsoleApplication
                         string[] files = app.ListFilesInDirectory(input);
                         Console.WriteLine("input = " + input);
                         var list = new ListMaker();
-                        list.CreateListTable(files, "file");
+                        list.CreateTable(files, "file");
                         long listSize = app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + Utilities.SelectAppropriateFileSizeFormat(listSize));
                         
@@ -61,7 +61,7 @@ namespace ConsoleApplication
                         var list = new ListMaker();
                         Console.ForegroundColor = ConsoleColor.Green;
                         string[] folders = app.ListSubfoldersInDirectory(input);
-                        list.CreateListTable(folders, "folder");
+                        list.CreateTable(folders, "folder");
                         long totalSize = app.GetSizeOfDirectory(input) - app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
 

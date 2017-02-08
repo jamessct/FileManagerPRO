@@ -4,19 +4,20 @@ using System.Collections.Generic;
 namespace ConsoleApplication
 {
     public class ListMaker : AppHelper
-    {
-        public void CreateListTable(string[] array, string type)
+    {   
+        public string[] CreateTable(string[] array, string type)
         {
             TableMaker table = new TableMaker();
             int number = 0;
+            List<string> result = new List<string>();
             string[] headings = {"", "Name", "Size", "Last Accessed"};
             table.PrintLine();
             table.PrintRow(headings);
+            table.PrintLine();
 
-            foreach (string item in array)
+            foreach(string item in array)
             {
                 List<string> list = new List<string>();
-                long size;
 
                 number += 1;
                 string numberString = number + ".";
@@ -24,6 +25,8 @@ namespace ConsoleApplication
 
                 string name = this.RemovePathFromName(item);
                 list.Add(name);
+
+                long size;
 
                 if (type == "file")
                 {
@@ -34,50 +37,20 @@ namespace ConsoleApplication
                     size = base.GetSizeOfFileList(item);
                 }
 
-                string answer = Utilities.SelectAppropriateFileSizeFormat(size);
-                list.Add(answer);
+                string fileSize = Utilities.SelectAppropriateFileSizeFormat(size);
+                list.Add(fileSize);
 
                 string lastAccess = base.GetTimeStampForLastAccess(item);
                 list.Add(lastAccess);
 
-                string[] listArray = list.ToArray();
-                
-                table.PrintLine();
-                table.PrintRow(listArray);
-            }  
-            table.PrintLine();
+                string[] row = list.ToArray(); 
+                result.Add(table.PrintRow(row));
+                result.Add(table.PrintLine());
+                list.Clear();
+            }
+            string[] answer = result.ToArray();
+            return answer;
         }
-        
-        // public string[] AlternativeMethodToCreateListTable(string[] array, string type)
-        // {
-        //     TableMaker table = new TableMaker();
-        //     int number = 0;
-        //     List<string> result = new List<string>();
-
-        //     foreach(string item in array)
-        //     {
-        //         List<string> list = new List<string>();
-
-        //         number += 1;
-        //         string numberString = number + ".";
-        //         list.Add(numberString);
-
-        //         string name = this.RemovePathFromName(item);
-        //         list.Add(name);
-
-        //         if (type == "file")
-        //         {
-        //             long size = base.GetSizeOfFile(item);
-        //             string answer = Utilities.SelectAppropriateFileSizeFormat(size);
-        //             list.Add(answer);
-        //         }
-        //         else
-        //         {
-        //             throw new ArgumentException("whoops");
-        //         }
-
-        //     }
-        // }
         private string RemovePathFromName(string path)
         {
             string subString = Options.input;
