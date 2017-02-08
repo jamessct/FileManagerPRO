@@ -244,24 +244,26 @@ namespace ConsoleApplication
 
             var number = 0;
             string[] list = Directory.GetFiles(folderPath);
-            Console.WriteLine("File list");
+            File.WriteAllText(indexPath, "Files \r\n \r\n");
 
             foreach(string item in list)
             {
-                var fileSize = this.GetSizeOfFile(item);
-                var lastDateAccessed = this.GetTimeStampForLastAccess(item);
+                long rawFileSize = this.GetSizeOfFile(item);
+                string fileSize = Utilities.SelectAppropriateFileSizeFormat(rawFileSize);
+                string lastDateAccessed = this.GetTimeStampForLastAccess(item);
                 number += 1;
-                File.AppendAllText(indexPath, number + ". " + item + " (" + fileSize + "), Last accessed: " + lastDateAccessed + "\r\n");
+                File.AppendAllText(indexPath, number + ". File: " + item + " (" + fileSize + "), Last accessed: " + lastDateAccessed + "\r\n");
             }
 
             number = 0;
             string[] subfolders = Directory.GetDirectories(folderPath);
-            Console.WriteLine("Folder list");
+            File.AppendAllText(indexPath, "\r\n Folders \r\n \r\n");
             
             foreach(string folder in subfolders)
             {
-                var folderSize = this.GetSizeOfDirectory(folder);
-                var lastDateAccessed = this.GetTimeStampForLastAccess(folder);
+                long rawFolderSize = this.GetSizeOfDirectory(folder);
+                string folderSize = Utilities.SelectAppropriateFileSizeFormat(rawFolderSize);
+                string lastDateAccessed = this.GetTimeStampForLastAccess(folder);
                 number += 1;
                 File.AppendAllText(indexPath, number + ". " + folder + " (" + folderSize + "), Last accessed: " + lastDateAccessed + "\r\n");
             }
