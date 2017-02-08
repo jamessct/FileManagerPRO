@@ -94,12 +94,12 @@ namespace MyApp
         }
 
         [Theory]
-        [InlineDataAttribute(@"c:\Projects")]
+        [InlineDataAttribute(@"c:\Projects\Tests")]
         public void CanGenerateListOfSubfolders(string folderPath)
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            int expectedLength = 6;
+            int expectedLength = 4;
 
             //Act
             string[] subfolderList = myInstanceOfApphelper.ListSubfoldersInDirectory(folderPath);
@@ -122,7 +122,7 @@ namespace MyApp
             string answer = Utilities.SelectAppropriateFileSizeFormat(fileSize);
 
             //Assert
-            Assert.Equal(answer, "68kb");
+            Assert.Equal(answer, "68KB");
         }
 
         [Theory]
@@ -152,7 +152,7 @@ namespace MyApp
             string answer = Utilities.SelectAppropriateFileSizeFormat(fileListSize);
 
             //Assert
-            Assert.Equal(answer, "16.203125mb");
+            Assert.Equal(answer, "16.2MB");
         }
 
         [Theory]
@@ -182,7 +182,7 @@ namespace MyApp
             string answer = Utilities.SelectAppropriateFileSizeFormat(totalSizeOfDirectory);
 
             //Assert
-            Assert.Equal(answer, "1.11649990081787mb");
+            Assert.Equal(answer, "1.12MB");
         }
 
         [Theory]
@@ -454,7 +454,7 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\IndexTests")]
-        public void CanCreateIndexFileWithAllFilesInDirectory(string folderPath)
+        public void CanCreateIndexFileWithPopulatedDirectory(string folderPath)
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
@@ -471,20 +471,6 @@ namespace MyApp
         [Theory]
         [InlineDataAttribute(@"c\Projects\Tests\MadeUpFolder")]
         public void ThrowsExceptionIfTryingToCreateIndexFile_FolderDoesntExists(string folderPath)
-        {
-            //Assign
-            var myInstanceOfApphelper = new AppHelper();
-
-            //Act
-            Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.CreateIndexFile(folderPath));
-
-            //Assign
-            Assert.Equal(exception.Message, "This folder does not exist");
-        }
-
-        [Theory]
-        [InlineDataAttribute(@"c\Projects\Tests\EmptyFolder")]
-        public void ThrowsExceptionIfTryingToCreateIndexFile_FolderIsEmpty(string folderPath)
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();

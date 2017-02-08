@@ -236,19 +236,17 @@ namespace ConsoleApplication
 
         public void CreateIndexFile(string folderPath)
         {
-            Console.WriteLine(Options.input);
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
 
             string indexPath = folderPath + "\\Index.txt";
             FileStream f = File.Create(indexPath);
             f.Dispose();
-            
-            string[] files = this.ListFilesInDirectory(folderPath);
-            string[] subfolders = this.ListSubfoldersInDirectory(folderPath);
+        
             ListMaker table = new ListMaker();
-
+            string[] files = Directory.GetFiles(folderPath);
+            string[] folders = Directory.GetDirectories(folderPath);
             string[] fileTable = table.CreateTable(files, "file");
-            string[] folderTable = table.CreateTable(subfolders, "folder");
+            string[] folderTable = table.CreateTable(folders, "folder");
 
             using (StreamWriter sw = File.AppendText(indexPath))
             {
