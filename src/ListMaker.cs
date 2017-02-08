@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleApplication
@@ -15,6 +16,7 @@ namespace ConsoleApplication
             foreach (string item in array)
             {
                 List<string> list = new List<string>();
+                long size;
 
                 number += 1;
                 string numberString = number + ".";
@@ -25,16 +27,15 @@ namespace ConsoleApplication
 
                 if (type == "file")
                 {
-                    long size = base.GetSizeOfFile(item);
-                    string answer = Utilities.SelectAppropriateFileSizeFormat(size);
-                    list.Add(answer);
+                    size = base.GetSizeOfFile(item);
                 }
                 else
                 {
-                    long size = base.GetSizeOfFileList(item);
-                    string answer = Utilities.SelectAppropriateFileSizeFormat(size);
-                    list.Add(answer);
+                    size = base.GetSizeOfFileList(item);
                 }
+
+                string answer = Utilities.SelectAppropriateFileSizeFormat(size);
+                list.Add(answer);
 
                 string lastAccess = base.GetTimeStampForLastAccess(item);
                 list.Add(lastAccess);
@@ -47,6 +48,36 @@ namespace ConsoleApplication
             table.PrintLine();
         }
         
+        // public string[] AlternativeMethodToCreateListTable(string[] array, string type)
+        // {
+        //     TableMaker table = new TableMaker();
+        //     int number = 0;
+        //     List<string> result = new List<string>();
+
+        //     foreach(string item in array)
+        //     {
+        //         List<string> list = new List<string>();
+
+        //         number += 1;
+        //         string numberString = number + ".";
+        //         list.Add(numberString);
+
+        //         string name = this.RemovePathFromName(item);
+        //         list.Add(name);
+
+        //         if (type == "file")
+        //         {
+        //             long size = base.GetSizeOfFile(item);
+        //             string answer = Utilities.SelectAppropriateFileSizeFormat(size);
+        //             list.Add(answer);
+        //         }
+        //         else
+        //         {
+        //             throw new ArgumentException("whoops");
+        //         }
+
+        //     }
+        // }
         private string RemovePathFromName(string path)
         {
             string subString = Options.input;

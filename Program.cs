@@ -16,7 +16,7 @@ namespace ConsoleApplication
             Console.WriteLine("                                           |___/                                             ");;
             Console.WriteLine("Welcome to File Manager PRO! To proceed, please select a number from the list below:");
             Console.WriteLine();
-            
+
             IRunable run = new AppRunner();
             run.Menu(Options.mainMenu, Options.quit, 1);  
         }

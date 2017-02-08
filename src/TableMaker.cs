@@ -11,12 +11,13 @@ namespace ConsoleApplication
             tableWidth = 110;
         }
 
-        public void PrintLine()
+        public string PrintLine()
         {
            Console.WriteLine(new string('-', tableWidth));
+           return new string('-', tableWidth);
         }
 
-        public void PrintRow(string[] columns)
+        public string PrintRow(string[] columns)
         {
             int width = (tableWidth - columns.Length) / columns.Length;
             string row = "|";
@@ -27,6 +28,7 @@ namespace ConsoleApplication
             }
 
             Console.WriteLine(row);
+            return row;
         }
 
         private string AlignCentre(string text, int width)
