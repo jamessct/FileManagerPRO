@@ -459,13 +459,14 @@ namespace MyApp
             //Assign
             var myInstanceOfApphelper = new AppHelper();
             string indexPath = folderPath + "\\Index.txt";
+            Options.input = "c:\\Projects\\Tests\\IndexTests";
 
             //Act
             myInstanceOfApphelper.CreateIndexFile(folderPath);
             int lineCount = File.ReadLines(indexPath).Count();
 
             //Assert
-            Assert.Equal(lineCount, 3);
+            Assert.Equal(lineCount, 11);
         }
 
         [Theory]

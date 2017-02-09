@@ -245,8 +245,8 @@ namespace ConsoleApplication
             ListMaker table = new ListMaker();
             string[] files = Directory.GetFiles(folderPath);
             string[] folders = Directory.GetDirectories(folderPath);
-            string[] fileTable = table.CreateTable(files, "file");
-            string[] folderTable = table.CreateTable(folders, "folder");
+            string[] fileTable = table.CreateTable(files, "file", Options.input);
+            string[] folderTable = table.CreateTable(folders, "folder", Options.input);
 
             using (StreamWriter sw = File.AppendText(indexPath))
             {

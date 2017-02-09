@@ -6,7 +6,7 @@ namespace ConsoleApplication
     {
         public static string SelectAppropriateFileSizeFormat(long bytes)
         {
-            if (bytes > 1048576)
+            if (bytes > 1048576 && bytes < 1073741824)
             {
                 double megabytes = (bytes / 1048576f);
                 double rounded = Math.Round(megabytes, 2);

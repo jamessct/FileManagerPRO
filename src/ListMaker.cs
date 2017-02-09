@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 
 namespace ConsoleApplication
 {
     public class ListMaker : AppHelper
     {   
-        public string[] CreateTable(string[] array, string type)
+        public string[] CreateTable(string[] array, string type, string input)
         {
             TableMaker table = new TableMaker();
             int number = 0;
@@ -23,7 +22,7 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = this.RemovePathFromName(item);
+                string name = this.RemovePathFromName(item, input);
                 list.Add(name);
 
                 long size;
@@ -52,9 +51,9 @@ namespace ConsoleApplication
             return answer;
         }
 
-        private string RemovePathFromName(string path)
+        public string RemovePathFromName(string path, string input)
         {
-            string subString = Options.input;
+            string subString = input;
             int subStringLength = subString.Length;
             string fileName = path;
             fileName = path.Remove(0, subStringLength + 1);

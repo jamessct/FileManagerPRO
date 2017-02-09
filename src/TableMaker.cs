@@ -31,7 +31,7 @@ namespace ConsoleApplication
 
         private string AlignCentre(string text, int width)
         {
-            text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
+            text = (text.Length > width ? text.Substring(0, width - 3) + "..." : text);
 
             if(string.IsNullOrEmpty(text))
             {
