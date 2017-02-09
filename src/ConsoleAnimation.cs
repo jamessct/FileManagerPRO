@@ -32,19 +32,9 @@ namespace ConsoleApplication
                 "*******************.",
                 "********************"
             };
-
-            SpinnerAnimationFrames2 = new[]
-            {
-                "|",
-                "/",
-                "-",
-                @"\"
-            };
         }
 
         public string[] SpinnerAnimationFrames { get; set; }
-
-        public string[] SpinnerAnimationFrames2 { get; set; }
         
         public bool animation()
         {
