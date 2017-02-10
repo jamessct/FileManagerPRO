@@ -12,6 +12,7 @@ namespace ConsoleApplication
         public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
         public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text", "Generate index file"};
         public static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder"};
+        
         static Options()
         {
             IRunable run = new AppRunner();
@@ -214,6 +215,13 @@ namespace ConsoleApplication
                         run.Menu(mainMenu, quit, 1);
                         break;
                     } 
+                }
+                //Rename file
+                case '9':
+                {
+                    
+                    run.Menu(mainMenu, quit, 1);
+                    break;
                 }
                 //Read text from file
                 case '4':
