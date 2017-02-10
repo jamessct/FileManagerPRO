@@ -482,24 +482,42 @@ namespace MyApp
             Assert.Equal(exception.Message, "This folder does not exist");
         }
 
-        // [Theory]
-        // [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\RenameMe", "NEW NAME")]
-        // public void CanRenameFolder(string oldPath, string newName)
-        // {
-        //     //Assign
-        //     var myInstanceOfApphelper = new AppHelper();
-        //     bool result;
-        //     int pathLength = oldPath.LastIndexOf(@"\") + 1;
-        //     string path = oldPath.Remove(0, pathLength);
-        //     string newPath = path + @"\" + newName;
+        [Theory]
+        [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\RenameMe", "NEW NAME")]
+        public void CanRenameFolder(string oldPath, string newName)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            bool result;
+            int pathLength = oldPath.LastIndexOf(@"\") + 1;
+            
+            
+            string path = oldPath.Substring(0, pathLength);
+            
+            
+            string newPath = path + @"\" + newName;
 
-        //     //Act
-        //     myInstanceOfApphelper.RenameFolder(oldPath, newPath);
-        //     result = myInstanceOfApphelper.CheckFolderExists(path + newName);
+            //Act
+            myInstanceOfApphelper.RenameFolder(oldPath, newPath);
+            result = myInstanceOfApphelper.CheckFolderExists(path + newName);
 
-        //     //Assert
-        //     Assert.True(result);
-        // }
+            //Assert
+            Assert.True(result);
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\Projecdoesntreallymatter", "whatevevever")]
+        public void ThrowsExceptionRenamingFile_DoesntExist(string oldPath, string newName)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+
+            //Act
+            Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.RenameFolder(oldPath, newName));            
+
+            //Assert
+            Assert.Equal(exception.Message, "This folder does not exist");
+        }
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\IndexTests")]

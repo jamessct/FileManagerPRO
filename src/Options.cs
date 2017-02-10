@@ -402,6 +402,17 @@ namespace ConsoleApplication
                     string input1 = Console.ReadLine();
                     Console.WriteLine("Enter a new name for the folder:");
                     string input2 = Console.ReadLine();
+                    string destinationPath = input1.Remove(input1.LastIndexOf(@"\")) + @"\" + input2;
+                    Console.WriteLine(destinationPath);
+                    
+                    if (input1 == destinationPath)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Your folder is already named'" + input2 + "'!");
+                        run.Menu(mainMenu, quit, 1);
+                        break;
+                    }
+                    
                     app.RenameFolder(input1, input2);
 
                     try
