@@ -3,55 +3,12 @@ using System;
 namespace ConsoleApplication
 {
     
-    public class NewMenu
+    public class MenuExperiments
     {
-        // public void MenuExperiment1()
-        // {
-        //     Console.Clear();
-        //     Console.WriteLine("Option 1");
-        //     Console.WriteLine("Option 2");
-        //     Console.WriteLine("Option 3");
-        //     Console.WriteLine();
-
-        //     var originalpos = Console.CursorTop;
-
-        //     var key = Console.ReadKey();
-        //     var i = 1;
-
-        //     while (key.KeyChar != 'q')
-        //     {          
-
-        //         if (key.Key == ConsoleKey.UpArrow)
-        //         {
-                    
-        //             Console.SetCursorPosition(0, Console.CursorTop - i);
-        //             Console.ForegroundColor = ConsoleColor.Cyan;
-        //             Console.BackgroundColor = ConsoleColor.White;
-        //             Console.WriteLine("Option " + (Console.CursorTop + 1));
-        //             Console.ResetColor();
-        //             i++;
-
-        //         }
-
-        //         if (key.Key == ConsoleKey.DownArrow)
-        //         {
-        //             Console.SetCursorPosition(0, Console.CursorTop + i);
-        //             Console.ForegroundColor = ConsoleColor.Cyan;
-        //             Console.BackgroundColor = ConsoleColor.White;
-        //             Console.WriteLine("Option " + (Console.CursorTop - 1));
-        //             Console.ResetColor();
-        //             i--;
-        //         }
-
-        //         Console.SetCursorPosition(8, originalpos);
-        //         key = Console.ReadKey();
-            
-        //     }
-        // }
-
-        public int MenuExperiment2(string[] inArray)
+        public int DynamicMenu(string[] inArray)
         {
             bool loopComplete = false;
+            int number = 0;
             int topOffset = Console.CursorTop;
             int bottomOffset = 0;
             int selectedItem = 0;

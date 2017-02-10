@@ -18,8 +18,12 @@ namespace ConsoleApplication
             Console.WriteLine("Welcome to File Manager PRO! To proceed, please select a number from the list below:");
             Console.WriteLine();
 
+            MenuExperiments menu = new MenuExperiments();
+            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
+            menu.DynamicMenu(mainMenu);
+
             IRunable run = new AppRunner();
-            run.Menu(Options.mainMenu, Options.quit, 1);  
+            // run.Menu(Options.mainMenu, Options.quit, 1);  
         }
     }
 }
