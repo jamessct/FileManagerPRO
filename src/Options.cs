@@ -116,6 +116,7 @@ namespace ConsoleApplication
                 }
                 case 'q':
                 {
+                    Console.Clear();
                     Console.WriteLine("GOODBYE!");
                     Environment.Exit(0);
                     break;
@@ -219,7 +220,7 @@ namespace ConsoleApplication
                 //Rename file
                 case '9':
                 {
-                    
+
                     run.Menu(mainMenu, quit, 1);
                     break;
                 }

@@ -6,6 +6,7 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {   
+            Console.Clear();
             Console.Title = "File Manager PRO 2.0";
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("   ___ _ _                                                     ___  __    ___   ____    ___  ");
