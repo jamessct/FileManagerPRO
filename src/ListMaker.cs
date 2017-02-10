@@ -22,7 +22,7 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = this.RemovePathFromName(item, input);
+                string name = this.RemovePathFromName(item);
                 list.Add(name);
 
                 long size;
@@ -49,15 +49,6 @@ namespace ConsoleApplication
             }
             string[] answer = result.ToArray();
             return answer;
-        }
-
-        public string RemovePathFromName(string path, string input)
-        {
-            string subString = input;
-            int subStringLength = subString.Length;
-            string fileName = path;
-            fileName = path.Remove(0, subStringLength + 1);
-            return fileName;
         }
     }
 }

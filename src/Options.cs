@@ -11,7 +11,7 @@ namespace ConsoleApplication
         public static string menu;
         public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
         public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Read text from file", "Write text to file", "Search file for text", "Generate index file"};
-        public static string[] foldersMenu = {"Create folder", "Delete folder"};
+        public static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder"};
         static Options()
         {
             IRunable run = new AppRunner();
@@ -367,6 +367,54 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to remove does not exist");
+                        run.Menu(mainMenu, quit, 1);
+                        break;
+                    }
+                }
+                //Move FOLDER
+                case '3':
+                {
+                    Console.WriteLine("Enter the name of the folder you would like to move:");
+                    string input1 = Console.ReadLine();
+                    Console.WriteLine("Enter the location where you would like to move the folder:");
+                    string input2 = Console.ReadLine();
+                    app.MoveFolder(input1, input2);
+
+                    try
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("SUCCESS! Your folder has been moved to " + input2);
+                        run.Menu(mainMenu, quit, 1);
+                        break;
+                    }
+                    catch(ArgumentException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR! The folder you are trying to move does not exist");
+                        run.Menu(mainMenu, quit, 1);
+                        break;
+                    }
+                }
+                //Rename FOLDER
+                case '4':
+                {
+                    Console.WriteLine("Enter the path of the folder you would like to rename:");
+                    string input1 = Console.ReadLine();
+                    Console.WriteLine("Enter a new name for the folder:");
+                    string input2 = Console.ReadLine();
+                    app.RenameFolder(input1, input2);
+
+                    try
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("SUCCESS! Your folder has been renamed '" + input2 + "'!");
+                        run.Menu(mainMenu, quit, 1);
+                        break;
+                    }
+                    catch(ArgumentException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR! The folder you are trying to move does not exist");
                         run.Menu(mainMenu, quit, 1);
                         break;
                     }

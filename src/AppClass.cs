@@ -234,6 +234,31 @@ namespace ConsoleApplication
             Directory.Delete(folderPath, recursive);          
         }
 
+        public void MoveFolder(string folderPath, string newLocation)
+        {
+            this.ThrowExceptionIfFolderDoesntExist(folderPath);
+            Directory.Move(folderPath, newLocation);
+        }
+
+        public void RenameFolder(string oldPath, string newName)
+        {
+            this.ThrowExceptionIfFolderDoesntExist(oldPath);
+
+            int newPathLength = oldPath.LastIndexOf("\\") + 1;
+            int folderCount = (oldPath.Length - newPathLength);
+            string slicedString = oldPath.Remove(newPathLength, folderCount);
+            string newPath = slicedString + newName;
+            Console.WriteLine(newPath);
+            Directory.Move(oldPath, newPath);
+        }
+
+        public string RemovePathFromName(string path)
+        {
+            int pathLength = path.LastIndexOf("\\") + 1;
+            string answer = path.Remove(0, pathLength);
+            return answer;
+        }
+
         public void CreateIndexFile(string folderPath)
         {
             this.ThrowExceptionIfFolderDoesntExist(folderPath);

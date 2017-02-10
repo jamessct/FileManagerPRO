@@ -23,6 +23,7 @@ namespace MyApp
             Directory.Delete(@"c:\Projects\Tests\Test1");
             Directory.CreateDirectory(@"c:\Projects\Tests\Test2");
             Directory.CreateDirectory(@"c:\Projects\Tests\Test3\test.txt");
+            Directory.Move(@"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe", @"c:\Projects\Tests\NewFolder\MoveMe");
         } 
     }
     public class AppClassTheoryTest : IClassFixture<TestFixture>
@@ -99,7 +100,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            int expectedLength = 4;
+            int expectedLength = 5;
 
             //Act
             string[] subfolderList = myInstanceOfApphelper.ListSubfoldersInDirectory(folderPath);
@@ -450,6 +451,23 @@ namespace MyApp
 
             //Assert
             Assert.False(folderExists);
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\MoveMe", @"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe")]
+        // [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe", @"c:\Projects\Tests\NewFolder")]
+        public void CanMoveFolder(string oldPath, string newPath)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            // string folderName = myInstanceOfApphelper.RemovePathFromName(oldPath);
+
+            //Act
+            myInstanceOfApphelper.MoveFolder(oldPath, newPath);
+            bool result = myInstanceOfApphelper.CheckFolderExists(newPath);
+
+            //Assert
+            Assert.True(result);
         }
 
         [Theory]

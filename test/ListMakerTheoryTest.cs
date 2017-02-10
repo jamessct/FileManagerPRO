@@ -6,15 +6,15 @@ namespace MyApp
     public class ListMakerTheoryTest
     {
         [Theory]
-        [InlineDataAttribute(@"c:\Projects\Tests\index.txt", @"c:\Projects\Tests")]
-        public void CanRemovePathFromName(string filePath, string input)
+        [InlineDataAttribute(@"c:\Projects\Tests\index.txt")]
+        public void CanRemovePathFromName(string filePath)
         {
             //Assign
             ListMaker list = new ListMaker();
             string expected = "index.txt";
 
             //Act
-            string result = list.RemovePathFromName(filePath, input);
+            string result = list.RemovePathFromName(filePath);
 
             //Assert
             Assert.Equal(expected, result);
