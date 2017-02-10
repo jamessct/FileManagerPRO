@@ -455,12 +455,10 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\MoveMe", @"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe")]
-        // [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe", @"c:\Projects\Tests\NewFolder")]
         public void CanMoveFolder(string oldPath, string newPath)
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            // string folderName = myInstanceOfApphelper.RemovePathFromName(oldPath);
 
             //Act
             myInstanceOfApphelper.MoveFolder(oldPath, newPath);
@@ -469,6 +467,39 @@ namespace MyApp
             //Assert
             Assert.True(result);
         }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\fakefolder", @"c:\Podjiaoifjwhateverdoesntmattre")]
+        public void ThrowsExceptionTryingToMoveFolder_DoesntExist(string oldPath, string newPath)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+
+            //Act
+            Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.MoveFolder(oldPath, newPath));
+
+            //Assert
+            Assert.Equal(exception.Message, "This folder does not exist");
+        }
+
+        // [Theory]
+        // [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\RenameMe", "NEW NAME")]
+        // public void CanRenameFolder(string oldPath, string newName)
+        // {
+        //     //Assign
+        //     var myInstanceOfApphelper = new AppHelper();
+        //     bool result;
+        //     int pathLength = oldPath.LastIndexOf(@"\") + 1;
+        //     string path = oldPath.Remove(0, pathLength);
+        //     string newPath = path + @"\" + newName;
+
+        //     //Act
+        //     myInstanceOfApphelper.RenameFolder(oldPath, newPath);
+        //     result = myInstanceOfApphelper.CheckFolderExists(path + newName);
+
+        //     //Assert
+        //     Assert.True(result);
+        // }
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\IndexTests")]
