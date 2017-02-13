@@ -33,6 +33,7 @@ namespace ConsoleApplication
             
             while(check == true)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Thread.Sleep(30);
                 check = spin.animation();
             }

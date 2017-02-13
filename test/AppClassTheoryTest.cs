@@ -299,6 +299,22 @@ namespace MyApp
         }
 
         [Theory]
+        [InlineDataAttribute(@"c:Projects\Tests\RenameMe", "Renamed")]
+        public void CanRenameFile(string oldPath, string newName)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            bool fileExists;
+
+            //Act
+            myInstanceOfApphelper.RenameFile(oldPath, newName);
+            fileExists = myInstanceOfApphelper.CheckFileExists(@"c:\Projects\Tests\Renamed");
+
+            //Assert
+            Assert.True(fileExists);
+        }
+
+        [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\test4.txt")]
         public void CanReadFromFile(string filePath)
         {
@@ -482,24 +498,21 @@ namespace MyApp
             Assert.Equal(exception.Message, "This folder does not exist");
         }
 
-        // [Theory]
-        // [InlineDataAttribute(@"c:\NewFolder", "NewFolderino")]
-        // public void CanRenameFolder(string oldPath, string newName)
-        // {
-        //     //Assign
-        //     var myInstanceOfApphelper = new AppHelper();
-        //     bool result;
-        //     int pathLength = oldPath.LastIndexOf(@"\") + 1; 
-        //     string path = oldPath.Substring(pathLength);
-        //     string newPath = path + @"\" + newName;
+        [Theory]
+        [InlineDataAttribute(@"c:\NewFolder", "NewFolderino")]
+        public void CanRenameFolder(string oldPath, string newName)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            bool result;
 
-        //     //Act
-        //     myInstanceOfApphelper.RenameFolder(oldPath, newPath);
-        //     result = myInstanceOfApphelper.CheckFolderExists(path + newName);
+            //Act
+            myInstanceOfApphelper.RenameFolder(oldPath, newName);
+            result = myInstanceOfApphelper.CheckFolderExists(@"c:\NewFolderino");
 
-        //     //Assert
-        //     Assert.True(result);
-        // }
+            //Assert
+            Assert.True(result);
+        }
 
         [Theory]
         [InlineDataAttribute(@"c:\Projecdoesntreallymatter", "whatevevever")]

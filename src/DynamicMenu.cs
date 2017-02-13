@@ -1,8 +1,8 @@
 using System;
+using System.Threading;
 
 namespace ConsoleApplication
 {
-    
     public class DynamicMenu
     {
         public void Menu(string[] inArray, int menu)
@@ -21,14 +21,14 @@ namespace ConsoleApplication
                 {
                     if (i == selectedItem)
                     {
-                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.BackgroundColor = ConsoleColor.Cyan;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine("-" + inArray[i]);
+                        Console.WriteLine("~ " + inArray[i]);
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine("-" + inArray[i]);
+                        Console.WriteLine("- " + inArray[i]);
                     }
                 }
                 bottomOffset = Console.CursorTop;
@@ -72,8 +72,18 @@ namespace ConsoleApplication
             }
             Console.SetCursorPosition(0, bottomOffset);
             Console.CursorVisible = true;
+
+            ConsoleAnimation spin = new ConsoleAnimation();
+            bool check = true;
             
-            selectOptions(selectedItem, menu);
+            while(check == true)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Thread.Sleep(30);
+                check = spin.animation();
+            }
+
+             selectOptions(selectedItem, menu);
         }  
 
         public void selectOptions(int selectedItem, int menu)
@@ -82,16 +92,25 @@ namespace ConsoleApplication
             {
                 case 1:
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("MAIN MENU");
+                    Console.WriteLine();
                     Options.MainMenuOptions(selectedItem);
                     break;
                 }
                 case 2:
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("FILE MANAGER");
+                    Console.WriteLine();
                     Options.ManageFiles(selectedItem);
                     break;
                 }
                 case 3:
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("FOLDER MANAGER");
+                    Console.WriteLine();
                     Options.ManageFolders(selectedItem);
                     break;
                 }

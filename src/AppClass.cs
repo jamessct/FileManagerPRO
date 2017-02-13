@@ -146,6 +146,17 @@ namespace ConsoleApplication
             File.Move(filePath, destinationPath);
         }
 
+        public void RenameFile(string oldPath, string newName)
+        {
+            this.ThrowExceptionIfFileDoesntExist(oldPath);
+
+            int newPathLength = oldPath.LastIndexOf("\\") + 1;
+            int folderCount = (oldPath.Length - newPathLength);
+            string slicedString = oldPath.Remove(newPathLength, folderCount);
+            string newPath = slicedString + newName;
+            File.Move(oldPath, newPath);
+        }
+
         public string ReadTextFromFile(string filePath)
         {
             this.ThrowExceptionIfFileDoesntExist(filePath);

@@ -20,10 +20,8 @@ namespace ConsoleApplication
 
             DynamicMenu menu = new DynamicMenu();
             string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit program"};
-            menu.Menu(mainMenu, 1);
-
-            IRunable run = new AppRunner();
-            // run.Menu(Options.mainMenu, Options.quit, 1);  
+            Console.ForegroundColor = ConsoleColor.White;
+            menu.Menu(mainMenu, 1);  
         }
     }
 }

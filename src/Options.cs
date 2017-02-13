@@ -8,9 +8,10 @@ namespace ConsoleApplication
         static DynamicMenu menu = new DynamicMenu();   
         public static string input;
         public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
-        public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Generate index file", "Return to MAIN MENU"};
+        public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
         public static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU"};
-        
+        static string[] headings = {"", "Name", "Size", "Last Accessed"};
+
         static Options()
         {
             
@@ -28,23 +29,24 @@ namespace ConsoleApplication
                     
                     try
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        string[] files = app.ListFilesInDirectory(input);
-                        Console.WriteLine("input = " + input);
                         ListMaker list = new ListMaker();
                         TableMaker tableMaker = new TableMaker();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(tableMaker.PrintLine());
+                        Console.WriteLine(tableMaker.PrintRow(headings));
+                        Console.WriteLine(tableMaker.PrintLine());
+                        string[] files = app.ListFilesInDirectory(input);
                         
                         string[] table = list.CreateTable(files, "file", Options.input);
                         tableMaker.PrintTableToConsole(table);
                         long listSize = app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + Utilities.SelectAppropriateFileSizeFormat(listSize));
-                        
                         Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+
                         menu.Menu(mainMenu, 1);
                         break;
                     }
-                    catch(NullReferenceException)
+                    catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
@@ -57,14 +59,22 @@ namespace ConsoleApplication
                     Console.Clear();
                     Console.WriteLine("Please enter a directory:");
                     input = Console.ReadLine();
+
                     try
                     {
-                        var list = new ListMaker();
+                        ListMaker list = new ListMaker();
+                        TableMaker tableMaker = new TableMaker();
                         Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(tableMaker.PrintLine());
+                        Console.WriteLine(tableMaker.PrintRow(headings));
+                        Console.WriteLine(tableMaker.PrintLine());
+                        
                         string[] folders = app.ListSubfoldersInDirectory(input);
-                        list.CreateTable(folders, "folder", Options.input);
+                        string[] table = list.CreateTable(folders, "folder", Options.input);
+                        tableMaker.PrintTableToConsole(table);
                         long totalSize = app.GetSizeOfDirectory(input) - app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
+                        Console.WriteLine();
 
                         menu.Menu(mainMenu, 1);
                         break;
@@ -165,6 +175,7 @@ namespace ConsoleApplication
                 case 1:
                 {
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("WARNING! This function will permenantly delete the specified file. To cancel, press 'C'.");
                     Console.WriteLine("Enter the path for the file you wish to delete: ");
                     string input = Console.ReadLine();
@@ -204,9 +215,8 @@ namespace ConsoleApplication
                     {
                         app.MoveFile(input1, input2);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write("Operation successful!");
+                        Console.Write("Success! Your file has been moved");
                         menu.Menu(mainMenu, 1);
-                        break;
                     }
                     catch(ArgumentException)
                     {
@@ -214,13 +224,32 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to move doesn't exist!");
                         menu.Menu(mainMenu, 1);
-                        break;
                     } 
+                    break;
                 }
                 //Rename file
                 case 3:
                 {
                     Console.Clear();
+                    Console.WriteLine("Please enter the path for the file you would like to rename:");
+                    string input1 = Console.ReadLine();
+                    Console.WriteLine("Please enter the new name you would like for the file:");
+                    string input2 = Console.ReadLine();
+
+                    try
+                    {
+                        app.RenameFile(input1, input2);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Success! Your file has been renamed");
+                        
+                    }
+                    catch(ArgumentException)
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR! The file you are trying to move doesn't exist!");
+                        
+                    }
                     menu.Menu(mainMenu, 1);
                     break;
                 }
@@ -306,6 +335,7 @@ namespace ConsoleApplication
                 case 7:
                 {
                     Console.Clear();
+                    Console.WriteLine("MAIN MENU");
                     menu.Menu(mainMenu, 1);
                     break;
                 }
@@ -443,6 +473,7 @@ namespace ConsoleApplication
                 case 4:
                 {
                     Console.Clear();
+                    Console.WriteLine("MAIN MENU");
                     menu.Menu(mainMenu, 1);
                     break;
                 }
