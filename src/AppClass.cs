@@ -148,7 +148,7 @@ namespace ConsoleApplication
 
         public void RenameFile(string oldPath, string newName)
         {
-            this.ThrowExceptionIfFileDoesntExist(oldPath);
+            // this.ThrowExceptionIfFileDoesntExist(oldPath);
 
             int newPathLength = oldPath.LastIndexOf("\\") + 1;
             int folderCount = (oldPath.Length - newPathLength);
@@ -277,17 +277,22 @@ namespace ConsoleApplication
             FileStream f = File.Create(indexPath);
             f.Dispose();
         
-            ListMaker table = new ListMaker();
+            TableMaker table = new TableMaker();
+            ListMaker list = new ListMaker();
             string[] files = Directory.GetFiles(folderPath);
             string[] folders = Directory.GetDirectories(folderPath);
-            string[] fileTable = table.CreateTable(files, "file", Options.input);
-            string[] folderTable = table.CreateTable(folders, "folder", Options.input);
+            string[] fileTable = list.CreateTable(files, "file", Options.input);
+            string[] folderTable = list.CreateTable(folders, "folder", Options.input);
+            string[] headings = {"", "Name", "Size", "Last Accessed"};
 
             using (StreamWriter sw = File.AppendText(indexPath))
             {
                 sw.WriteLine("Files in " + indexPath);
                 sw.WriteLine();
 
+                sw.WriteLine(table.PrintLine());
+                sw.WriteLine(table.PrintRow(headings));
+                sw.WriteLine(table.PrintLine());
                 foreach (string row in fileTable)
                 {
                     sw.WriteLine(row);
@@ -297,6 +302,9 @@ namespace ConsoleApplication
                 sw.WriteLine("Subfolders in " + indexPath);
                 sw.WriteLine();
 
+                sw.WriteLine(table.PrintLine());
+                sw.WriteLine(table.PrintRow(headings));
+                sw.WriteLine(table.PrintLine());
                 foreach(string row in folderTable)
                 {
                     sw.WriteLine(row);

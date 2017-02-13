@@ -2,6 +2,6 @@ namespace ConsoleApplication
 {
     interface IRunable
     {
-        void Menu(string[] array, string back, int menu);
+        void Menu(string[] array, int menu);
     }
 }

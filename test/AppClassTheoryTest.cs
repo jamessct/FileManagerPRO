@@ -24,6 +24,11 @@ namespace MyApp
             Directory.CreateDirectory(@"c:\Projects\Tests\Test2");
             Directory.CreateDirectory(@"c:\Projects\Tests\Test3\test.txt");
             Directory.Move(@"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe", @"c:\Projects\Tests\NewFolder\MoveMe");
+            FileStream f3 = File.Create(@"c:\Projects\Tests\RenameMe.txt");
+            f3.Dispose();
+            File.Delete(@"c:\Projects\Tests\Renamed");
+            Directory.CreateDirectory(@"c:\NewFolder");
+            Directory.Delete(@"c:\NewFolderino");
         } 
     }
     public class AppClassTheoryTest : IClassFixture<TestFixture>
@@ -299,7 +304,7 @@ namespace MyApp
         }
 
         [Theory]
-        [InlineDataAttribute(@"c:Projects\Tests\RenameMe", "Renamed")]
+        [InlineDataAttribute(@"c:\Projects\Tests\RenameMe.txt", "Renamed")]
         public void CanRenameFile(string oldPath, string newName)
         {
             //Assign

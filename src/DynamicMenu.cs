@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace ConsoleApplication
 {
-    public class DynamicMenu
+    public class DynamicMenu : IRunable
     {
         public void Menu(string[] inArray, int menu)
         {
@@ -22,7 +22,7 @@ namespace ConsoleApplication
                     if (i == selectedItem)
                     {
                         Console.BackgroundColor = ConsoleColor.Cyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         Console.WriteLine("~ " + inArray[i]);
                         Console.ResetColor();
                     }
@@ -65,8 +65,8 @@ namespace ConsoleApplication
                     case ConsoleKey.Enter:
                     {
                         loopComplete = true;
-                        break;
                     }
+                    break;
                 }
                 Console.SetCursorPosition(0, topOffset);
             }
