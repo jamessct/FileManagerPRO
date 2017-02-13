@@ -23,6 +23,12 @@ namespace MyApp
             Directory.Delete(@"c:\Projects\Tests\Test1");
             Directory.CreateDirectory(@"c:\Projects\Tests\Test2");
             Directory.CreateDirectory(@"c:\Projects\Tests\Test3\test.txt");
+            Directory.Move(@"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe", @"c:\Projects\Tests\NewFolder\MoveMe");
+            FileStream f3 = File.Create(@"c:\Projects\Tests\RenameMe.txt");
+            f3.Dispose();
+            File.Delete(@"c:\Projects\Tests\Renamed");
+            Directory.CreateDirectory(@"c:\NewFolder");
+            Directory.Delete(@"c:\NewFolderino");
         } 
     }
     public class AppClassTheoryTest : IClassFixture<TestFixture>
@@ -38,7 +44,7 @@ namespace MyApp
         public void DoesFolderExistTheory_KnownToExist(string folderPath)
         {
             //Assign
-            bool folderExists = false;
+            bool folderExists;
             var myInstanceOfApphelper = new AppHelper();
 
             //Act
@@ -53,7 +59,7 @@ namespace MyApp
         public void DoesFileExist_KnownToExist(string filePath)
         {
             //Assign
-            bool fileExists = false;
+            bool fileExists;
             var myInstanceOfApphelper = new AppHelper();
 
             //Act
@@ -68,7 +74,7 @@ namespace MyApp
         public void CanLoadListOfFilesInFolder(string folderPath)
         {
             //Assign
-            int fileListLength = 0;
+            int fileListLength;
             var myInstanceOfApphelper = new AppHelper();
 
             //Act
@@ -90,7 +96,23 @@ namespace MyApp
             Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.ListFilesInDirectory(folderPath));
 
             //Assert
-            Assert.Equal(exception.Message, "This folder is empty");
+            Assert.Equal(exception.Message, "There are no files in this directory");
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\Projects\Tests")]
+        public void CanGenerateListOfSubfolders(string folderPath)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            int expectedLength = 5;
+
+            //Act
+            string[] subfolderList = myInstanceOfApphelper.ListSubfoldersInDirectory(folderPath);
+            int subfolderListLength = subfolderList.Length;
+
+            //Assert
+            Assert.Equal(subfolderListLength, expectedLength);
         }
 
         [Theory]
@@ -99,13 +121,14 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string fileSize = "";
+            long fileSize;
 
             //Act
             fileSize = myInstanceOfApphelper.GetSizeOfFile(filePath);
+            string answer = Utilities.SelectAppropriateFileSizeFormat(fileSize);
 
             //Assert
-            Assert.Equal(fileSize, "0.07MB");
+            Assert.Equal(answer, "68KB");
         }
 
         [Theory]
@@ -128,13 +151,14 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string fileListSize = "";
+            long fileListSize;
 
             //Act
             fileListSize = myInstanceOfApphelper.GetSizeOfFileList(folderPath);
+            string answer = Utilities.SelectAppropriateFileSizeFormat(fileListSize);
 
             //Assert
-            Assert.Equal(fileListSize, "16.2MB");
+            Assert.Equal(answer, "16.2MB");
         }
 
         [Theory]
@@ -157,13 +181,14 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string totalSizeOfDirectory = "";
+            long totalSizeOfDirectory;
 
             //Act
             totalSizeOfDirectory = myInstanceOfApphelper.GetSizeOfDirectory(folderPath);
+            string answer = Utilities.SelectAppropriateFileSizeFormat(totalSizeOfDirectory);
 
             //Assert
-            Assert.Equal(totalSizeOfDirectory, "1.12MB");
+            Assert.Equal(answer, "1.12MB");
         }
 
         [Theory]
@@ -194,7 +219,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool fileExists = false;
+            bool fileExists;
 
             //Act
             myInstanceOfApphelper.CreateNewFile(filePath);
@@ -238,7 +263,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool fileExists = true;
+            bool fileExists;
 
             //Act
             myInstanceOfApphelper.RemoveFile(filePath);
@@ -268,7 +293,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool fileExists = false;
+            bool fileExists;
 
             //Act
             myInstanceOfApphelper.MoveFile(filePath, newPath);
@@ -279,12 +304,28 @@ namespace MyApp
         }
 
         [Theory]
+        [InlineDataAttribute(@"c:\Projects\Tests\RenameMe.txt", "Renamed")]
+        public void CanRenameFile(string oldPath, string newName)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            bool fileExists;
+
+            //Act
+            myInstanceOfApphelper.RenameFile(oldPath, newName);
+            fileExists = myInstanceOfApphelper.CheckFileExists(@"c:\Projects\Tests\Renamed");
+
+            //Assert
+            Assert.True(fileExists);
+        }
+
+        [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\test4.txt")]
         public void CanReadFromFile(string filePath)
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string text = "";
+            string text;
 
             //Act
             text = myInstanceOfApphelper.ReadTextFromFile(filePath);
@@ -299,7 +340,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool answer = false;
+            bool answer;
 
             //Act
             answer = myInstanceOfApphelper.SearchForTextInFile(filePath, searchQuery);
@@ -314,7 +355,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool answer = true;
+            bool answer;
 
             //Act
             answer = myInstanceOfApphelper.SearchForTextInFile(filePath, searchQuery);
@@ -329,7 +370,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            int answer = 0;
+            int answer;
 
             //Act
             answer = myInstanceOfApphelper.CountLinesInFile(filePath);
@@ -344,7 +385,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            string finalText = "";
+            string finalText;
 
             //Act
             myInstanceOfApphelper.WriteTextToFile(filePath, text);
@@ -376,7 +417,7 @@ namespace MyApp
         {
             //Access
             var myInstanceOfApphelper = new AppHelper();
-            string answer = "";
+            string answer;
 
             //Act
             answer = myInstanceOfApphelper.GetTimeStampForLastAccess(filePath);
@@ -391,7 +432,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool folderExists = false;
+            bool folderExists;
 
             //Act
             myInstanceOfApphelper.CreateNewFolder(newFolderPath);
@@ -407,7 +448,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool folderExists = true;
+            bool folderExists;
 
             //Act
             myInstanceOfApphelper.RemoveFolder(folderPath, recursive);
@@ -423,7 +464,7 @@ namespace MyApp
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
-            bool folderExists = true;
+            bool folderExists;
 
             //Act
             myInstanceOfApphelper.RemoveFolder(folderPath, recursive);
@@ -434,38 +475,84 @@ namespace MyApp
         }
 
         [Theory]
+        [InlineDataAttribute(@"c:\Projects\Tests\NewFolder\MoveMe", @"c:\Projects\Tests\NewFolder\AnotherFolder\MoveMe")]
+        public void CanMoveFolder(string oldPath, string newPath)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+
+            //Act
+            myInstanceOfApphelper.MoveFolder(oldPath, newPath);
+            bool result = myInstanceOfApphelper.CheckFolderExists(newPath);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\fakefolder", @"c:\Podjiaoifjwhateverdoesntmattre")]
+        public void ThrowsExceptionTryingToMoveFolder_DoesntExist(string oldPath, string newPath)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+
+            //Act
+            Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.MoveFolder(oldPath, newPath));
+
+            //Assert
+            Assert.Equal(exception.Message, "This folder does not exist");
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\NewFolder", "NewFolderino")]
+        public void CanRenameFolder(string oldPath, string newName)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+            bool result;
+
+            //Act
+            myInstanceOfApphelper.RenameFolder(oldPath, newName);
+            result = myInstanceOfApphelper.CheckFolderExists(@"c:\NewFolderino");
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\Projecdoesntreallymatter", "whatevevever")]
+        public void ThrowsExceptionRenamingFile_DoesntExist(string oldPath, string newName)
+        {
+            //Assign
+            var myInstanceOfApphelper = new AppHelper();
+
+            //Act
+            Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.RenameFolder(oldPath, newName));            
+
+            //Assert
+            Assert.Equal(exception.Message, "This folder does not exist");
+        }
+
+        [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\IndexTests")]
-        public void CanCreateIndexFileWithAllFilesInDirectory(string folderPath)
+        public void CanCreateIndexFileWithPopulatedDirectory(string folderPath)
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();
             string indexPath = folderPath + "\\Index.txt";
+            Options.input = "c:\\Projects\\Tests\\IndexTests";
 
             //Act
             myInstanceOfApphelper.CreateIndexFile(folderPath);
             int lineCount = File.ReadLines(indexPath).Count();
 
             //Assert
-            Assert.Equal(lineCount, 3);
+            Assert.Equal(lineCount, 11);
         }
 
         [Theory]
         [InlineDataAttribute(@"c\Projects\Tests\MadeUpFolder")]
         public void ThrowsExceptionIfTryingToCreateIndexFile_FolderDoesntExists(string folderPath)
-        {
-            //Assign
-            var myInstanceOfApphelper = new AppHelper();
-
-            //Act
-            Exception exception = Assert.Throws<ArgumentException>(() => myInstanceOfApphelper.CreateIndexFile(folderPath));
-
-            //Assign
-            Assert.Equal(exception.Message, "This folder does not exist");
-        }
-
-        [Theory]
-        [InlineDataAttribute(@"c\Projects\Tests\EmptyFolder")]
-        public void ThrowsExceptionIfTryingToCreateIndexFile_FolderIsEmpty(string folderPath)
         {
             //Assign
             var myInstanceOfApphelper = new AppHelper();

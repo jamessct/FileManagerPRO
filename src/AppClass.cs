@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace ConsoleApplication
 {
@@ -13,7 +11,6 @@ namespace ConsoleApplication
             {
                 return true;
             }
-
             else
             {
                 return false;
@@ -26,14 +23,13 @@ namespace ConsoleApplication
             {
                 return true;
             }
-
             else
             {
                 return false;
             }
         }
 
-        public void ThrowExceptionIfFolderDoesntExist(string folderPath)
+        private void ThrowExceptionIfFolderDoesntExist(string folderPath)
         {
             if(this.CheckFolderExists(folderPath) == false)
             {
@@ -41,7 +37,7 @@ namespace ConsoleApplication
             }
         }
 
-        public void ThrowExceptionIfFileDoesntExist(string filePath)
+        private void ThrowExceptionIfFileDoesntExist(string filePath)
         {
             if(this.CheckFileExists(filePath) == false)
             {
@@ -57,30 +53,38 @@ namespace ConsoleApplication
 
             if(list.Length == 0)
             {
-                throw new ArgumentException("This folder is empty");
+                throw new ArgumentException("There are no files in this directory");
             }
-
             else 
             {
                 return list;
             }
         }
 
-        public string GetSizeOfFile(string filePath)
+        public string[] ListSubfoldersInDirectory(string folderPath)
+        {
+            this.ThrowExceptionIfFolderDoesntExist(folderPath);
+
+            string[] list = Directory.GetDirectories(folderPath);
+
+            if(list.Length == 0)
+            {
+                throw new ArgumentException("There are no subfolders in this directory");
+            }
+            else return list;
+        }
+
+        public long GetSizeOfFile(string filePath)
         {
             this.ThrowExceptionIfFileDoesntExist(filePath);
             
             FileInfo file = new FileInfo(filePath);
             long fileSize = file.Length;
 
-            double megabytes = (fileSize / 1024f) / 1024f;
-            double rounded = Math.Round(megabytes, 2);
-            string answer = rounded + "MB";
-
-            return answer;
+            return fileSize;
         }
 
-        public string GetSizeOfFileList(string folderPath)
+        public long GetSizeOfFileList(string folderPath)
         {
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -93,14 +97,10 @@ namespace ConsoleApplication
                 totalSize = totalSize + file.Length;
             }
             
-            double megabytes = (totalSize / 1024f) / 1024f;
-            double rounded = Math.Round(megabytes, 2);
-            string answer = rounded + "MB";
-
-            return answer;
+            return totalSize;
         }
 
-        public string GetSizeOfDirectory(string folderPath)
+        public long GetSizeOfDirectory(string folderPath)
         {
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -113,11 +113,7 @@ namespace ConsoleApplication
                 totalSize = totalSize + file.Length;
             }
 
-            double megabytes = (totalSize / 1024f) /1024f;
-            double rounded = Math.Round(megabytes, 2);
-            string answer = rounded + "MB";
-
-            return answer;
+            return totalSize;
         }
 
         public void CreateNewFile(string filePath)
@@ -147,6 +143,17 @@ namespace ConsoleApplication
             }
 
             File.Move(filePath, destinationPath);
+        }
+
+        public void RenameFile(string oldPath, string newName)
+        {
+            // this.ThrowExceptionIfFileDoesntExist(oldPath);
+
+            int newPathLength = oldPath.LastIndexOf("\\") + 1;
+            int folderCount = (oldPath.Length - newPathLength);
+            string slicedString = oldPath.Remove(newPathLength, folderCount);
+            string newPath = slicedString + newName;
+            File.Move(oldPath, newPath);
         }
 
         public string ReadTextFromFile(string filePath)
@@ -209,7 +216,7 @@ namespace ConsoleApplication
             Directory.CreateDirectory(newFolderPath);
         }
 
-        public void ClearFilesFromFolder(DirectoryInfo directory)
+        private void ClearFilesFromFolder(DirectoryInfo directory)
         {
             foreach(FileInfo file in directory.GetFiles())
             {
@@ -237,6 +244,30 @@ namespace ConsoleApplication
             Directory.Delete(folderPath, recursive);          
         }
 
+        public void MoveFolder(string folderPath, string newLocation)
+        {
+            this.ThrowExceptionIfFolderDoesntExist(folderPath);
+            Directory.Move(folderPath, newLocation);
+        }
+
+        public void RenameFolder(string oldPath, string newName)
+        {
+            this.ThrowExceptionIfFolderDoesntExist(oldPath);
+
+            int newPathLength = oldPath.LastIndexOf("\\") + 1;
+            int folderCount = (oldPath.Length - newPathLength);
+            string slicedString = oldPath.Remove(newPathLength, folderCount);
+            string newPath = slicedString + newName;
+            Directory.Move(oldPath, newPath);
+        }
+
+        public string RemovePathFromName(string path)
+        {
+            int pathLength = path.LastIndexOf("\\") + 1;
+            string answer = path.Remove(0, pathLength);
+            return answer;
+        }
+
         public void CreateIndexFile(string folderPath)
         {
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
@@ -244,32 +275,40 @@ namespace ConsoleApplication
             string indexPath = folderPath + "\\Index.txt";
             FileStream f = File.Create(indexPath);
             f.Dispose();
+        
+            TableMaker table = new TableMaker();
+            ListMaker list = new ListMaker();
+            string[] files = Directory.GetFiles(folderPath);
+            string[] folders = Directory.GetDirectories(folderPath);
+            string[] fileTable = list.CreateTable(files, "file", Options.input);
+            string[] folderTable = list.CreateTable(folders, "folder", Options.input);
+            string[] headings = {"", "Name", "Size", "Last Accessed"};
 
-            var number = 0;
-            string[] list = Directory.GetFiles(folderPath);
-            foreach(string item in list)
+            using (StreamWriter sw = File.AppendText(indexPath))
             {
-                var fileSize = this.GetSizeOfFile(item);
-                var lastDateAccessed = this.GetTimeStampForLastAccess(item);
-                number +=1;
-                File.AppendAllText(indexPath, number + ". " + item + " (" + fileSize + "), Last accessed: " + lastDateAccessed + "\r\n");
+                sw.WriteLine("Files in " + indexPath);
+                sw.WriteLine();
+
+                sw.WriteLine(table.PrintLine());
+                sw.WriteLine(table.PrintRow(headings));
+                sw.WriteLine(table.PrintLine());
+                foreach (string row in fileTable)
+                {
+                    sw.WriteLine(row);
+                }
+
+                sw.WriteLine();
+                sw.WriteLine("Subfolders in " + indexPath);
+                sw.WriteLine();
+
+                sw.WriteLine(table.PrintLine());
+                sw.WriteLine(table.PrintRow(headings));
+                sw.WriteLine(table.PrintLine());
+                foreach(string row in folderTable)
+                {
+                    sw.WriteLine(row);
+                }
             }
-        }
-
-        public string ConvertStringToArray(string[] array)
-        {
-            StringBuilder builder = new StringBuilder();
-            var number = 0;
-
-            foreach (string value in array)
-            {
-                number +=1;
-                builder.Append(number + ". ");
-                builder.Append(value);
-                builder.Append(", ");
-            }
-
-            return builder.ToString();
         }
     }
 }

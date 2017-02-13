@@ -1,0 +1,17 @@
+Files 
+ 
+1. File: c:\Projects\App1\Index.txt (0.01KB), Last accessed: 2017/02/03 10:16:28.07
+2. File: c:\Projects\App1\Program.cs (1.31KB), Last accessed: 2017/02/08 09:51:14.00
+3. File: c:\Projects\App1\project.json (1.22KB), Last accessed: 2017/01/14 14:18:08.00
+4. File: c:\Projects\App1\project.lock.json (549.02KB), Last accessed: 2017/01/14 14:23:52.00
+5. File: c:\Projects\App1\readme.txt (1.04KB), Last accessed: 2017/01/14 08:40:40.00
+6. File: c:\Projects\App1\testing.html (0.35KB), Last accessed: 2017/02/08 09:50:11.00
+
+Folders 
+ 
+1. c:\Projects\App1\.git (1.14MB), Last accessed: 2017/02/08 14:33:37.35
+2. c:\Projects\App1\.vscode (1.01KB), Last accessed: 2017/02/02 15:41:49.21
+3. c:\Projects\App1\bin (1.11MB), Last accessed: 2017/01/16 15:52:30.36
+4. c:\Projects\App1\obj (26.39KB), Last accessed: 2017/01/16 15:52:30.61
+5. c:\Projects\App1\src (51.9KB), Last accessed: 2017/02/07 09:38:41.45
+6. c:\Projects\App1\test (18.11KB), Last accessed: 2017/02/07 14:13:25.81

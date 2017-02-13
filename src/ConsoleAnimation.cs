@@ -8,39 +8,39 @@ namespace ConsoleApplication
 
         public ConsoleAnimation()
         {
-            SpinnerAnimationFrames = new[]
-                {
-                    "....................",
-                    "*...................",
-                    "**..................",
-                    "***.................",
-                    "****................",
-                    "*****...............",
-                    "******..............",
-                    "*******.............",
-                    "********............",
-                    "*********...........",
-                    "**********..........",
-                    "***********.........",
-                    "************........",
-                    "*************.......",
-                    "**************......",
-                    "***************.....",
-                    "****************....",
-                    "*****************...",
-                    "******************..",
-                    "*******************.",
-                    "********************"
-                };
+            SpinnerAnimationFrames = new[] 
+            {
+                "....................",
+                "*...................",
+                "**..................",
+                "***.................",
+                "****................",
+                "*****...............",
+                "******..............",
+                "*******.............",
+                "********............",
+                "*********...........",
+                "**********..........",
+                "***********.........",
+                "************........",
+                "*************.......",
+                "**************......",
+                "***************.....",
+                "****************....",
+                "*****************...",
+                "******************..",
+                "*******************.",
+                "********************"
+            };
         }
 
         public string[] SpinnerAnimationFrames { get; set; }
-
+        
         public bool animation()
         {
             Console.CursorVisible = false;
-            var originalX = Console.CursorLeft;
-            var originalY = Console.CursorTop;
+            var left = Console.CursorLeft;
+            var top = Console.CursorTop;
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(SpinnerAnimationFrames[currentAnimationFrame]);
@@ -52,7 +52,7 @@ namespace ConsoleApplication
                 currentAnimationFrame = 0;
             }
 
-            Console.SetCursorPosition(originalX, originalY);
+            Console.SetCursorPosition(left, top);
             return currentAnimationFrame!=0?true:false;
         }
     }
