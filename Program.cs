@@ -19,8 +19,7 @@ namespace ConsoleApplication
             Console.WriteLine();
 
             DynamicMenu menu = new DynamicMenu();
-            string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit program"};
-            menu.Menu(mainMenu, 1);  
+            menu.Menu(Options.mainMenu, 1);  
         }
     }
 }
