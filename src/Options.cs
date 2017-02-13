@@ -127,6 +127,7 @@ namespace ConsoleApplication
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("GOODBYE!");
+                    Console.ForegroundColor = ConsoleColor.White;
                     Environment.Exit(0);
                     break;
                 }
