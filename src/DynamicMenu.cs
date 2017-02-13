@@ -3,16 +3,15 @@ using System;
 namespace ConsoleApplication
 {
     
-    public class MenuExperiments
+    public class DynamicMenu
     {
-        public int DynamicMenu(string[] inArray)
+        public void Menu(string[] inArray, int menu)
         {
             bool loopComplete = false;
-            int number = 0;
             int topOffset = Console.CursorTop;
             int bottomOffset = 0;
             int selectedItem = 0;
-            ConsoleKeyInfo kb;
+            ConsoleKeyInfo key;
 
             Console.CursorVisible = false;
 
@@ -34,9 +33,9 @@ namespace ConsoleApplication
                 }
                 bottomOffset = Console.CursorTop;
 
-                kb = Console.ReadKey(true);
+                key = Console.ReadKey(true);
 
-                switch (kb.Key)
+                switch (key.Key)
                 {
                     case ConsoleKey.UpArrow:
                     {
@@ -73,8 +72,33 @@ namespace ConsoleApplication
             }
             Console.SetCursorPosition(0, bottomOffset);
             Console.CursorVisible = true;
-            return selectedItem;
-        }      
+            
+            selectOptions(selectedItem, menu);
+        }  
+
+        public void selectOptions(int selectedItem, int menu)
+        {
+            switch(menu)
+            {
+                case 1:
+                {
+                    Options.MainMenuOptions(selectedItem);
+                    break;
+                }
+                case 2:
+                {
+                    Options.ManageFiles(selectedItem);
+                    break;
+                }
+                case 3:
+                {
+                    Options.ManageFolders(selectedItem);
+                    break;
+                }
+            }
+                  
+            
+        }    
     }
 }
         
