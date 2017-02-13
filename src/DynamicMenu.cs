@@ -114,9 +114,7 @@ namespace ConsoleApplication
                     Options.ManageFolders(selectedItem);
                     break;
                 }
-            }
-                  
-            
+            }  
         }    
     }
 }
