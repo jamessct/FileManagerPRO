@@ -203,7 +203,6 @@ namespace ConsoleApplication
                     Console.Clear();
                     Console.WriteLine("Please enter the path of the file that you wish to move: ");
                     string input1 = Console.ReadLine();
-                    Console.WriteLine();
                     Console.WriteLine("Please enter the path you wish to move the file to: ");
                     string input2 = Console.ReadLine();
 
