@@ -258,6 +258,7 @@ namespace ConsoleApplication
             int folderCount = (oldPath.Length - newPathLength);
             string slicedString = oldPath.Remove(newPathLength, folderCount);
             string newPath = slicedString + newName;
+
             Directory.Move(oldPath, newPath);
         }
 

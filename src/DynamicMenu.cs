@@ -33,7 +33,7 @@ namespace ConsoleApplication
                 }
                 bottomOffset = Console.CursorTop;
 
-                key = Console.ReadKey(true);
+                key = Console.ReadKey();
 
                 switch (key.Key)
                 {
@@ -49,7 +49,6 @@ namespace ConsoleApplication
                         }
                         break;
                     }
-
                     case ConsoleKey.DownArrow:
                     {
                         if (selectedItem < (array.Length - 1))
@@ -65,8 +64,8 @@ namespace ConsoleApplication
                     case ConsoleKey.Enter:
                     {
                         loopComplete = true;
+                        break;
                     }
-                    break;
                 }
                 Console.SetCursorPosition(0, topOffset);
             }

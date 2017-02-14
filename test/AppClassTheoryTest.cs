@@ -520,7 +520,7 @@ namespace MyApp
         }
 
         [Theory]
-        [InlineDataAttribute(@"c:\Projecdoesntreallymatter", "whatevevever")]
+        [InlineDataAttribute(@"c:\doesntreallymatter", "whatevevever")]
         public void ThrowsExceptionRenamingFile_DoesntExist(string oldPath, string newName)
         {
             //Assign

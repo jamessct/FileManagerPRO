@@ -15,7 +15,7 @@ namespace ConsoleApplication
             Console.WriteLine("/ /   | | |  __/ / /\\/\\ \\ (_| | | | | (_| | (_| |  __/ |    / ___/ _  \\/ \\_//   / __/ | |_| |");
             Console.WriteLine("\\/    |_|_|\\___| \\/    \\/\\__,_|_| |_|\\__,_|\\__, |\\___|_|    \\/   \\/ \\_/\\___/   |_____(_)___/ ");
             Console.WriteLine("                                           |___/                                             ");
-            Console.WriteLine("Welcome to File Manager PRO! To proceed, please select a number from the list below:");
+            Console.WriteLine("Welcome to File Manager PRO! To proceed, select an option from the menu below using the UP and DOWN arrow keys to navigate:");
             Console.WriteLine();
 
             DynamicMenu menu = new DynamicMenu();

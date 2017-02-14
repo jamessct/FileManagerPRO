@@ -125,7 +125,6 @@ namespace ConsoleApplication
                 }
                 case 5:
                 {
-                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("GOODBYE!");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -437,7 +436,7 @@ namespace ConsoleApplication
                     if (input1 == destinationPath)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Your folder is already named'" + input2 + "'!");
+                        Console.WriteLine("Your folder is already named '" + input2 + "'! No changes made.");
                         menu.Menu(mainMenu, 1);
                     }
                     
@@ -452,7 +451,7 @@ namespace ConsoleApplication
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! The folder you are trying to move does not exist");
+                        Console.WriteLine("ERROR! The folder you are trying to move does not exist, or the destination path already exists.");
                         menu.Menu(mainMenu, 1);
                     }
                     break;
@@ -468,7 +467,9 @@ namespace ConsoleApplication
                 //Alien Easter Egg
                 case 5:
                 {
-                    string alien = app.ReadTextFromFile(@"c:\Projects\App1\alien.txt");
+                    string alien = app.ReadTextFromFile(@"c:\Projects\App1\easteregg\alien2.txt");
+                    Console.Clear();
+                    Console.SetWindowSize(80, 50);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine(alien);
                     menu.Menu(mainMenu, 1);
