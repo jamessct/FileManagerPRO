@@ -258,6 +258,11 @@ namespace ConsoleApplication
         public void MoveFolder(string folderPath, string newLocation)
         {
             this.ThrowExceptionIfFolderDoesntExist(folderPath);
+
+            if (Directory.Exists(newLocation) == true)
+            {
+                throw new ArgumentException("pls wrk");
+            }
             Directory.Move(folderPath, newLocation);
         }
 
@@ -265,17 +270,24 @@ namespace ConsoleApplication
         {
             this.ThrowExceptionIfFolderDoesntExist(oldPath);
 
-            int newPathLength = oldPath.LastIndexOf("\\") + 1;
+            int newPathLength = oldPath.LastIndexOf(@"\") + 1;
             int folderCount = (oldPath.Length - newPathLength);
             string slicedString = oldPath.Remove(newPathLength, folderCount);
             string newPath = slicedString + newName;
 
-            Directory.Move(oldPath, newPath);
+            if (Directory.Exists(newPath) == true)
+            {
+                throw new ArgumentException("This should be getting caught");
+            }
+            else
+            {
+                Directory.Move(oldPath, newPath);
+            }
         }
 
         public string RemovePathFromName(string path)
         {
-            int pathLength = path.LastIndexOf("\\") + 1;
+            int pathLength = path.LastIndexOf(@"\") + 1;
             string answer = path.Remove(0, pathLength);
             return answer;
         }

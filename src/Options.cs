@@ -218,7 +218,7 @@ namespace ConsoleApplication
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! The file you are trying to move doesn't exist, OR you have entered an invalid file path!");
+                        Console.WriteLine("ERROR! The file you are trying to move doesn't exist, OR there is already a file at the destination path, OR you have entered an invalid file path!");
                         menu.Menu(mainMenu, 1);
                     } 
                     break;
@@ -406,10 +406,10 @@ namespace ConsoleApplication
                     string input1 = Console.ReadLine();
                     Console.WriteLine("Enter the location where you would like to move the folder:");
                     string input2 = Console.ReadLine();
-                    app.MoveFolder(input1, input2);
 
                     try
                     {
+                        app.MoveFolder(input1, input2);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your folder has been moved to " + input2);
                         menu.Menu(mainMenu, 1);
@@ -418,7 +418,7 @@ namespace ConsoleApplication
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! The folder you are trying to move does not exist");
+                        Console.WriteLine("ERROR! The folder you are trying to move does not exist, OR the destination path already exists!");
                         menu.Menu(mainMenu, 1);
                     }
                     break;
@@ -440,10 +440,9 @@ namespace ConsoleApplication
                         menu.Menu(mainMenu, 1);
                     }
                     
-                    app.RenameFolder(input1, input2);
-
                     try
                     {
+                        app.RenameFolder(input1, input2);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your folder has been renamed '" + input2 + "'!");
                         menu.Menu(mainMenu, 1);
@@ -451,7 +450,7 @@ namespace ConsoleApplication
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! The folder you are trying to move does not exist, or the destination path already exists.");
+                        Console.WriteLine("ERROR! The folder you are trying to move does not exist, OR the destination path already exists.");
                         menu.Menu(mainMenu, 1);
                     }
                     break;
