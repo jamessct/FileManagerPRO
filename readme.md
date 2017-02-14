@@ -14,5 +14,7 @@ This console app was created for the purpose of learning the C# language.  It al
 ## To install:
 
 1) Clone
+
 2) ???
+
 3) Profit?
