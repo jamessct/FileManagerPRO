@@ -155,7 +155,7 @@ namespace ConsoleApplication
                         }
 
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Could not create a file in this location!");
+                        Console.WriteLine("ERROR! Could not create new file!");
                         menu.Menu(mainMenu, 1);
                     }
                     catch(ArgumentException)
@@ -218,7 +218,7 @@ namespace ConsoleApplication
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! The file you are trying to move doesn't exist!");
+                        Console.WriteLine("ERROR! The file you are trying to move doesn't exist, OR you have entered an invalid file path!");
                         menu.Menu(mainMenu, 1);
                     } 
                     break;
@@ -241,9 +241,9 @@ namespace ConsoleApplication
                     }
                     catch(ArgumentException)
                     {
-                        Console.Clear();
+                        // Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! The file you are trying to move doesn't exist!");
+                        Console.WriteLine("ERROR! The file you are trying to move doesn't exist, OR a file already exists in that location, OR you have entered an invalid file path!");
                         
                     }
                     menu.Menu(mainMenu, 1);
@@ -357,7 +357,7 @@ namespace ConsoleApplication
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! The requested directory path is invalid!");
+                        Console.WriteLine("ERROR! The requested directory path is invalid, OR already exists!");
                         menu.Menu(mainMenu, 1);
                     }
                     break;

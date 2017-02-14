@@ -118,7 +118,7 @@ namespace ConsoleApplication
 
         public void CreateNewFile(string filePath)
         {
-            if(this.CheckFileExists(filePath) == true || !filePath.Contains(":\\"))
+            if(this.CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at this location, or this is not a valid file path");
             }
@@ -137,7 +137,7 @@ namespace ConsoleApplication
         {
             this.ThrowExceptionIfFileDoesntExist(filePath);
 
-            if(this.CheckFileExists(destinationPath) == true)
+            if(this.CheckFileExists(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at the destination path!");
             }
@@ -153,6 +153,12 @@ namespace ConsoleApplication
             int folderCount = (oldPath.Length - newPathLength);
             string slicedString = oldPath.Remove(newPathLength, folderCount);
             string newPath = slicedString + newName;
+
+            if (File.Exists(newPath) == true || !newPath.Contains(@":\"))
+            {
+                throw new ArgumentException("A file already exists at the destination path");
+            }
+            
             File.Move(oldPath, newPath);
         }
 
@@ -208,7 +214,7 @@ namespace ConsoleApplication
 
         public void CreateNewFolder(string newFolderPath)
         {
-            if(this.CheckFolderExists(newFolderPath) == true || !newFolderPath.Contains(":\\"))
+            if(this.CheckFolderExists(newFolderPath) == true || !newFolderPath.Contains(@":\"))
             {
                 throw new ArgumentException("Invalid input");
             }
@@ -239,6 +245,11 @@ namespace ConsoleApplication
             if (list.Length > 0)
             {
                 this.ClearFilesFromFolder(directory);
+            }
+
+            if (!folderPath.Contains(@":\"))
+            {
+                throw new ArgumentException("This is not a valid file path!");
             }
             
             Directory.Delete(folderPath, recursive);          

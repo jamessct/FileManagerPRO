@@ -33,7 +33,7 @@ namespace ConsoleApplication
                 }
                 bottomOffset = Console.CursorTop;
 
-                key = Console.ReadKey();
+                key = Console.ReadKey(true);
 
                 switch (key.Key)
                 {

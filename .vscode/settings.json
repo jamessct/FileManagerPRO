@@ -1,3 +1,7 @@
 {
-  "files.exclude": {}
+  "files.exclude": {
+    "obj": "explorerExcludedFiles",
+    "bin": "explorerExcludedFiles",
+    ".vscode": "explorerExcludedFiles"
+  }
 }
