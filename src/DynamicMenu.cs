@@ -5,7 +5,7 @@ namespace ConsoleApplication
 {
     public class DynamicMenu : IRunable
     {
-        public void Menu(string[] inArray, int menu)
+        public void Menu(string[] array, int menu)
         {
             bool loopComplete = false;
             int topOffset = Console.CursorTop;
@@ -17,18 +17,18 @@ namespace ConsoleApplication
 
             while (!loopComplete)
             {
-                for (int i = 0; i < inArray.Length; i ++)
+                for (int i = 0; i < array.Length; i ++)
                 {
                     if (i == selectedItem)
                     {
                         Console.BackgroundColor = ConsoleColor.Cyan;
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("~ " + inArray[i]);
+                        Console.WriteLine(array[i]);
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine("- " + inArray[i]);
+                        Console.WriteLine(array[i]);
                     }
                 }
                 bottomOffset = Console.CursorTop;
@@ -45,14 +45,14 @@ namespace ConsoleApplication
                         }
                         else
                         {
-                            selectedItem = (inArray.Length - 1);
+                            selectedItem = (array.Length - 1);
                         }
                         break;
                     }
 
                     case ConsoleKey.DownArrow:
                     {
-                        if (selectedItem < (inArray.Length - 1))
+                        if (selectedItem < (array.Length - 1))
                         {
                             selectedItem++;
                         }

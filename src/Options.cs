@@ -8,8 +8,8 @@ namespace ConsoleApplication
         static AppHelper app = new AppHelper();
         static DynamicMenu menu = new DynamicMenu();   
         public static string input;
-        public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file"};
-        public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
+        public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit"};
+        public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU", ""};
         public static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
         static string[] headings = {"", "Name", "Size", "Last Accessed"};
 
@@ -468,9 +468,10 @@ namespace ConsoleApplication
                 //Alien Easter Egg
                 case 5:
                 {
-                    string alien = File.ReadAllText(@"c:\Projects\App1\alien.txt");
+                    string alien = app.ReadTextFromFile(@"c:\Projects\App1\alien.txt");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine(alien);
+                    menu.Menu(mainMenu, 1);
                     break;
                 }
             }
