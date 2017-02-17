@@ -30,6 +30,4 @@ namespace ExtensionMethods
             return answer;
         }
     }
-
-
 }
