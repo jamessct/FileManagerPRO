@@ -1,5 +1,5 @@
 using System;
-
+using ExtensionMethods;
 namespace ConsoleApplication
 {
     public static class Options
@@ -39,13 +39,13 @@ namespace ConsoleApplication
                         
                         string[] table = list.CreateTable(files, "file", Options.input);
                         tableMaker.PrintTableToConsole(table);
-                        long listSize = app.GetSizeOfFileList(input);
-                        Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + Utilities.SelectAppropriateFileSizeFormat(listSize));
+                        string listSize = input.FolderSize();
+                        Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + listSize);
                         Console.WriteLine();
 
                         menu.Menu(mainMenu, 1);
                     }
-                    catch(ArgumentException)
+                    catch(InvalidOperationException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
