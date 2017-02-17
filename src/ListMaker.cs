@@ -42,7 +42,7 @@ namespace ConsoleApplication
 
                 list.Add(size);
 
-                string lastAccess = base.GetTimeStampForLastAccess(item);
+                string lastAccess = item.GetLastAccess();
                 list.Add(lastAccess);
 
                 string[] row = list.ToArray(); 
