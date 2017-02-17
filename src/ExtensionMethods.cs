@@ -1,7 +1,7 @@
 using ConsoleApplication;
 namespace ExtensionMethods
 {
-    public static class FileExtensions
+    public static class PathExtensions
     {
         static AppHelper app = new AppHelper();
         public static string FileSize(this string filePath)
@@ -18,9 +18,15 @@ namespace ExtensionMethods
             return answerStringified;
         }
 
-        public static string GetLastAccess(this string path)
+        public static string LastAccess(this string path)
         {
             string answer = app.GetTimeStampForLastAccess(path);
+            return answer;
+        }
+
+        public static string FileName(this string path)
+        {
+            string answer = app.RemovePathFromName(path);
             return answer;
         }
     }

@@ -547,7 +547,7 @@ namespace MyApp
             int lineCount = File.ReadLines(indexPath).Count();
 
             //Assert
-            Assert.Equal(lineCount, 11);
+            Assert.Equal(lineCount, 17);
         }
 
         [Theory]

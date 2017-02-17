@@ -25,7 +25,7 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = this.RemovePathFromName(item);
+                string name = item.FileName();
                 list.Add(name);
 
                 string size;
@@ -42,7 +42,7 @@ namespace ConsoleApplication
 
                 list.Add(size);
 
-                string lastAccess = item.GetLastAccess();
+                string lastAccess = item.LastAccess();
                 list.Add(lastAccess);
 
                 string[] row = list.ToArray(); 
