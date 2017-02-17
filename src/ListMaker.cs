@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
-
+using ExtensionMethods;
 namespace ConsoleApplication
 {
     public class ListMaker : AppHelper
     {   
         public string[] CreateTable(string[] array, string type, string input)
         {
+            // Console.WriteLine(array);
+
             TableMaker table = new TableMaker();
             int number = 0;
             List<string> result = new List<string>();
@@ -25,19 +28,19 @@ namespace ConsoleApplication
                 string name = this.RemovePathFromName(item);
                 list.Add(name);
 
-                long size;
+                string size;
 
                 if (type == "file")
                 {
-                    size = base.GetSizeOfFile(item);
+                    size = item.FileSize();
+                    Console.WriteLine(size);
                 }
                 else
                 {
-                    size = base.GetSizeOfFileList(item);
+                    size = item.FolderSize();
                 }
 
-                string fileSize = Utilities.SelectAppropriateFileSizeFormat(size);
-                list.Add(fileSize);
+                list.Add(size);
 
                 string lastAccess = base.GetTimeStampForLastAccess(item);
                 list.Add(lastAccess);

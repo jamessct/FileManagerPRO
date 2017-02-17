@@ -76,6 +76,7 @@ namespace ConsoleApplication
 
         public long GetSizeOfFile(string filePath)
         {
+            Console.WriteLine(filePath);
             this.ThrowExceptionIfFileDoesntExist(filePath);
             
             FileInfo file = new FileInfo(filePath);
