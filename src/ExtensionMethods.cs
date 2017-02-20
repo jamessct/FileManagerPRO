@@ -17,19 +17,5 @@ namespace ExtensionMethods
             string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
             return answerStringified;
         }
-
-        public static string LastAccess(this string path)
-        {
-            string answer = app.GetTimeStampForLastAccess(path);
-            return answer;
-        }
-
-        public static string FileName(this string path)
-        {
-            string answer = app.RemovePathFromName(path);
-            return answer;
-        }
     }
-
-
 }
