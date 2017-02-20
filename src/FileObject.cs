@@ -1,7 +1,0 @@
-namespace ConsoleApplication
-{
-    class File
-    {
-        
-    }
-}

@@ -1,7 +1,7 @@
 using ConsoleApplication;
 namespace ExtensionMethods
 {
-    public static class PathExtensions
+    public static class FileExtensions
     {
         static AppHelper app = new AppHelper();
         public static string FileSize(this string filePath)
