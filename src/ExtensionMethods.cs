@@ -13,7 +13,7 @@ namespace ExtensionMethods
 
         public static string FolderSize(this string folderPath)
         {
-            long answer = app.GetSizeOfFileList(folderPath);
+            long answer = app.GetSizeOfDirectory(folderPath);
             string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
             return answerStringified;
         }
