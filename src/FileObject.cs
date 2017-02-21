@@ -35,33 +35,35 @@ namespace ConsoleApplication
                 lastAccess = value;
             }
         }
-        //Name of file
-        public string RemovePathFromName(string path)
+
+        public bool CheckFileExists(string filePath)
         {
-            int pathLength = path.LastIndexOf(@"\") + 1;
-            string answer = path.Remove(0, pathLength);
-            return answer;
+            if(File.Exists(filePath))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+       
+        public void ThrowExceptionIfFileDoesntExist(string filePath)
+        {
+            if(CheckFileExists(filePath) == false)
+            {
+                throw new ArgumentException("This file does not exist");
+            }
         }
 
-        //Size of file
         public long GetSizeOfFile(string filePath)
         {
-            app.ThrowExceptionIfFileDoesntExist(filePath);
+            ThrowExceptionIfFileDoesntExist(filePath);
             
             FileInfo file = new FileInfo(filePath);
             long fileSize = file.Length;
 
             return fileSize;
-        }
-
-        //GetTimeStampForLastAccess
-        public string GetTimeStampForLastAccess(string filePath)
-        {
-            FileInfo info = new FileInfo(filePath);
-            
-            DateTime time = info.LastAccessTime;
-            var answer = time.ToString("yyyy/MM/dd HH:mm:ss.ff");
-            return answer;
         }
     }
 }

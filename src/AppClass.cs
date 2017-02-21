@@ -3,8 +3,9 @@ using System.IO;
 
 namespace ConsoleApplication
 {
-    public class AppHelper
+    public class AppHelper : DataObject
     {
+        DataObject file = new FileObject();
         public bool CheckFolderExists(string folderPath)
         {
             if(Directory.Exists(folderPath))
@@ -37,13 +38,13 @@ namespace ConsoleApplication
             }
         }
 
-        public void ThrowExceptionIfFileDoesntExist(string filePath)
-        {
-            if(CheckFileExists(filePath) == false)
-            {
-                throw new ArgumentException("This file does not exist");
-            }
-        }
+        // public void ThrowExceptionIfFileDoesntExist(string filePath)
+        // {
+        //     if(CheckFileExists(filePath) == false)
+        //     {
+        //         throw new ArgumentException("This file does not exist");
+        //     }
+        // }
 
         public string[] ListFilesInDirectory(string folderPath)
         {
@@ -74,15 +75,15 @@ namespace ConsoleApplication
             else return list;
         }
 
-        public long GetSizeOfFile(string filePath)
-        {
-            ThrowExceptionIfFileDoesntExist(filePath);
+        // public long GetSizeOfFile(string filePath)
+        // {
+        //     ThrowExceptionIfFileDoesntExist(filePath);
             
-            FileInfo file = new FileInfo(filePath);
-            long fileSize = file.Length;
+        //     FileInfo file = new FileInfo(filePath);
+        //     long fileSize = file.Length;
 
-            return fileSize;
-        }
+        //     return fileSize;
+        // }
 
         public long GetSizeOfFileList(string folderPath)
         {
@@ -147,7 +148,7 @@ namespace ConsoleApplication
 
         public void RenameFile(string oldPath, string newName)
         {
-            ThrowExceptionIfFileDoesntExist(oldPath);
+            file.ThrowExceptionIfFileDoesntExist(oldPath);
 
             int newPathLength = oldPath.LastIndexOf("\\") + 1;
             int folderCount = (oldPath.Length - newPathLength);
