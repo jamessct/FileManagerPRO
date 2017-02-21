@@ -31,7 +31,7 @@ namespace ConsoleApplication
                         Console.WriteLine(tableMaker.PrintLine());
                         string[] files = app.ListFilesInDirectory(input);
                         
-                        string[] table = list.CreateTable(files, "file", Options.input);
+                        string[] table = list.CreateTable(files, "file");
                         tableMaker.PrintTableToConsole(table);
                         string listSize = input.FolderSize();
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + listSize);
@@ -63,7 +63,7 @@ namespace ConsoleApplication
                         Console.WriteLine(tableMaker.PrintLine());
                         
                         string[] folders = app.ListSubfoldersInDirectory(input);
-                        string[] table = list.CreateTable(folders, "folder", Options.input);
+                        string[] table = list.CreateTable(folders, "folder");
                         tableMaker.PrintTableToConsole(table);
                         long totalSize = app.GetSizeOfDirectory(input) - app.GetSizeOfFileList(input);
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));

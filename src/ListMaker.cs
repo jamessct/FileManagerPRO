@@ -6,7 +6,7 @@ namespace ConsoleApplication
     public class ListMaker
     {   
         FileObject fileObject = new FileObject();
-        public string[] CreateTable(string[] array, string type, string input)
+        public string[] CreateTable(string[] array, string type)
         {
             // Console.WriteLine(array);
 
@@ -34,7 +34,6 @@ namespace ConsoleApplication
                 if (type == "file")
                 {
                     size = item.FileSize();
-                    Console.WriteLine(size);
                 }
                 else
                 {

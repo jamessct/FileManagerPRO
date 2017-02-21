@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace ConsoleApplication
 {
-    public class DynamicMenu : IRunable
+    public class DynamicMenu
     {
         public void Menu(string[] array, int menu)
         {

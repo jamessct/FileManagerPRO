@@ -5,20 +5,20 @@ namespace MyApp
 {
     public class ListMakerTheoryTest
     {
-        [Theory]
-        [InlineDataAttribute(@"c:\Projects\Tests\index.txt")]
-        public void CanRemovePathFromName(string filePath)
-        {
-            //Assign
-            ListMaker list = new ListMaker();
-            string expected = "index.txt";
+        // [Theory]
+        // [InlineDataAttribute(@"c:\Projects\Tests\index.txt")]
+        // public void CanRemovePathFromName(string filePath)
+        // {
+        //     //Assign
+        //     ListMaker list = new ListMaker();
+        //     string expected = "index.txt";
 
-            //Act
-            string result = list.RemovePathFromName(filePath);
+        //     //Act
+        //     string result = list.RemovePathFromName(filePath);
 
-            //Assert
-            Assert.Equal(expected, result);
-        }
+        //     //Assert
+        //     Assert.Equal(expected, result);
+        // }
 
         [Theory]
         [InlineDataAttribute(new string[] {@"c:\Projects\Tests\IndexTests\index.txt", @"c:\Projects\Tests\IndexTests\test1.txt", @"c:\Projects\Tests\IndexTests\test2.txt"}, "file", @"c:\Projects\Tests")]
@@ -28,7 +28,7 @@ namespace MyApp
             ListMaker list = new ListMaker();
             int expectedArrayLength = 6;
             //Act
-            string[] result = list.CreateTable(array, type, input);
+            string[] result = list.CreateTable(array, type);
             int answer = result.Length;
 
             //Assert

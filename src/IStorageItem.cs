@@ -2,6 +2,19 @@ namespace ConsoleApplication
 {
     interface IStorageItem
     {
-       //object current {get;}
+       string Name
+       {
+           get;
+       }
+
+       string Size
+       {
+           get;
+       }
+
+       string LastAccessed
+       {
+           get;
+       }
     }
 }

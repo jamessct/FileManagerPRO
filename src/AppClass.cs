@@ -76,7 +76,6 @@ namespace ConsoleApplication
 
         public long GetSizeOfFile(string filePath)
         {
-            Console.WriteLine(filePath);
             ThrowExceptionIfFileDoesntExist(filePath);
             
             FileInfo file = new FileInfo(filePath);
@@ -305,8 +304,8 @@ namespace ConsoleApplication
             ListMaker list = new ListMaker();
             string[] files = Directory.GetFiles(folderPath);
             string[] folders = Directory.GetDirectories(folderPath);
-            string[] fileTable = list.CreateTable(files, "file", Options.input);
-            string[] folderTable = list.CreateTable(folders, "folder", Options.input);
+            string[] fileTable = list.CreateTable(files, "file");
+            string[] folderTable = list.CreateTable(folders, "folder");
             string[] headings = {"", "Name", "Size", "Last Accessed"};
 
             using (StreamWriter sw = File.AppendText(indexPath))
