@@ -1,4 +1,3 @@
-using ConsoleApplication;
 using ExtensionMethods;
 using Xunit;
 

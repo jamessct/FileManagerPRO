@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using ExtensionMethods;
 namespace ConsoleApplication
 {
-    public class ListMaker : AppHelper
+    public class ListMaker
     {   
+        FileObject fileObject = new FileObject();
         public string[] CreateTable(string[] array, string type, string input)
         {
             // Console.WriteLine(array);
@@ -25,7 +26,7 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = this.RemovePathFromName(item);
+                string name = fileObject.RemovePathFromName(item);
                 list.Add(name);
 
                 string size;
@@ -42,8 +43,8 @@ namespace ConsoleApplication
 
                 list.Add(size);
 
-                string lastAccess = base.GetTimeStampForLastAccess(item);
-                list.Add(lastAccess);
+                FileObject.LastAccess = fileObject.GetTimeStampForLastAccess(item);
+                list.Add(FileObject.LastAccess);
 
                 string[] row = list.ToArray(); 
                 result.Add(table.PrintRow(row));
