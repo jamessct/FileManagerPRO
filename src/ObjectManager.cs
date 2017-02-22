@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ConsoleApplication
 {
-    public class ObjectManager : DataObject
+    public class ObjectManager
     {
         FileObject file = new FileObject();
         FolderObject folder = new FolderObject();

@@ -1,20 +1,20 @@
-namespace ConsoleApplication
-{
-    interface IStorageItem
-    {
-       string Name
-       {
-           get;
-       }
+// namespace ConsoleApplication
+// {
+//     interface IStorageItem
+//     {
+//        string Name
+//        {
+//            get;
+//        }
 
-       string Size
-       {
-           get;
-       }
+//        string Size
+//        {
+//            get;
+//        }
 
-       string LastAccessed
-       {
-           get;
-       }
-    }
-}
+//        string LastAccessed
+//        {
+//            get;
+//        }
+//     }
+// }

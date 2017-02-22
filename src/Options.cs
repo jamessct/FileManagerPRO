@@ -27,18 +27,19 @@ namespace ConsoleApplication
                     {
                         ListMaker list = new ListMaker();
                         TableMaker tableMaker = new TableMaker();
+
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(tableMaker.PrintLine());
                         Console.WriteLine(tableMaker.PrintRow(headings));
                         Console.WriteLine(tableMaker.PrintLine());
+
                         string[] files = folder.ListFilesInDirectory(input);
-                        
                         string[] table = list.CreateTable(files, "file");
                         tableMaker.PrintTableToConsole(table);
                         string listSize = input.FolderSize();
+
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + listSize);
                         Console.WriteLine();
-
                         menu.Menu(mainMenu, 1);
                     }
                     catch(InvalidOperationException)
@@ -59,6 +60,7 @@ namespace ConsoleApplication
                     {
                         ListMaker list = new ListMaker();
                         TableMaker tableMaker = new TableMaker();
+
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(tableMaker.PrintLine());
                         Console.WriteLine(tableMaker.PrintRow(headings));
@@ -68,9 +70,9 @@ namespace ConsoleApplication
                         string[] table = list.CreateTable(folders, "folder");
                         tableMaker.PrintTableToConsole(table);
                         long totalSize = folder.GetSizeOfDirectory(input) - folder.GetSizeOfFileList(input);
+                        
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
                         Console.WriteLine();
-
                         menu.Menu(mainMenu, 1);
                     }
                     catch(ArgumentException)
@@ -348,7 +350,6 @@ namespace ConsoleApplication
                         Console.WriteLine("SUCCESS! New folder created at " + input);
                         menu.Menu(mainMenu, 1);
                     }
-
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
