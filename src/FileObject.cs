@@ -5,11 +5,8 @@ namespace ConsoleApplication
 { 
     public class FileObject : DataObject
     {
-        AppHelper app = new AppHelper();
-        //To include in this file:
-
+        ObjectManager app = new ObjectManager();
         private static long fileSize;
-
         public static long Size
         {
             get
@@ -65,5 +62,47 @@ namespace ConsoleApplication
 
             return fileSize;
         }
+
+        public string ReadTextFromFile(string filePath)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+
+            string text = File.ReadAllText(filePath);
+
+            return text;
+        }
+
+        public bool SearchForTextInFile(string filePath, string textQuery)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+            string text = ReadTextFromFile(filePath);
+
+            if(text.Contains(textQuery))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void WriteTextToFile(string filePath, string text)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+
+            File.WriteAllText(filePath, text);
+        }
+
+        public void RemoveTextFromFile(string filePath)
+        {
+            File.WriteAllText(filePath, "");
+        }
+
+        public int CountLinesInFile(string filePath)
+        {
+            int lineCount = File.ReadAllLines(filePath).Length;
+
+            return lineCount;
+        }
+
     }
 }
