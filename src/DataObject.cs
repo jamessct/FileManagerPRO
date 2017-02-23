@@ -5,8 +5,6 @@ namespace ConsoleApplication
 {
     public class DataObject
     {
-
-
         public string RemovePathFromName(string path)
         {
             int pathLength = path.LastIndexOf(@"\") + 1;
