@@ -19,7 +19,7 @@ namespace ConsoleApplication
             Console.WriteLine();
 
             DynamicMenu menu = new DynamicMenu();
-            menu.Menu(Options.mainMenu, 1);  
+            menu.Menu(menu.mainMenu, 1);  
         }
     }
 }

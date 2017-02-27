@@ -5,6 +5,9 @@ namespace ConsoleApplication
 {
     public class DynamicMenu
     {
+        public string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit"};
+        public string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
+        public string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
         public void Menu(string[] array, int menu)
         {
             bool loopComplete = false;
@@ -15,7 +18,7 @@ namespace ConsoleApplication
 
             Console.CursorVisible = false;
 
-            while (!loopComplete)
+            while(!loopComplete)
             {
                 for (int i = 0; i < array.Length; i ++)
                 {
