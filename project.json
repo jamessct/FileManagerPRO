@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.1.0-*",
   "buildOptions": {
     "debugType": "portable",
     "emitEntryPoint": true
@@ -10,7 +10,7 @@
     "dotnet-test-xunit": "2.2.0-preview2-build1029"
   },
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           //"type": "platform", //remove this line if trying to build a native app via runtime section

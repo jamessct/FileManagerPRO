@@ -123,6 +123,7 @@ namespace ConsoleApplication
                 case 5:
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine();
                     Console.WriteLine("GOODBYE!");
                     Console.ForegroundColor = ConsoleColor.White;
                     Environment.Exit(0);
