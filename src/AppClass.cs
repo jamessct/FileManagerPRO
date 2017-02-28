@@ -48,7 +48,7 @@ namespace ConsoleApplication
 
         public string[] ListFilesInDirectory(string folderPath)
         {
-            ThrowExceptionIfFolderDoesntExist(folderPath);
+            folder.ThrowExceptionIfFolderDoesntExist(folderPath);
 
             string[] list = Directory.GetFiles(folderPath);
 
@@ -85,38 +85,6 @@ namespace ConsoleApplication
         //     return fileSize;
         // }
 
-        public long GetSizeOfFileList(string folderPath)
-        {
-            ThrowExceptionIfFolderDoesntExist(folderPath);
-
-            long totalSize = 0;
-            string[] fileList = Directory.GetFiles(folderPath);
-
-            foreach (string name in fileList)
-            {
-                FileInfo file = new FileInfo(name);
-                totalSize = totalSize + file.Length;
-            }
-            
-            return totalSize;
-        }
-
-        public long GetSizeOfDirectory(string folderPath)
-        {
-            ThrowExceptionIfFolderDoesntExist(folderPath);
-
-            long totalSize = 0;
-            string[] contents = Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories);
-
-            foreach (string name in contents)
-            {
-                FileInfo file = new FileInfo(name);
-                totalSize = totalSize + file.Length;
-            }
-
-            return totalSize;
-        }
-
         public void CreateNewFile(string filePath)
         {
             if(CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
@@ -129,14 +97,14 @@ namespace ConsoleApplication
 
         public void RemoveFile(string filePath)
         {
-            ThrowExceptionIfFileDoesntExist(filePath);
+            file.ThrowExceptionIfFileDoesntExist(filePath);
 
             File.Delete(filePath);
         }
 
         public void MoveFile(string filePath, string destinationPath)
         {
-            ThrowExceptionIfFileDoesntExist(filePath);
+            file.ThrowExceptionIfFileDoesntExist(filePath);
 
             if(CheckFileExists(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
             {
@@ -165,7 +133,7 @@ namespace ConsoleApplication
 
         public string ReadTextFromFile(string filePath)
         {
-            ThrowExceptionIfFileDoesntExist(filePath);
+            file.ThrowExceptionIfFileDoesntExist(filePath);
 
             string text = File.ReadAllText(filePath);
 
@@ -174,7 +142,7 @@ namespace ConsoleApplication
 
         public bool SearchForTextInFile(string filePath, string textQuery)
         {
-            ThrowExceptionIfFileDoesntExist(filePath);
+            file.ThrowExceptionIfFileDoesntExist(filePath);
             string text = ReadTextFromFile(filePath);
 
             if(text.Contains(textQuery))
@@ -187,7 +155,7 @@ namespace ConsoleApplication
 
         public void WriteTextToFile(string filePath, string text)
         {
-            ThrowExceptionIfFileDoesntExist(filePath);
+            file.ThrowExceptionIfFileDoesntExist(filePath);
 
             File.WriteAllText(filePath, text);
         }

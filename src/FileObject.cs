@@ -36,7 +36,7 @@ namespace ConsoleApplication
             }
         }
 
-        public bool CheckFileExists(string filePath)
+        public static bool CheckFileExists(string filePath)
         {
             if(File.Exists(filePath))
             {
@@ -48,7 +48,7 @@ namespace ConsoleApplication
             }
         }
        
-        public void ThrowExceptionIfFileDoesntExist(string filePath)
+        public static void ThrowExceptionIfFileDoesntExist(string filePath)
         {
             if(CheckFileExists(filePath) == false)
             {
@@ -56,7 +56,7 @@ namespace ConsoleApplication
             }
         }
 
-        public long GetSizeOfFile(string filePath)
+        public static long GetSizeOfFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
             
