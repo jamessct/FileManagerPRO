@@ -6,32 +6,32 @@ namespace ConsoleApplication
     public class FileObject : DataObject
     {
         ObjectManager app = new ObjectManager();
-        private static long fileSize;
-        public static long Size
-        {
-            get
-            {
-                return fileSize;
-            }
-            set
-            {
-                fileSize = value;
-            }
-        }
+        public static long Size;
+        // public static long Size
+        // {
+        //     get
+        //     {
+        //         return fileSize;
+        //     }
+        //     set
+        //     {
+        //         fileSize = value;
+        //     }
+        // }
 
-        private static string lastAccess;
+        public static string LastAccess;
 
-        public static string LastAccess
-        {
-            get
-            {
-                return lastAccess;
-            }
-            set
-            {
-                lastAccess = value;
-            }
-        }
+        // public static string LastAccess
+        // {
+        //     get
+        //     {
+        //         return lastAccess;
+        //     }
+        //     set
+        //     {
+        //         lastAccess = value;
+        //     }
+        // }
 
         public bool CheckFileExists(string filePath)
         {

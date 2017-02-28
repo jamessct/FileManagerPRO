@@ -7,7 +7,6 @@ namespace ConsoleApplication
     {
         FileObject file = new FileObject();
         FolderObject folder = new FolderObject();
-        
         public void CreateNewFile(string filePath)
         {
             if(file.CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
@@ -52,16 +51,6 @@ namespace ConsoleApplication
 
             File.Move(oldPath, newPath);
         }
-
-        
-        // public string GetTimeStampForLastAccess(string filePath)
-        // {
-        //     FileInfo info = new FileInfo(filePath);
-
-        //     DateTime time = info.LastAccessTime;
-        //     var answer = time.ToString("yyyy/MM/dd HH:mm:ss.ff");
-        //     return answer;
-        // }
 
         public void CreateNewFolder(string newFolderPath)
         {
@@ -136,15 +125,9 @@ namespace ConsoleApplication
             }
         }
 
-        // public string RemovePathFromName(string path)
-        // {
-        //     int pathLength = path.LastIndexOf(@"\") + 1;
-        //     string answer = path.Remove(0, pathLength);
-        //     return answer;
-        // }
-
         public void CreateIndexFile(string folderPath)
         {
+            //Console.WriteLine("TEST2");
             folder.ThrowExceptionIfFolderDoesntExist(folderPath);
 
             string indexPath = folderPath + "\\Index.txt";

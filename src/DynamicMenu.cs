@@ -5,9 +5,7 @@ namespace ConsoleApplication
 {
     public class DynamicMenu
     {
-        public string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit"};
-        public string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
-        public string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
+        public string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit", "Main Menu" };
         public void Menu(string[] array, int menu)
         {
             bool loopComplete = false;
@@ -17,6 +15,8 @@ namespace ConsoleApplication
             ConsoleKeyInfo key;
 
             Console.CursorVisible = false;
+
+            //Console.WriteLine("testing");
 
             while(!loopComplete)
             {
@@ -38,11 +38,11 @@ namespace ConsoleApplication
 
                 key = Console.ReadKey(true);
 
-                switch (key.Key)
+                switch(key.Key)
                 {
                     case ConsoleKey.UpArrow:
                     {
-                        if (selectedItem > 0)
+                        if(selectedItem > 0)
                         {
                             selectedItem--;
                         }
@@ -77,7 +77,7 @@ namespace ConsoleApplication
 
             ConsoleAnimation spin = new ConsoleAnimation();
             bool check = true;
-            
+
             while(check == true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -86,7 +86,7 @@ namespace ConsoleApplication
             }
 
              selectOptions(selectedItem, menu);
-        }  
+        }
 
         public void selectOptions(int selectedItem, int menu)
         {
@@ -94,7 +94,7 @@ namespace ConsoleApplication
             {
                 case 1:
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("MAIN MENU");
                     Console.WriteLine();
                     Options.MainMenuOptions(selectedItem);
@@ -102,21 +102,23 @@ namespace ConsoleApplication
                 }
                 case 2:
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("testing");
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("FILE MANAGER");
+                    Console.WriteLine("testing1");
                     Console.WriteLine();
                     Options.ManageFiles(selectedItem);
                     break;
                 }
                 case 3:
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("FOLDER MANAGER");
                     Console.WriteLine();
                     Options.ManageFolders(selectedItem);
                     break;
                 }
-            }  
-        }    
+            }
+        }
     }
 }

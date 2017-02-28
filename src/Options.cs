@@ -4,11 +4,17 @@ namespace ConsoleApplication
 {
     public static class Options
     {
+        static Program test = new Program();
         static ObjectManager app = new ObjectManager();
         static DynamicMenu menu = new DynamicMenu(); 
         static FolderObject folder = new FolderObject(); 
         static FileObject file = new FileObject(); 
         public static string input;
+        private static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
+        private static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
+        
+        //public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit"};
+        
         static string[] headings = {"", "Name", "Size", "Last Accessed"};
         public static void MainMenuOptions(int selectedItem)
         {
@@ -37,9 +43,7 @@ namespace ConsoleApplication
 
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + listSize);
                         Console.WriteLine();
-                        Console.WriteLine("41");
                         menu.Menu(menu.mainMenu, 1);
-                        Console.WriteLine("43");
                     }
                     catch(InvalidOperationException)
                     {
@@ -87,14 +91,14 @@ namespace ConsoleApplication
                     Console.WriteLine("another test");
                     Console.Clear();
                     Console.WriteLine("FILE MANAGER");
-                    menu.Menu(menu.filesMenu, 2);
+                    menu.Menu(filesMenu, 2);
                     break;
                 }
                 case 3:
                 {
                     Console.Clear();
                     Console.WriteLine("FOLDER MANAGER");
-                    menu.Menu(menu.foldersMenu, 3);
+                    menu.Menu(foldersMenu, 3);
                     break;
                 }
                 case 4:
@@ -106,6 +110,7 @@ namespace ConsoleApplication
 
                     try
                     {
+                        Console.WriteLine("test");
                         app.CreateIndexFile(input);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your new index file has been created at " + input + "\\index.txt");
@@ -113,6 +118,7 @@ namespace ConsoleApplication
                     }
                     catch(ArgumentException)
                     {
+                        Console.WriteLine("testing");
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
@@ -127,6 +133,12 @@ namespace ConsoleApplication
                     Console.WriteLine("GOODBYE!");
                     Console.ForegroundColor = ConsoleColor.White;
                     Environment.Exit(0);
+                    break;
+                }
+                case 6:
+                {
+                    Console.WriteLine("testing");
+                    menu.Menu(menu.mainMenu, 1);
                     break;
                 }
             }
@@ -178,7 +190,7 @@ namespace ConsoleApplication
 
                     if(input == "c" || input == "C")
                     {
-                        menu.Menu(menu.filesMenu, 1);
+                        menu.Menu(filesMenu, 1);
                     }
                         
                     try
