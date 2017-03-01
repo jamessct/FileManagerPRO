@@ -13,13 +13,11 @@ namespace ConsoleApplication
 
         public string PrintLine()
         {
-            Console.WriteLine("testing PrintLine");
             return new string('-', tableWidth);
         }
 
         public string PrintRow(string[] columns)
         {
-            Console.WriteLine("testing PrintRow()");
             int width = (tableWidth - columns.Length) / columns.Length;
             string row = "|";
 

@@ -110,7 +110,6 @@ namespace ConsoleApplication
 
                     try
                     {
-                        Console.WriteLine("test");
                         app.CreateIndexFile(input);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your new index file has been created at " + input + "\\index.txt");
@@ -118,7 +117,6 @@ namespace ConsoleApplication
                     }
                     catch(ArgumentException)
                     {
-                        Console.WriteLine("testing");
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
@@ -133,12 +131,6 @@ namespace ConsoleApplication
                     Console.WriteLine("GOODBYE!");
                     Console.ForegroundColor = ConsoleColor.White;
                     Environment.Exit(0);
-                    break;
-                }
-                case 6:
-                {
-                    Console.WriteLine("testing");
-                    menu.Menu(menu.mainMenu, 1);
                     break;
                 }
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ExtensionMethods;
 namespace ConsoleApplication
 {
-    public class ListMaker
+    public class ListMaker2
     {   
         DataObject dataObject = new DataObject();
         //FileObject fileObject = new FileObject();
