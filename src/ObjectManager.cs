@@ -5,11 +5,11 @@ namespace ConsoleApplication
 {
     public class ObjectManager
     {
-        FileObject file = new FileObject();
-        FolderObject folder = new FolderObject();
+        //FileObject file = new FileObject();
+        //FolderObject folder = new FolderObject();
         public void CreateNewFile(string filePath)
         {
-            if(file.CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
+            if(FileObject.CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at this location, or this is not a valid file path");
             }
@@ -18,16 +18,16 @@ namespace ConsoleApplication
 
         public void RemoveFile(string filePath)
         {
-            file.ThrowExceptionIfFileDoesntExist(filePath);
+            FileObject.ThrowExceptionIfFileDoesntExist(filePath);
 
             File.Delete(filePath);
         }
 
         public void MoveFile(string filePath, string destinationPath)
         {
-            file.ThrowExceptionIfFileDoesntExist(filePath);
+            FileObject.ThrowExceptionIfFileDoesntExist(filePath);
 
-            if(file.CheckFileExists(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
+            if(FileObject.CheckFileExists(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at the destination path!");
             }
@@ -37,7 +37,7 @@ namespace ConsoleApplication
 
         public void RenameFile(string oldPath, string newName)
         {
-            file.ThrowExceptionIfFileDoesntExist(oldPath);
+            FileObject.ThrowExceptionIfFileDoesntExist(oldPath);
 
             int newPathLength = oldPath.LastIndexOf("\\") + 1;
             int folderCount = (oldPath.Length - newPathLength);
@@ -54,7 +54,7 @@ namespace ConsoleApplication
 
         public void CreateNewFolder(string newFolderPath)
         {
-            if (folder.CheckFolderExists(newFolderPath) == true || !newFolderPath.Contains(@":\"))
+            if (FolderObject.CheckFolderExists(newFolderPath) == true || !newFolderPath.Contains(@":\"))
             {
                 throw new ArgumentException("Invalid input");
             }
@@ -77,7 +77,7 @@ namespace ConsoleApplication
 
         public void RemoveFolder(string folderPath, bool recursive)
         {
-            folder.ThrowExceptionIfFolderDoesntExist(folderPath);
+            FolderObject.ThrowExceptionIfFolderDoesntExist(folderPath);
 
             DirectoryInfo directory = new DirectoryInfo(folderPath);
             string[] list = Directory.GetFiles(folderPath);
@@ -97,7 +97,7 @@ namespace ConsoleApplication
 
         public void MoveFolder(string folderPath, string newLocation)
         {
-            folder.ThrowExceptionIfFolderDoesntExist(folderPath);
+            FolderObject.ThrowExceptionIfFolderDoesntExist(folderPath);
 
             if (Directory.Exists(newLocation) == true)
             {
@@ -108,7 +108,7 @@ namespace ConsoleApplication
 
         public void RenameFolder(string oldPath, string newName)
         {
-            folder.ThrowExceptionIfFolderDoesntExist(oldPath);
+            FolderObject.ThrowExceptionIfFolderDoesntExist(oldPath);
 
             int newPathLength = oldPath.LastIndexOf(@"\") + 1;
             int folderCount = (oldPath.Length - newPathLength);
@@ -128,7 +128,7 @@ namespace ConsoleApplication
         public void CreateIndexFile(string folderPath)
         {
             //Console.WriteLine("TEST2");
-            folder.ThrowExceptionIfFolderDoesntExist(folderPath);
+            FolderObject.ThrowExceptionIfFolderDoesntExist(folderPath);
 
             string indexPath = folderPath + "\\Index.txt";
             FileStream f = File.Create(indexPath);

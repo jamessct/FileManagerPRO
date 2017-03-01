@@ -7,8 +7,8 @@ namespace ConsoleApplication
         static Program test = new Program();
         static ObjectManager app = new ObjectManager();
         static DynamicMenu menu = new DynamicMenu(); 
-        static FolderObject folder = new FolderObject(); 
-        static FileObject file = new FileObject(); 
+        //static FolderObject folder = new FolderObject(); 
+        //static FileObject file = new FileObject(); 
         public static string input;
         private static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
         private static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
@@ -36,7 +36,7 @@ namespace ConsoleApplication
                         Console.WriteLine(tableMaker.PrintRow(headings));
                         Console.WriteLine(tableMaker.PrintLine());
 
-                        string[] files = folder.ListFilesInDirectory(input);
+                        string[] files = FolderObject.ListFilesInDirectory(input);
                         string[] table = list.CreateTable(files, "file");
                         tableMaker.PrintTableToConsole(table);
                         string listSize = input.FolderSize();
@@ -69,10 +69,10 @@ namespace ConsoleApplication
                         Console.WriteLine(tableMaker.PrintRow(headings));
                         Console.WriteLine(tableMaker.PrintLine());
                         
-                        string[] folders = folder.ListSubfoldersInDirectory(input);
+                        string[] folders = FolderObject.ListSubfoldersInDirectory(input);
                         string[] table = list.CreateTable(folders, "folder");
                         tableMaker.PrintTableToConsole(table);
-                        long totalSize = folder.GetSizeOfDirectory(input) - folder.GetSizeOfFileList(input);
+                        long totalSize = FolderObject.GetSizeOfDirectory(input) - FolderObject.GetSizeOfFileList(input);
                         
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
                         Console.WriteLine();
@@ -157,7 +157,7 @@ namespace ConsoleApplication
 
                     try
                     {
-                        if(file.CheckFileExists(input) == true)
+                        if(FileObject.CheckFileExists(input) == true)
                         {
                             app.CreateNewFile(input);
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -269,7 +269,7 @@ namespace ConsoleApplication
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine(file.ReadTextFromFile(input));
+                        Console.WriteLine(FileObject.ReadTextFromFile(input));
                         menu.Menu(menu.mainMenu, 1);
                     }
                     catch(ArgumentException)
@@ -292,7 +292,7 @@ namespace ConsoleApplication
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        file.WriteTextToFile(input1, input2);
+                        FileObject.WriteTextToFile(input1, input2);
                         Console.WriteLine("SUCCESS! Your text has been written to the file");
                         menu.Menu(menu.mainMenu, 1);
                     }
@@ -315,7 +315,7 @@ namespace ConsoleApplication
                     
                     try
                     {
-                        if(file.SearchForTextInFile(input1, input2) == true)
+                        if(FileObject.SearchForTextInFile(input1, input2) == true)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine(input1 + " DOES include the phrase '" + input2 + "'");
@@ -388,7 +388,7 @@ namespace ConsoleApplication
                     {
                         app.RemoveFolder(input, true);
 
-                        if(folder.CheckFolderExists(input) == false)
+                        if(FolderObject.CheckFolderExists(input) == false)
                         {   
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("SUCCESS! The specified folder has been removed.");
@@ -475,7 +475,7 @@ namespace ConsoleApplication
                 //Alien Easter Egg
                 case 5:
                 {
-                    string alien = file.ReadTextFromFile(@"c:\Projects\App1\easteregg\alien2.txt");
+                    string alien = FileObject.ReadTextFromFile(@"c:\Projects\App1\easteregg\alien2.txt");
                     Console.Clear();
                     Console.SetWindowSize(80, 50);
                     Console.ForegroundColor = ConsoleColor.Green;

@@ -3,9 +3,9 @@ using System.IO;
 
 namespace ConsoleApplication
 { 
-    public class FileObject : DataObject
+    public static class FileObject
     {
-        ObjectManager app = new ObjectManager();
+        static ObjectManager app = new ObjectManager();
         public static long Size;
         // public static long Size
         // {
@@ -33,7 +33,7 @@ namespace ConsoleApplication
         //     }
         // }
 
-        public bool CheckFileExists(string filePath)
+        public static bool CheckFileExists(string filePath)
         {
             if(File.Exists(filePath))
             {
@@ -45,7 +45,7 @@ namespace ConsoleApplication
             }
         }
        
-        public void ThrowExceptionIfFileDoesntExist(string filePath)
+        public static void ThrowExceptionIfFileDoesntExist(string filePath)
         {
             if(CheckFileExists(filePath) == false)
             {
@@ -53,7 +53,7 @@ namespace ConsoleApplication
             }
         }
 
-        public long GetSizeOfFile(string filePath)
+        public static long GetSizeOfFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
             
@@ -63,7 +63,7 @@ namespace ConsoleApplication
             return fileSize;
         }
 
-        public string ReadTextFromFile(string filePath)
+        public static string ReadTextFromFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
@@ -72,7 +72,7 @@ namespace ConsoleApplication
             return text;
         }
 
-        public bool SearchForTextInFile(string filePath, string textQuery)
+        public static bool SearchForTextInFile(string filePath, string textQuery)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
             string text = ReadTextFromFile(filePath);
@@ -85,19 +85,19 @@ namespace ConsoleApplication
             return false;
         }
 
-        public void WriteTextToFile(string filePath, string text)
+        public static void WriteTextToFile(string filePath, string text)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
             File.WriteAllText(filePath, text);
         }
 
-        public void RemoveTextFromFile(string filePath)
+        public static void RemoveTextFromFile(string filePath)
         {
             File.WriteAllText(filePath, "");
         }
 
-        public int CountLinesInFile(string filePath)
+        public static int CountLinesInFile(string filePath)
         {
             int lineCount = File.ReadAllLines(filePath).Length;
 

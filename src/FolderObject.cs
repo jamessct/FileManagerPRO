@@ -3,9 +3,9 @@ using System.IO;
 
 namespace ConsoleApplication
 {
-    public class FolderObject : DataObject
+    public static class FolderObject
     {
-        public bool CheckFolderExists(string folderPath)
+        public static bool CheckFolderExists(string folderPath)
         {
             if(Directory.Exists(folderPath))
             {
@@ -17,7 +17,7 @@ namespace ConsoleApplication
             }
         }
 
-        public void ThrowExceptionIfFolderDoesntExist(string folderPath)
+        public static void ThrowExceptionIfFolderDoesntExist(string folderPath)
         {
             if(CheckFolderExists(folderPath) == false)
             {
@@ -25,7 +25,7 @@ namespace ConsoleApplication
             }
         }
 
-        public long GetSizeOfDirectory(string folderPath)
+        public static long GetSizeOfDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -40,7 +40,7 @@ namespace ConsoleApplication
 
             return totalSize;
         }
-        public string[] ListFilesInDirectory(string folderPath)
+        public static string[] ListFilesInDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -56,7 +56,7 @@ namespace ConsoleApplication
             }
         }
 
-        public string[] ListSubfoldersInDirectory(string folderPath)
+        public static string[] ListSubfoldersInDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -69,7 +69,7 @@ namespace ConsoleApplication
             else return list;
         }
 
-        public long GetSizeOfFileList(string folderPath)
+        public static long GetSizeOfFileList(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 

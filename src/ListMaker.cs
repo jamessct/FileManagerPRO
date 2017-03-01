@@ -5,11 +5,10 @@ namespace ConsoleApplication
 {
     public class ListMaker
     {   
-        FileObject fileObject = new FileObject();
+        DataObject dataObject = new DataObject();
+        //FileObject fileObject = new FileObject();
         public string[] CreateTable(string[] array, string type)
         {
-            // Console.WriteLine(array);
-
             TableMaker table = new TableMaker();
             int number = 0;
             List<string> result = new List<string>();
@@ -26,7 +25,7 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = fileObject.RemovePathFromName(item);
+                string name = dataObject.RemovePathFromName(item);
                 list.Add(name);
 
                 string size;
@@ -42,7 +41,7 @@ namespace ConsoleApplication
 
                 list.Add(size);
 
-                FileObject.LastAccess = fileObject.GetTimeStampForLastAccess(item);
+                FileObject.LastAccess = dataObject.GetTimeStampForLastAccess(item);
                 list.Add(FileObject.LastAccess);
 
                 string[] row = list.ToArray(); 

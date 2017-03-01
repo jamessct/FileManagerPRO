@@ -66,6 +66,7 @@ namespace ConsoleApplication
                     }
                     case ConsoleKey.Enter:
                     {
+                        Console.WriteLine("testing");
                         loopComplete = true;
                         break;
                     }
@@ -84,7 +85,6 @@ namespace ConsoleApplication
                 Thread.Sleep(30);
                 check = spin.animation();
             }
-
              selectOptions(selectedItem, menu);
         }
 
