@@ -157,7 +157,7 @@ namespace ConsoleApplication
 
                     try
                     {
-                        if(FileObject.CheckFileExists(input) == true)
+                        if(FileObject.CheckFileExists(input) == false)
                         {
                             app.CreateNewFile(input);
                             Console.ForegroundColor = ConsoleColor.Green;
