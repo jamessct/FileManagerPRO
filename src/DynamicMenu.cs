@@ -5,7 +5,7 @@ namespace ConsoleApplication
 {
     public class DynamicMenu
     {
-        public string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit", "Main Menu" };
+        public string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit" };
         public void Menu(string[] array, int menu)
         {
             bool loopComplete = false;
