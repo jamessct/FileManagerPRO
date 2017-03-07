@@ -15,7 +15,7 @@ namespace ExtensionMethods
 
         public static string FolderSize(this string folderPath)
         {
-            long answer = FolderObject.GetSizeOfDirectory(folderPath);
+            long answer = app.GetSizeOfDirectory(folderPath);
             string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
             return answerStringified;
         }
