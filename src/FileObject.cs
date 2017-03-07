@@ -2,12 +2,13 @@ using System;
 using System.IO;
 
 namespace ConsoleApplication
-{ 
-    public static class FileObject
+{
+    public class FileObject
     {
-        static ObjectManager app = new ObjectManager();
-        public static long Size;
-        // public static long Size
+        ObjectManager app = new ObjectManager();
+        long fileSize;
+        public long Size;
+        // public long Size
         // {
         //     get
         //     {
@@ -19,9 +20,9 @@ namespace ConsoleApplication
         //     }
         // }
 
-        public static string LastAccess;
+        public string LastAccess;
 
-        // public static string LastAccess
+        // public string LastAccess
         // {
         //     get
         //     {
@@ -33,76 +34,76 @@ namespace ConsoleApplication
         //     }
         // }
 
-        public static bool CheckFileExists(string filePath)
-        {
-            if(File.Exists(filePath))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-       
-        public static void ThrowExceptionIfFileDoesntExist(string filePath)
-        {
-            if(CheckFileExists(filePath) == false)
-            {
-                throw new ArgumentException("This file does not exist");
-            }
-        }
+        // public bool CheckFileExists(string filePath)
+        // {
+        //     if(File.Exists(filePath))
+        //     {
+        //         return true;
+        //     }
+        //     else
+        //     {
+        //         return false;
+        //     }
+        // }
 
-        public static long GetSizeOfFile(string filePath)
-        {
-            ThrowExceptionIfFileDoesntExist(filePath);
-            
-            FileInfo file = new FileInfo(filePath);
-            long fileSize = file.Length;
+        // public void ThrowExceptionIfFileDoesntExist(string filePath)
+        // {
+        //     if(CheckFileExists(filePath) == false)
+        //     {
+        //         throw new ArgumentException("This file does not exist");
+        //     }
+        // }
 
-            return fileSize;
-        }
+        // public long GetSizeOfFile(string filePath)
+        // {
+        //     ThrowExceptionIfFileDoesntExist(filePath);
 
-        public static string ReadTextFromFile(string filePath)
-        {
-            ThrowExceptionIfFileDoesntExist(filePath);
+        //     FileInfo file = new FileInfo(filePath);
+        //     fileSize = file.Length;
 
-            string text = File.ReadAllText(filePath);
+        //     return fileSize;
+        // }
 
-            return text;
-        }
+        // public string ReadTextFromFile(string filePath)
+        // {
+        //     ThrowExceptionIfFileDoesntExist(filePath);
 
-        public static bool SearchForTextInFile(string filePath, string textQuery)
-        {
-            ThrowExceptionIfFileDoesntExist(filePath);
-            string text = ReadTextFromFile(filePath);
+        //     string text = File.ReadAllText(filePath);
 
-            if(text.Contains(textQuery))
-            {
-                return true;
-            }
+        //     return text;
+        // }
 
-            return false;
-        }
+        // public bool SearchForTextInFile(string filePath, string textQuery)
+        // {
+        //     ThrowExceptionIfFileDoesntExist(filePath);
+        //     string text = ReadTextFromFile(filePath);
 
-        public static void WriteTextToFile(string filePath, string text)
-        {
-            ThrowExceptionIfFileDoesntExist(filePath);
+        //     if(text.Contains(textQuery))
+        //     {
+        //         return true;
+        //     }
 
-            File.WriteAllText(filePath, text);
-        }
+        //     return false;
+        // }
 
-        public static void RemoveTextFromFile(string filePath)
-        {
-            File.WriteAllText(filePath, "");
-        }
+        // public void WriteTextToFile(string filePath, string text)
+        // {
+        //     ThrowExceptionIfFileDoesntExist(filePath);
 
-        public static int CountLinesInFile(string filePath)
-        {
-            int lineCount = File.ReadAllLines(filePath).Length;
+        //     File.WriteAllText(filePath, text);
+        // }
 
-            return lineCount;
-        }
+        // public void RemoveTextFromFile(string filePath)
+        // {
+        //     File.WriteAllText(filePath, "");
+        // }
+
+        // public int CountLinesInFile(string filePath)
+        // {
+        //     int lineCount = File.ReadAllLines(filePath).Length;
+
+        //     return lineCount;
+        // }
 
     }
 }

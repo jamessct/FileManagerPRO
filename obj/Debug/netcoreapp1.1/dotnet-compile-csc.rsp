@@ -34,6 +34,8 @@
 -r:"C:\Users\jscott\.nuget\packages\System.ComponentModel\4.3.0\ref\netstandard1.0\System.ComponentModel.dll"
 -r:"C:\Users\jscott\.nuget\packages\System.ComponentModel.Annotations\4.3.0\ref\netstandard1.4\System.ComponentModel.Annotations.dll"
 -r:"C:\Users\jscott\.nuget\packages\System.Console\4.3.0\ref\netstandard1.3\System.Console.dll"
+-r:"C:\Users\jscott\.nuget\packages\System.Data.Common\4.3.0\ref\netstandard1.2\System.Data.Common.dll"
+-r:"C:\Users\jscott\.nuget\packages\System.Data.SqlClient\4.3.0\ref\netstandard1.3\System.Data.SqlClient.dll"
 -r:"C:\Users\jscott\.nuget\packages\System.Diagnostics.Debug\4.3.0\ref\netstandard1.3\System.Diagnostics.Debug.dll"
 -r:"C:\Users\jscott\.nuget\packages\System.Diagnostics.DiagnosticSource\4.3.0\lib\netstandard1.3\System.Diagnostics.DiagnosticSource.dll"
 -r:"C:\Users\jscott\.nuget\packages\System.Diagnostics.Process\4.3.0\ref\netstandard1.4\System.Diagnostics.Process.dll"

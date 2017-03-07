@@ -8,7 +8,7 @@ namespace ConsoleApplication
         static ObjectManager app = new ObjectManager();
         static DynamicMenu menu = new DynamicMenu(); 
         //static FolderObject folder = new FolderObject(); 
-        //static FileObject file = new FileObject(); 
+        static FileObject file = new FileObject(); 
         public static string input;
         private static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
         private static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
@@ -149,7 +149,7 @@ namespace ConsoleApplication
 
                     try
                     {
-                        if(FileObject.CheckFileExists(input) == false)
+                        if(file.CheckFileExists(input) == false)
                         {
                             app.CreateNewFile(input);
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -261,7 +261,7 @@ namespace ConsoleApplication
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine(FileObject.ReadTextFromFile(input));
+                        Console.WriteLine(file.ReadTextFromFile(input));
                         menu.Menu(menu.mainMenu, 1);
                     }
                     catch(ArgumentException)
@@ -284,7 +284,7 @@ namespace ConsoleApplication
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        FileObject.WriteTextToFile(input1, input2);
+                        file.WriteTextToFile(input1, input2);
                         Console.WriteLine("SUCCESS! Your text has been written to the file");
                         menu.Menu(menu.mainMenu, 1);
                     }
@@ -307,7 +307,7 @@ namespace ConsoleApplication
                     
                     try
                     {
-                        if(FileObject.SearchForTextInFile(input1, input2) == true)
+                        if(file.SearchForTextInFile(input1, input2) == true)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine(input1 + " DOES include the phrase '" + input2 + "'");
@@ -467,7 +467,7 @@ namespace ConsoleApplication
                 //Alien Easter Egg
                 case 5:
                 {
-                    string alien = FileObject.ReadTextFromFile(@"c:\Projects\App1\easteregg\alien2.txt");
+                    string alien = file.ReadTextFromFile(@"c:\Projects\App1\easteregg\alien2.txt");
                     Console.Clear();
                     Console.SetWindowSize(80, 50);
                     Console.ForegroundColor = ConsoleColor.Green;

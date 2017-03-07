@@ -5,11 +5,83 @@ namespace ConsoleApplication
 {
     public class ObjectManager
     {
-        //FileObject file = new FileObject();
+        FileObject file = new FileObject();
         //FolderObject folder = new FolderObject();
+
+        public bool CheckFileExists(string filePath)
+        {
+            if(File.Exists(filePath))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+       
+        public void ThrowExceptionIfFileDoesntExist(string filePath)
+        {
+            if(CheckFileExists(filePath) == false)
+            {
+                throw new ArgumentException("This file does not exist");
+            }
+        }
+
+        public long GetSizeOfFile(string filePath)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+            
+            FileInfo file = new FileInfo(filePath);
+            long fileSize = file.Length;
+
+            return fileSize;
+        }
+
+        public string ReadTextFromFile(string filePath)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+
+            string text = File.ReadAllText(filePath);
+
+            return text;
+        }
+
+        public bool SearchForTextInFile(string filePath, string textQuery)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+            string text = ReadTextFromFile(filePath);
+
+            if(text.Contains(textQuery))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void WriteTextToFile(string filePath, string text)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+
+            File.WriteAllText(filePath, text);
+        }
+
+        public void RemoveTextFromFile(string filePath)
+        {
+            File.WriteAllText(filePath, "");
+        }
+
+        public int CountLinesInFile(string filePath)
+        {
+            int lineCount = File.ReadAllLines(filePath).Length;
+
+            return lineCount;
+        }
+
         public void CreateNewFile(string filePath)
         {
-            if(FileObject.CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
+            if(file.CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at this location, or this is not a valid file path");
             }
@@ -18,16 +90,16 @@ namespace ConsoleApplication
 
         public void RemoveFile(string filePath)
         {
-            FileObject.ThrowExceptionIfFileDoesntExist(filePath);
+            file.ThrowExceptionIfFileDoesntExist(filePath);
 
             File.Delete(filePath);
         }
 
         public void MoveFile(string filePath, string destinationPath)
         {
-            FileObject.ThrowExceptionIfFileDoesntExist(filePath);
+            file.ThrowExceptionIfFileDoesntExist(filePath);
 
-            if(FileObject.CheckFileExists(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
+            if(file.CheckFileExists(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at the destination path!");
             }
@@ -37,7 +109,7 @@ namespace ConsoleApplication
 
         public void RenameFile(string oldPath, string newName)
         {
-            FileObject.ThrowExceptionIfFileDoesntExist(oldPath);
+            file.ThrowExceptionIfFileDoesntExist(oldPath);
 
             int newPathLength = oldPath.LastIndexOf("\\") + 1;
             int folderCount = (oldPath.Length - newPathLength);

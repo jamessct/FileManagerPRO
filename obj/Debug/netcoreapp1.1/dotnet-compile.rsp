@@ -10,9 +10,9 @@
 --debug-type:portable
 --emit-entry-point:True
 --output-name:App1
---file-version:1.1.0.0
---version:1.1.0.0
---informational-version:1.1.0
+--file-version:1.0.0.0
+--version:1.0.0.0
+--informational-version:1.0.0
 --target-framework:.NETCoreApp,Version=v1.1
 --reference:C:\Users\jscott\.nuget\packages\dotnet-test-xunit\2.2.0-preview2-build1029\lib\netcoreapp1.0\dotnet-test-xunit.dll
 --reference:C:\Users\jscott\.nuget\packages\Microsoft.CSharp\4.3.0\ref\netstandard1.0\Microsoft.CSharp.dll
@@ -39,6 +39,8 @@
 --reference:C:\Users\jscott\.nuget\packages\System.ComponentModel\4.3.0\ref\netstandard1.0\System.ComponentModel.dll
 --reference:C:\Users\jscott\.nuget\packages\System.ComponentModel.Annotations\4.3.0\ref\netstandard1.4\System.ComponentModel.Annotations.dll
 --reference:C:\Users\jscott\.nuget\packages\System.Console\4.3.0\ref\netstandard1.3\System.Console.dll
+--reference:C:\Users\jscott\.nuget\packages\System.Data.Common\4.3.0\ref\netstandard1.2\System.Data.Common.dll
+--reference:C:\Users\jscott\.nuget\packages\System.Data.SqlClient\4.3.0\ref\netstandard1.3\System.Data.SqlClient.dll
 --reference:C:\Users\jscott\.nuget\packages\System.Diagnostics.Debug\4.3.0\ref\netstandard1.3\System.Diagnostics.Debug.dll
 --reference:C:\Users\jscott\.nuget\packages\System.Diagnostics.DiagnosticSource\4.3.0\lib\netstandard1.3\System.Diagnostics.DiagnosticSource.dll
 --reference:C:\Users\jscott\.nuget\packages\System.Diagnostics.Process\4.3.0\ref\netstandard1.4\System.Diagnostics.Process.dll

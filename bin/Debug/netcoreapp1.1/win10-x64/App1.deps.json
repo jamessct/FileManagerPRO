@@ -1,17 +1,19 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1/win10-x64",
-    "signature": "e639d3f532b8abb66c1734f27103507ba96c7073"
+    "signature": "40cd6977aa1a5db9eb68a3b5244d4e2525fa2a81"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v1.1": {},
     ".NETCoreApp,Version=v1.1/win10-x64": {
-      "App1/1.1.0": {
+      "App1/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "1.1.0",
           "xunit": "2.2.0-beta2-build3300",
-          "dotnet-test-xunit": "2.2.0-preview2-build1029"
+          "dotnet-test-xunit": "2.2.0-preview2-build1029",
+          "System.Data.Common": "4.3.0",
+          "System.Data.SqlClient": "4.3.0"
         },
         "runtime": {
           "App1.dll": {}
@@ -67,7 +69,7 @@
           "System.Security.Cryptography.Encoding": "4.3.0",
           "System.Security.Cryptography.X509Certificates": "4.3.0",
           "System.Text.Encoding": "4.3.0",
-          "System.Text.Encoding.CodePages": "4.0.1",
+          "System.Text.Encoding.CodePages": "4.3.0",
           "System.Text.Encoding.Extensions": "4.3.0",
           "System.Threading": "4.3.0",
           "System.Threading.Tasks": "4.3.0",
@@ -568,6 +570,12 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
+      "runtime.native.System.Data.SqlClient.sni/4.3.0": {
+        "dependencies": {
+          "runtime.win7-x64.runtime.native.System.Data.SqlClient.sni": "4.3.0",
+          "runtime.win7-x86.runtime.native.System.Data.SqlClient.sni": "4.3.0"
+        }
+      },
       "runtime.native.System.IO.Compression/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -761,11 +769,17 @@
           "runtimes/win7-x64/native/sos.dll": {}
         }
       },
+      "runtime.win7-x64.runtime.native.System.Data.SqlClient.sni/4.3.0": {
+        "native": {
+          "runtimes/win7-x64/native/sni.dll": {}
+        }
+      },
       "runtime.win7-x64.runtime.native.System.IO.Compression/4.3.0": {
         "native": {
           "runtimes/win7-x64/native/clrcompression.dll": {}
         }
       },
+      "runtime.win7-x86.runtime.native.System.Data.SqlClient.sni/4.3.0": {},
       "runtime.win7.System.Private.Uri/4.3.0": {
         "runtime": {
           "runtimes/win/lib/netstandard1.0/System.Private.Uri.dll": {}
@@ -865,6 +879,65 @@
           "System.Runtime": "4.3.0",
           "System.Text.Encoding": "4.3.0",
           "runtime.win.System.Console": "4.3.0"
+        }
+      },
+      "System.Data.Common/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.2/System.Data.Common.dll": {}
+        }
+      },
+      "System.Data.SqlClient/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Collections.Concurrent": "4.3.0",
+          "System.Data.Common": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.DiagnosticSource": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.Pipes": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Net.NameResolution": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.Security": "4.3.0",
+          "System.Net.Sockets": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.3.0",
+          "System.Security.Cryptography.X509Certificates": "4.3.0",
+          "System.Security.Principal": "4.3.0",
+          "System.Security.Principal.Windows": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.CodePages": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0",
+          "System.Threading.Timer": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0",
+          "runtime.native.System.Data.SqlClient.sni": "4.3.0"
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.Data.SqlClient.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.3.0": {
@@ -1121,6 +1194,32 @@
         },
         "runtime": {
           "runtimes/win/lib/netstandard1.3/System.IO.MemoryMappedFiles.dll": {}
+        }
+      },
+      "System.IO.Pipes/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Buffers": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.Sockets": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Principal": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Overlapped": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "runtime.native.System": "4.3.0"
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.IO.Pipes.dll": {}
         }
       },
       "System.IO.UnmanagedMemoryStream/4.3.0": {
@@ -1781,7 +1880,7 @@
           "runtime.any.System.Text.Encoding": "4.3.0"
         }
       },
-      "System.Text.Encoding.CodePages/4.0.1": {
+      "System.Text.Encoding.CodePages/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "System.Collections": "4.3.0",
@@ -2074,7 +2173,7 @@
     }
   },
   "libraries": {
-    "App1/1.1.0": {
+    "App1/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2354,6 +2453,11 @@
       "serviceable": true,
       "sha512": "sha512-wlZq/7fR0B/ajVvf9DhsdSJKlCF53ZdG+Cu12PVdrgKcGujuGoOxr1C/ACXLLwT8Q/hJo9ddFfvzrgII5eQ2ZQ=="
     },
+    "runtime.native.System.Data.SqlClient.sni/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rX1bLxiHjj+ivd4bL9RwCvKM7agWHceLrAFsPQryTX0ZZ1J7x6vSz779YgMih0S4yD/GTvr7+dajBVutzJVvBg=="
+    },
     "runtime.native.System.IO.Compression/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -2479,10 +2583,20 @@
       "serviceable": true,
       "sha512": "sha512-cX4z/6LT80RMiJuBXBiLNysRxbemE8fdHozC65kG8XK8gs9AYMhPh+U7IgdY45tKnuUxmPM1TCLQEAtndhzn7w=="
     },
+    "runtime.win7-x64.runtime.native.System.Data.SqlClient.sni/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-j42JRgYOMi6B86attv8F3eDBISh+kzoKxLsu0zaq1ioY+je64chWd8fybvk9yPzayO3Dh1czhmf5B7rbafLRQA=="
+    },
     "runtime.win7-x64.runtime.native.System.IO.Compression/4.3.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-UamDlgSO/nIzc96M+g3wbvAGbAuXjvRYR5Ttm/FVJgt2iva8ouOqSJ0j6eGI7pZDLvD/ZISl9XRZOajE/Xvizg=="
+    },
+    "runtime.win7-x86.runtime.native.System.Data.SqlClient.sni/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4cXRTIcttvIreAoqK/5hzTtzepeggac+m5A0rzH+9zLtnFh2J0rLuGeJR4KjNLyKqPzO0kjqrs5lkRJEKX8HAA=="
     },
     "runtime.win7.System.Private.Uri/4.3.0": {
       "type": "package",
@@ -2528,6 +2642,16 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-SyzXbG3djK2FaVTh1dPLpA392maALqg6os888ONs0JoyABVonYArzuTSQopAreX1otdPS+mGWY+NT7XhgDEg4g=="
+    },
+    "System.Data.Common/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ=="
+    },
+    "System.Data.SqlClient/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XmWg+/uUcME++m/vsRzxq1fo0GvlYzFfZM5fCqIIDT+O7AwDdpfd1LkRXmcxeTJQTCgx5AN3Y3t5qSz5XxQLVw=="
     },
     "System.Diagnostics.Debug/4.3.0": {
       "type": "package",
@@ -2618,6 +2742,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-MV8Xrci4GjNW0w9BxOjsXUKeRlTVJLUrm+4ZRN+I3wamN3uby943iBeYAwC8AW7o+K/d5XoJyHmoFO9iC36I9A=="
+    },
+    "System.IO.Pipes/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wpGJuACA6r8+KRckXoI6ghGTwgPRiICI6T7kgHI/m7S5eMqV/8jH37fzAUhTwIe9RwlH/j1sWwm2Q2zyXwZGHw=="
     },
     "System.IO.UnmanagedMemoryStream/4.3.0": {
       "type": "package",
@@ -2844,10 +2973,10 @@
       "serviceable": true,
       "sha512": "sha512-Gsfqbs4rnu7YFeHvAacYxSEI0eBAdgk+A05WJ/wAROpH0DQjA6DldvMv7CHb1wvIr9ZjFcWtGr7S0zuuAR9/uQ=="
     },
-    "System.Text.Encoding.CodePages/4.0.1": {
+    "System.Text.Encoding.CodePages/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Rvhtp7uO9ZN0Cyo5gqz/3wo+cLCv06bRrym1X2DH15Cs3WzW3JPlWbsCGYVp+9bv7QVP4nT14z7jTDVXrEDPhQ=="
+      "sha512": "sha512-IRiEFUa5b/Gs5Egg8oqBVoywhtOeaO2KOx3j0RfcYY/raxqBuEK7NXRDgOwtYM8qbi+7S4RPXUbNt+ZxyY0/NQ=="
     },
     "System.Text.Encoding.Extensions/4.3.0": {
       "type": "package",

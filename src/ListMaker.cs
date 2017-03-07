@@ -1,12 +1,13 @@
-using System;
 using System.Collections.Generic;
 using ExtensionMethods;
+
 namespace ConsoleApplication
 {
     public class ListMaker
     {   
+        ObjectManager app = new ObjectManager();
         DataObject dataObject = new DataObject();
-        //FileObject fileObject = new FileObject();
+        FileObject file = new FileObject();
         public string[] CreateTable(string[] array, string type)
         {
             TableMaker table = new TableMaker();
@@ -41,8 +42,8 @@ namespace ConsoleApplication
 
                 list.Add(size);
 
-                FileObject.LastAccess = dataObject.GetTimeStampForLastAccess(item);
-                list.Add(FileObject.LastAccess);
+                file.LastAccess = dataObject.GetTimeStampForLastAccess(item);
+                list.Add(file.LastAccess);
 
                 string[] row = list.ToArray(); 
                 result.Add(table.PrintRow(row));
