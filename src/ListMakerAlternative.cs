@@ -1,48 +1,40 @@
-// using System;
-// using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
-// namespace ConsoleApplication
-// {
-//     public class ListMaker : IStorageItem
-//     {
-//         private string name;
-//         private string size;
-//         private string lastAccess;
-//         public string Name
-//         {
-//             get
-//             {
-//                 return name;
-//             }
-//         }
+namespace ConsoleApplication
+{
+    public class ListMaker2 : IStorageItem
+    {
+        private string name;
+        private string size;
+        private string lastAccess;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+        }
 
-//         public string Size
-//         {
-//             get
-//             {
-//                 return size;
-//             }
-//         }
+        public string Size
+        {
+            get
+            {
+                return size;
+            }
+        }
 
-//         public string LastAccess
-//         {
-//             get
-//             {
-//                 return lastAccess;
-//             }
-//         }
+        public string LastAccess
+        {
+            get
+            {
+                return lastAccess;
+            }
+        }
 
-//         public string[] CreateTable(string Name, string Size, string LastAccess)
-//         {
-//             TableMaker table = new TableMaker();
-//             int number = 0;
-//             List<string> result = new List<string>();
-//             string[] headings = {"", "Name", "Size", "Last Accessed"};
-//             table.PrintLine();
-//             table.PrintRow(headings);
-//             table.PrintLine();
+        DataObject dataObject = new DataObject();
 
-//             throw new ArgumentException();
-//         }
-//     }
-// }
+
+    }
+}
