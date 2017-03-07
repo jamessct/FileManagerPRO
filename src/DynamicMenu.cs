@@ -3,10 +3,12 @@ using System.Threading;
 
 namespace ConsoleApplication
 {
-    public class DynamicMenu
+    public static class DynamicMenu
     {
-        public string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit", "Main Menu" };
-        public void Menu(string[] array, int menu)
+        public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit" };
+        public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
+        public static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
+        public static void Menu(string[] array, int menu)
         {
             bool loopComplete = false;
             int topOffset = Console.CursorTop;
@@ -15,8 +17,6 @@ namespace ConsoleApplication
             ConsoleKeyInfo key;
 
             Console.CursorVisible = false;
-
-            //Console.WriteLine("testing");
 
             while(!loopComplete)
             {
@@ -88,7 +88,7 @@ namespace ConsoleApplication
              selectOptions(selectedItem, menu);
         }
 
-        public void selectOptions(int selectedItem, int menu)
+        public static void selectOptions(int selectedItem, int menu)
         {
             switch(menu)
             {

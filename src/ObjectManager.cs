@@ -5,11 +5,7 @@ namespace ConsoleApplication
 {
     public class ObjectManager
     {
-        FileObject file = new FileObject();
-        //FolderObject folder = new FolderObject();
-
-        //Get info on file
-        public bool CheckFileExists(string filePath)
+        public static bool CheckFileExists(string filePath)
         {
             if(File.Exists(filePath))
             {
@@ -21,7 +17,7 @@ namespace ConsoleApplication
             }
         }
        
-        public void ThrowExceptionIfFileDoesntExist(string filePath)
+        public static void ThrowExceptionIfFileDoesntExist(string filePath)
         {
             if(CheckFileExists(filePath) == false)
             {
@@ -29,7 +25,7 @@ namespace ConsoleApplication
             }
         }
 
-        public long GetSizeOfFile(string filePath)
+        public static long GetSizeOfFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
             
@@ -39,7 +35,7 @@ namespace ConsoleApplication
             return fileSize;
         }
 
-        public string ReadTextFromFile(string filePath)
+        public static string ReadTextFromFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
@@ -48,7 +44,7 @@ namespace ConsoleApplication
             return text;
         }
 
-        public bool SearchForTextInFile(string filePath, string textQuery)
+        public static bool SearchForTextInFile(string filePath, string textQuery)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
             string text = ReadTextFromFile(filePath);
@@ -61,28 +57,26 @@ namespace ConsoleApplication
             return false;
         }
 
-        public void WriteTextToFile(string filePath, string text)
+        public static void WriteTextToFile(string filePath, string text)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
             File.WriteAllText(filePath, text);
         }
 
-        public void RemoveTextFromFile(string filePath)
+        public static void RemoveTextFromFile(string filePath)
         {
             File.WriteAllText(filePath, "");
         }
 
-        public int CountLinesInFile(string filePath)
+        public static int CountLinesInFile(string filePath)
         {
             int lineCount = File.ReadAllLines(filePath).Length;
 
             return lineCount;
         }
 
-        //Get info from folder 
-
-        public bool CheckFolderExists(string folderPath)
+        public static bool CheckFolderExists(string folderPath)
         {
             if(Directory.Exists(folderPath))
             {
@@ -94,7 +88,7 @@ namespace ConsoleApplication
             }
         }
 
-        public void ThrowExceptionIfFolderDoesntExist(string folderPath)
+        public static void ThrowExceptionIfFolderDoesntExist(string folderPath)
         {
             if(CheckFolderExists(folderPath) == false)
             {
@@ -102,7 +96,7 @@ namespace ConsoleApplication
             }
         }
 
-        public long GetSizeOfDirectory(string folderPath)
+        public static long GetSizeOfDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -117,7 +111,7 @@ namespace ConsoleApplication
 
             return totalSize;
         }
-        public string[] ListFilesInDirectory(string folderPath)
+        public static string[] ListFilesInDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -133,7 +127,7 @@ namespace ConsoleApplication
             }
         }
 
-        public string[] ListSubfoldersInDirectory(string folderPath)
+        public static string[] ListSubfoldersInDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -146,7 +140,7 @@ namespace ConsoleApplication
             else return list;
         }
 
-        public long GetSizeOfFileList(string folderPath)
+        public static long GetSizeOfFileList(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -161,9 +155,7 @@ namespace ConsoleApplication
             return totalSize;
         }
 
-
-        //Create/Move/Delete files and folders...
-        public void CreateNewFile(string filePath)
+        public static void CreateNewFile(string filePath)
         {
             if(CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
             {
@@ -172,14 +164,14 @@ namespace ConsoleApplication
             File.Create(filePath);
         }
 
-        public void RemoveFile(string filePath)
+        public static void RemoveFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
             File.Delete(filePath);
         }
 
-        public void MoveFile(string filePath, string destinationPath)
+        public static void MoveFile(string filePath, string destinationPath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
@@ -191,7 +183,7 @@ namespace ConsoleApplication
             File.Move(filePath, destinationPath);
         }
 
-        public void RenameFile(string oldPath, string newName)
+        public static void RenameFile(string oldPath, string newName)
         {
             ThrowExceptionIfFileDoesntExist(oldPath);
 
@@ -208,7 +200,7 @@ namespace ConsoleApplication
             File.Move(oldPath, newPath);
         }
 
-        public void CreateNewFolder(string newFolderPath)
+        public static void CreateNewFolder(string newFolderPath)
         {
             if (CheckFolderExists(newFolderPath) == true || !newFolderPath.Contains(@":\"))
             {
@@ -218,7 +210,7 @@ namespace ConsoleApplication
             Directory.CreateDirectory(newFolderPath);
         }
 
-        private void ClearFilesFromFolder(DirectoryInfo directory)
+        private static void ClearFilesFromFolder(DirectoryInfo directory)
         {
             foreach(FileInfo file in directory.GetFiles())
             {
@@ -231,7 +223,7 @@ namespace ConsoleApplication
             }
         }
 
-        public void RemoveFolder(string folderPath, bool recursive)
+        public static void RemoveFolder(string folderPath, bool recursive)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -251,7 +243,7 @@ namespace ConsoleApplication
             Directory.Delete(folderPath, recursive);
         }
 
-        public void MoveFolder(string folderPath, string newLocation)
+        public static void MoveFolder(string folderPath, string newLocation)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
@@ -262,7 +254,7 @@ namespace ConsoleApplication
             Directory.Move(folderPath, newLocation);
         }
 
-        public void RenameFolder(string oldPath, string newName)
+        public static void RenameFolder(string oldPath, string newName)
         {
             ThrowExceptionIfFolderDoesntExist(oldPath);
 
@@ -281,9 +273,8 @@ namespace ConsoleApplication
             }
         }
 
-        public void CreateIndexFile(string folderPath)
+        public static void CreateIndexFile(string folderPath)
         {
-            //Console.WriteLine("TEST2");
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
             string indexPath = folderPath + "\\Index.txt";
