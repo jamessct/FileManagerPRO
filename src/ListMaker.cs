@@ -6,7 +6,6 @@ namespace ConsoleApplication
     public class ListMaker
     {   
         ObjectManager app = new ObjectManager();
-        DataObject dataObject = new DataObject();
         FileObject file = new FileObject();
         public string[] CreateTable(string[] array, string type)
         {
@@ -26,7 +25,7 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = dataObject.RemovePathFromName(item);
+                string name = app.RemovePathFromName(item);
                 list.Add(name);
 
                 string size;
@@ -42,7 +41,7 @@ namespace ConsoleApplication
 
                 list.Add(size);
 
-                file.LastAccess = dataObject.GetTimeStampForLastAccess(item);
+                file.LastAccess = app.GetTimeStampForLastAccess(item);
                 list.Add(file.LastAccess);
 
                 string[] row = list.ToArray(); 
