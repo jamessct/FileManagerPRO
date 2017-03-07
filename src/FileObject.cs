@@ -8,8 +8,6 @@ namespace ConsoleApplication
         ObjectManager app = new ObjectManager();
         long fileSize;
         public long Size;
-
-        public string LastAccess;
-        
+        public string LastAccess;   
     }
 }
