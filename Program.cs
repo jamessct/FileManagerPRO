@@ -18,8 +18,10 @@ namespace ConsoleApplication
             Console.WriteLine("Welcome to File Manager PRO! To proceed, select an option from the menu below using the UP and DOWN arrow keys to navigate:");
             Console.WriteLine();
 
-            //DynamicMenu menu = new DynamicMenu();
-            DynamicMenu.Menu(DynamicMenu.mainMenu, 1);  
+            FileListMaker test = new FileListMaker();
+            DataObject data = new DataObject();
+            test.FileList(data);
+            // DynamicMenu.Menu(DynamicMenu.mainMenu, 1);  
         }
     }
 }

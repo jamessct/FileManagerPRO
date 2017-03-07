@@ -5,8 +5,7 @@ namespace ConsoleApplication
 {
     public class ListMaker
     {   
-        ObjectManager app = new ObjectManager();
-        FileObject file = new FileObject();
+        DataObject data = new DataObject();
         public string[] CreateTable(string[] array, string type)
         {
             TableMaker table = new TableMaker();
@@ -25,24 +24,24 @@ namespace ConsoleApplication
                 string numberString = number + ".";
                 list.Add(numberString);
 
-                string name = app.RemovePathFromName(item);
+                string name = ObjectManager.RemovePathFromName(item);
                 list.Add(name);
 
                 string size;
 
                 if (type == "file")
                 {
-                    size = item.FileSize();
+                    data.Size = item.FileSize();
                 }
                 else
                 {
                     size = item.FolderSize();
                 }
 
-                list.Add(size);
+                list.Add(data.size);
 
-                file.LastAccess = app.GetTimeStampForLastAccess(item);
-                list.Add(file.LastAccess);
+                data.LastAccess = ObjectManager.GetTimeStampForLastAccess(item);
+                list.Add(data.LastAccess);
 
                 string[] row = list.ToArray(); 
                 result.Add(table.PrintRow(row));

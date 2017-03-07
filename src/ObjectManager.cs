@@ -3,16 +3,15 @@ using System.IO;
 
 namespace ConsoleApplication
 {
-    public class ObjectManager
+    public static class ObjectManager
     {
-        public string RemovePathFromName(string path)
+        public static string RemovePathFromName(string path)
         {
             int pathLength = path.LastIndexOf(@"\") + 1;
             string answer = path.Remove(0, pathLength);
             return answer;
         }
-        
-        public string GetTimeStampForLastAccess(string filePath)
+        public static string GetTimeStampForLastAccess(string filePath)
         {
             FileInfo info = new FileInfo(filePath);
             
@@ -20,7 +19,7 @@ namespace ConsoleApplication
             var answer = time.ToString("yyyy/MM/dd HH:mm:ss.ff");
             return answer;
         }
-
+        
         public static bool CheckFileExists(string filePath)
         {
             if(File.Exists(filePath))

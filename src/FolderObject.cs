@@ -1,10 +1,1 @@
-using System;
-using System.IO;
-
-namespace ConsoleApplication
-{
-    public static class FolderObject
-    {
-
-    }
-}
+// This will create an object out of data object
