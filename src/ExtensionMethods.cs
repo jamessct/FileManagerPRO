@@ -19,5 +19,11 @@ namespace ExtensionMethods
             string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
             return answerStringified;
         }
+
+        public static string LastAccess(this string path)
+        {
+            string answer = ObjectManager.GetTimeStampForLastAccess(path);
+            return answer;
+        }
     }
 }

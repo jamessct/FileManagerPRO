@@ -15,10 +15,11 @@ namespace ConsoleApplication
             // - Last Accessed
             //... and converts them into the final intended string format
 
-            foreach (var Object in ObjectList)
-            {
-
-            }
+            //NOTE: THIS PROBABLY WON'T WORK AS YOU ARE CREATING A NEW
+            //INSTANCE OF THE DATAOBJECT CLASS TO ALLOW CREATETABLE TO TAKE
+            //A LIST OF THIS SORT AS A PARAMETER, BUT THIS WILL BE DISTINCT
+            //WHERE YOU CALL IT.  
+            //IF IT DOES WORK, THEN CONSIDER BYPASSING THIS METHOD ALTOGETHER
 
             throw new Exception("test");
         }
