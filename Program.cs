@@ -19,9 +19,7 @@ namespace ConsoleApplication
             Console.WriteLine();
 
             FileListMaker test = new FileListMaker();
-            DataObject data = new DataObject();
-            test.FileList(data);
-            // DynamicMenu.Menu(DynamicMenu.mainMenu, 1);  
+            DynamicMenu.Menu(DynamicMenu.mainMenu, 1);  
         }
     }
 }

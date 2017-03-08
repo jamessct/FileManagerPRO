@@ -5,12 +5,6 @@ namespace ConsoleApplication
 {
     public static class ObjectManager
     {
-        public static string RemovePathFromName(string path)
-        {
-            int pathLength = path.LastIndexOf(@"\") + 1;
-            string answer = path.Remove(0, pathLength);
-            return answer;
-        }
         public static string GetTimeStampForLastAccess(string filePath)
         {
             FileInfo info = new FileInfo(filePath);
@@ -286,6 +280,13 @@ namespace ConsoleApplication
             {
                 Directory.Move(oldPath, newPath);
             }
+        }
+
+        public static string RemovePathFromName(string path)
+        {
+            int pathLength = path.LastIndexOf(@"\") + 1;
+            string answer = path.Remove(0, pathLength);
+            return answer;
         }
 
         public static void CreateIndexFile(string folderPath)

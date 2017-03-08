@@ -6,6 +6,20 @@ namespace MyApp
     public class ExtensionsTheoryTest
     {
         [Theory]
+        [InlineDataAttribute(@"c:\Projects\index.txt")]
+        public void CanGetFileName(string path)
+        {
+            //Assign
+            string expectedResult = "index.txt";
+
+            //Act
+            string fileName = path.FileName();
+
+            //Assert
+            Assert.Equal(fileName, expectedResult);
+        }
+
+        [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\test4.txt")]
         public void CanGetFileSize(string path)
         {
