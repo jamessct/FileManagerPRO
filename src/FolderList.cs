@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 
 namespace ConsoleApplication
 {
-    public class FolderListMaker
+    public class FolderList
     {
-        public List<DataObject> FolderList(DataObject folder)
+        public List<DataObject> Folders(DataObject folder)
         {
             List<DataObject> FolderList = new List<DataObject>();
             FolderList.Add(folder);

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using ExtensionMethods;
+
 namespace ConsoleApplication
 {
     public static class ObjectManager
@@ -337,6 +338,7 @@ namespace ConsoleApplication
                 sw.WriteLine(table.PrintLine());
                 sw.WriteLine(table.PrintRow(headings));
                 sw.WriteLine(table.PrintLine());
+
                 foreach (string row in fileTable)
                 {
                     sw.WriteLine(row);
@@ -349,6 +351,7 @@ namespace ConsoleApplication
                 sw.WriteLine(table.PrintLine());
                 sw.WriteLine(table.PrintRow(headings));
                 sw.WriteLine(table.PrintLine());
+
                 foreach(string row in folderTable)
                 {
                     sw.WriteLine(row);

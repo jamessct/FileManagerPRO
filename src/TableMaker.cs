@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace ConsoleApplication
 {
@@ -29,13 +28,6 @@ namespace ConsoleApplication
 
             return row;
         }
-
-        // public string PrintRowListAlt(List<DataObjects> ObjectList)
-        // {
-        //         //Clearly this isn't actually going to work.
-        // }
-
-        
 
         private string AlignCentre(string text, int width)
         {

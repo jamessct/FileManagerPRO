@@ -1,16 +1,23 @@
 namespace ConsoleApplication
 {
-    public class DataObject
+    public class DataObject : IStorageItem
     {
-        //Name
-
-        //Size
-
-        //LastAccess
+        public string path;
         public string name;
         public string size;
         public string lastAccess;
-
+        
+        public string Path
+        {
+            get
+            {
+                return path;
+            }
+            set
+            {
+                path = value;
+            }
+        }
         public string Name
         {
             get

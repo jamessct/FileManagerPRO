@@ -7,7 +7,7 @@ namespace MyApp
     public class ListMakerTheoryTest
     {
         [Theory]
-        [InlineDataAttribute(new string[] {@"c:\Projects\Tests\IndexTests\index.txt", @"c:\Projects\Tests\IndexTests\test1.txt", @"c:\Projects\Tests\IndexTests\test2.txt"}, "file", @"c:\Projects\Tests")]
+        [InlineDataAttribute(new string[] {@"c:\Projects\Tests\IndexTests\index.txt", @"c:\Projects\Tests\IndexTests\test1.txt", @"c:\Projects\Tests\IndexTests\test2.txt"}, @"c:\Projects\Tests")]
         public void CanCreateArrayOfFilesForTable(List<DataObject> fileList, string input)
         {
             //Assign

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ExtensionMethods;
+
 namespace ConsoleApplication
 {
     public static class Options
