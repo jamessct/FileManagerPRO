@@ -324,13 +324,6 @@ namespace ConsoleApplication
                 obj.LastAccess = folder.LastAccess();
                 folderList.Add(obj);
             }
-
-            //debugging...
-            foreach(var folder in folderList)
-            {
-                Console.WriteLine(folder.Name);
-            }
-            // .../debugging
             
             string[] fileTable = list.CreateTable(fileList);
             string[] folderTable = list.CreateTable(folderList);
