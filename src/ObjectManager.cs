@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-
+using ExtensionMethods;
 namespace ConsoleApplication
 {
     public static class ObjectManager
@@ -300,16 +300,38 @@ namespace ConsoleApplication
 
             TableMaker table = new TableMaker();
             ListMaker list = new ListMaker();
+
             string[] files = Directory.GetFiles(folderPath);
-            string[] folders = Directory.GetDirectories(folderPath);
             List<DataObject> fileList = new List<DataObject>();
+
+            foreach(string file in files)
+            {
+                DataObject obj = new DataObject();
+                obj.Name = file.Name();
+                obj.Size = file.FileSize();
+                obj.LastAccess = file.LastAccess();
+                fileList.Add(obj);
+            }
+
+            string[] folders = Directory.GetDirectories(folderPath);
             List<DataObject> folderList = new List<DataObject>();
 
-            // foreach(string file in fileList)
-            // {
-            //     file.Name = file.Name();
-            // }
+            foreach(string folder in folders)
+            {
+                DataObject obj = new DataObject();
+                obj.Name = folder.Name();
+                obj.Size = folder.FolderSize();
+                obj.LastAccess = folder.LastAccess();
+                folderList.Add(obj);
+            }
 
+            //debugging...
+            foreach(var folder in folderList)
+            {
+                Console.WriteLine(folder.Name);
+            }
+            // .../debugging
+            
             string[] fileTable = list.CreateTable(fileList);
             string[] folderTable = list.CreateTable(folderList);
             string[] headings = {"Name", "Size", "Last Accessed"};
