@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ConsoleApplication
 {
@@ -301,9 +302,17 @@ namespace ConsoleApplication
             ListMaker list = new ListMaker();
             string[] files = Directory.GetFiles(folderPath);
             string[] folders = Directory.GetDirectories(folderPath);
-            string[] fileTable = list.CreateTable(files, "file");
-            string[] folderTable = list.CreateTable(folders, "folder");
-            string[] headings = {"", "Name", "Size", "Last Accessed"};
+            List<DataObject> fileList = new List<DataObject>();
+            List<DataObject> folderList = new List<DataObject>();
+
+            // foreach(string file in fileList)
+            // {
+            //     file.Name = file.Name();
+            // }
+
+            string[] fileTable = list.CreateTable(fileList);
+            string[] folderTable = list.CreateTable(folderList);
+            string[] headings = {"Name", "Size", "Last Accessed"};
 
             using (StreamWriter sw = File.AppendText(indexPath))
             {

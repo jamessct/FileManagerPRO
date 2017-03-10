@@ -1,17 +1,12 @@
 using System;
+using System.Collections.Generic;
 using ExtensionMethods;
 namespace ConsoleApplication
 {
     public static class Options
     {
-        //static DynamicMenu menu = new DynamicMenu();  
         public static string input;
-        //private static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
-        //private static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
-        
-        //public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit"};
-        
-        static string[] headings = {"", "Name", "Size", "Last Accessed"};
+        static string[] headings = {"Name", "Size", "Last Accessed"};
         public static void MainMenuOptions(int selectedItem)
         {
             switch(selectedItem)
@@ -26,14 +21,24 @@ namespace ConsoleApplication
                     {
                         ListMaker list = new ListMaker();
                         TableMaker tableMaker = new TableMaker();
-
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(tableMaker.PrintLine());
                         Console.WriteLine(tableMaker.PrintRow(headings));
                         Console.WriteLine(tableMaker.PrintLine());
-
                         string[] files = ObjectManager.ListFilesInDirectory(input);
-                        string[] table = list.CreateTable(files, "file");
+                        List<DataObject> fileList = new List<DataObject>();
+
+                        foreach (string file in files)
+                        {
+                            DataObject obj = new DataObject();
+                            obj.Name = file.Name();
+                            obj.Size = file.FileSize();
+                            obj.LastAccess = file.LastAccess();
+                            fileList.Add(obj);
+                        }
+
+                        string[] table = list.CreateTable(fileList);
+
                         tableMaker.PrintTableToConsole(table);
                         string listSize = input.FolderSize();
 
@@ -59,14 +64,23 @@ namespace ConsoleApplication
                     {
                         ListMaker list = new ListMaker();
                         TableMaker tableMaker = new TableMaker();
-
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(tableMaker.PrintLine());
                         Console.WriteLine(tableMaker.PrintRow(headings));
                         Console.WriteLine(tableMaker.PrintLine());
-                        
                         string[] folders = ObjectManager.ListSubfoldersInDirectory(input);
-                        string[] table = list.CreateTable(folders, "folder");
+                        List<DataObject> folderList = new List<DataObject>();
+
+                        foreach(string folder in folders)
+                        {
+                            DataObject obj = new DataObject();
+                            obj.Name = folder.Name();
+                            obj.Size = folder.FolderSize();
+                            obj.LastAccess = folder.LastAccess(); 
+                            folderList.Add(obj);
+                        }
+
+                        string[] table = list.CreateTable(folderList);
                         tableMaker.PrintTableToConsole(table);
                         long totalSize = ObjectManager.GetSizeOfDirectory(input) - ObjectManager.GetSizeOfFileList(input);
                         

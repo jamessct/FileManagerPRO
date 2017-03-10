@@ -7,7 +7,7 @@ namespace ExtensionMethods
         //static FolderObject folder = new FolderObject();
         //static FileObject file = new FileObject();
 
-        public static string FileName(this string filePath)
+        public static string Name(this string filePath)
         {
             string answer = ObjectManager.RemovePathFromName(filePath);
             return answer;

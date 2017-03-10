@@ -1,27 +1,30 @@
-using System;
 using System.Collections.Generic;
 
 namespace ConsoleApplication
 {
-    public class ListMaker2 
+    public class ListMaker
     {
-        DataObject dataObject = new DataObject();
-
         public string[] CreateTable(List<DataObject> ObjectList)
         {
-            //Gets called to take in a list of Objects containing:
-            // - Name
-            // - Size
-            // - Last Accessed
-            //... and converts them into the final intended string format
+            DataObject dataObject = new DataObject();
+            TableMaker table = new TableMaker();
 
-            //NOTE: THIS PROBABLY WON'T WORK AS YOU ARE CREATING A NEW
-            //INSTANCE OF THE DATAOBJECT CLASS TO ALLOW CREATETABLE TO TAKE
-            //A LIST OF THIS SORT AS A PARAMETER, BUT THIS WILL BE DISTINCT
-            //WHERE YOU CALL IT.  
-            //IF IT DOES WORK, THEN CONSIDER BYPASSING THIS METHOD ALTOGETHER
+            List<string> ObjList = new List<string>();
+            List<string> result = new List<string>();
 
-            throw new Exception("test");
+            foreach(var obj in ObjectList)
+            {
+                ObjList.Add(obj.Name);
+                ObjList.Add(obj.Size);
+                ObjList.Add(obj.LastAccess);
+                string[] row = ObjList.ToArray(); 
+                result.Add(table.PrintRow(row));
+                result.Add(table.PrintLine());
+                ObjList.Clear();
+            }
+
+            string[] formattedResult = result.ToArray();
+            return formattedResult;
         }
     }
 }

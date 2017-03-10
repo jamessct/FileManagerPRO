@@ -13,7 +13,7 @@ namespace MyApp
             string expectedResult = "index.txt";
 
             //Act
-            string fileName = path.FileName();
+            string fileName = path.Name();
 
             //Assert
             Assert.Equal(fileName, expectedResult);
