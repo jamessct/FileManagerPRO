@@ -1,13 +1,14 @@
-using System;
-using System.IO;
+using System.Collections.Generic;
 
 namespace ConsoleApplication
 {
-    public class FileObject
+    public class FileList
     {
-        ObjectManager app = new ObjectManager();
-        long fileSize;
-        public long Size;
-        public string LastAccess;   
+        public List<DataObject> Files(DataObject file)
+        {
+            List<DataObject> FileList = new List<DataObject>();
+            FileList.Add(file);
+            return FileList;
+        }
     }
 }

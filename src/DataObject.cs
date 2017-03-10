@@ -1,23 +1,55 @@
-using System;
-using System.IO;
-
 namespace ConsoleApplication
 {
-    public class DataObject
+    public class DataObject : IStorageItem
     {
-        public string RemovePathFromName(string path)
+        public string path;
+        public string name;
+        public string size;
+        public string lastAccess;
+        
+        public string Path
         {
-            int pathLength = path.LastIndexOf(@"\") + 1;
-            string answer = path.Remove(0, pathLength);
-            return answer;
+            get
+            {
+                return path;
+            }
+            set
+            {
+                path = value;
+            }
         }
-        public string GetTimeStampForLastAccess(string filePath)
+        public string Name
         {
-            FileInfo info = new FileInfo(filePath);
-            
-            DateTime time = info.LastAccessTime;
-            var answer = time.ToString("yyyy/MM/dd HH:mm:ss.ff");
-            return answer;
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        public string Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+            }
+        }
+        public string LastAccess
+        {
+            get
+            {
+                return lastAccess;
+            }
+            set
+            {
+                lastAccess = value;
+            }
         }
     }
 }

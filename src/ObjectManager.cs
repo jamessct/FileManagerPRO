@@ -1,10 +1,21 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
+using ExtensionMethods;
 
 namespace ConsoleApplication
 {
-    public class ObjectManager
+    public static class ObjectManager
     {
+        public static string GetTimeStampForLastAccess(string filePath)
+        {
+            FileInfo info = new FileInfo(filePath);
+            
+            DateTime time = info.LastAccessTime;
+            var answer = time.ToString("yyyy/MM/dd HH:mm:ss.ff");
+            return answer;
+        }
+        
         public static bool CheckFileExists(string filePath)
         {
             if(File.Exists(filePath))
@@ -16,7 +27,7 @@ namespace ConsoleApplication
                 return false;
             }
         }
-       
+    
         public static void ThrowExceptionIfFileDoesntExist(string filePath)
         {
             if(CheckFileExists(filePath) == false)
@@ -273,6 +284,13 @@ namespace ConsoleApplication
             }
         }
 
+        public static string RemovePathFromName(string path)
+        {
+            int pathLength = path.LastIndexOf(@"\") + 1;
+            string answer = path.Remove(0, pathLength);
+            return answer;
+        }
+
         public static void CreateIndexFile(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
@@ -283,11 +301,34 @@ namespace ConsoleApplication
 
             TableMaker table = new TableMaker();
             ListMaker list = new ListMaker();
+
             string[] files = Directory.GetFiles(folderPath);
+            List<DataObject> fileList = new List<DataObject>();
+
+            foreach(string file in files)
+            {
+                DataObject obj = new DataObject();
+                obj.Name = file.Name();
+                obj.Size = file.FileSize();
+                obj.LastAccess = file.LastAccess();
+                fileList.Add(obj);
+            }
+
             string[] folders = Directory.GetDirectories(folderPath);
-            string[] fileTable = list.CreateTable(files, "file");
-            string[] folderTable = list.CreateTable(folders, "folder");
-            string[] headings = {"", "Name", "Size", "Last Accessed"};
+            List<DataObject> folderList = new List<DataObject>();
+
+            foreach(string folder in folders)
+            {
+                DataObject obj = new DataObject();
+                obj.Name = folder.Name();
+                obj.Size = folder.FolderSize();
+                obj.LastAccess = folder.LastAccess();
+                folderList.Add(obj);
+            }
+            
+            string[] fileTable = list.CreateTable(fileList);
+            string[] folderTable = list.CreateTable(folderList);
+            string[] headings = {"Name", "Size", "Last Accessed"};
 
             using (StreamWriter sw = File.AppendText(indexPath))
             {
@@ -297,6 +338,7 @@ namespace ConsoleApplication
                 sw.WriteLine(table.PrintLine());
                 sw.WriteLine(table.PrintRow(headings));
                 sw.WriteLine(table.PrintLine());
+
                 foreach (string row in fileTable)
                 {
                     sw.WriteLine(row);
@@ -309,6 +351,7 @@ namespace ConsoleApplication
                 sw.WriteLine(table.PrintLine());
                 sw.WriteLine(table.PrintRow(headings));
                 sw.WriteLine(table.PrintLine());
+
                 foreach(string row in folderTable)
                 {
                     sw.WriteLine(row);
