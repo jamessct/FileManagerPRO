@@ -2,6 +2,11 @@ namespace ConsoleApplication
 {
     interface IStorageItem
     {
+        string Path
+        {
+            get;
+        }
+
        string Name
        {
            get;

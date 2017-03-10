@@ -1,3 +1,6 @@
+//Going forward, FileObject and FolderObject will perhaps be changed into object classes
+//that inheret from DataObject...
+
 using System.Collections.Generic;
 
 namespace ConsoleApplication
