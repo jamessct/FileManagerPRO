@@ -11,7 +11,7 @@ namespace MyApp
         public void CanSetPathOfDataObejct(string filePath)
         {
             //Assign
-            DataObject file = new DataObject();
+            DataObject file = new FileObject();
             string expectedResult = @"c:\Projects\index.txt";
 
             //Act
@@ -27,7 +27,7 @@ namespace MyApp
         public void CanSetNameOfDataObject(string filePath)
         {
             //Assign
-            DataObject file = new DataObject();
+            DataObject file = new FileObject();
             string expectedResult = "index.txt";
 
             //Act
@@ -44,12 +44,12 @@ namespace MyApp
         public void CanSetSizeOfObject(string folderPath)
         {
             //Assign
-            DataObject folder = new DataObject();
+            DataObject folder = new FolderObject();
             string expectedResult = "1.12MB";
             folder.Path = folderPath;
             //Act
-            folder.Size = folderPath.Size();
-            string result = folderPath.Size();
+            folder.Size = folderPath.FolderSize();
+            string result = folderPath.FolderSize();
 
             //Assert
             Assert.Equal(expectedResult, result);
@@ -60,7 +60,7 @@ namespace MyApp
         public void CanSetLastAccessOfDataObject(string path)
         {
             //Assign
-            DataObject file = new DataObject();
+            DataObject file = new FileObject();
             file.Path = path;
             string expectedResult = "2017/03/01 12:10:24.96";
 

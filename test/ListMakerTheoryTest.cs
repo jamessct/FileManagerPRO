@@ -18,10 +18,10 @@ namespace MyApp
             
             foreach (string file in files)
             {
-                DataObject item = new DataObject();
+                DataObject item = new FileObject();
                 item.Path = file;
                 item.Name = file.Name();
-                item.Size = file.Size();
+                item.Size = file.FileSize();
                 item.LastAccess = file.LastAccess();
                 fileList.Add(item);
             }
@@ -46,10 +46,10 @@ namespace MyApp
 
             foreach (string folder in folders)
             {
-                DataObject item = new DataObject();
+                DataObject item = new FolderObject();
                 item.Path = folder;
                 item.Name = folder.Name();
-                item.Size = folder.Size();
+                item.Size = folder.FolderSize();
                 item.LastAccess = folder.LastAccess();
                 folderList.Add(item);
             }

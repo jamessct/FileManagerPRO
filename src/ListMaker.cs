@@ -6,7 +6,8 @@ namespace ConsoleApplication
     {
         public string[] CreateTable(List<DataObject> ObjectList)
         {
-            DataObject dataObject = new DataObject();
+            // DataObject file = new FileObject();
+            // DataObject folder = new FolderObject();
             TableMaker table = new TableMaker();
 
             List<string> ObjList = new List<string>();

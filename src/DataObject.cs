@@ -2,13 +2,11 @@ using ExtensionMethods;
 
 namespace ConsoleApplication
 {
-    public class DataObject : IStorageItem
+    public abstract class DataObject : IStorageItem
     {
         public string path;
         public string name;
-        public string size;
-        public string lastAccess;
-        
+        public string lastAccess;        
         public string Path
         {   
             get
@@ -20,6 +18,7 @@ namespace ConsoleApplication
                 path = value;
             }
         }
+
         public string Name
         {
             get
@@ -31,17 +30,7 @@ namespace ConsoleApplication
                 name = Path.Name();
             }
         }
-        public string Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = Path.Size();
-            }
-        }
+
         public string LastAccess
         {
             get
@@ -53,5 +42,7 @@ namespace ConsoleApplication
                 lastAccess = Path.LastAccess();
             }
         }
+
+        public abstract string Size { get;set; }
     }
 }

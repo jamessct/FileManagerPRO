@@ -1,4 +1,3 @@
-using System;
 using ConsoleApplication;
 
 namespace ExtensionMethods
@@ -11,20 +10,18 @@ namespace ExtensionMethods
             return answer;
         }
 
-        public static string Size(this string path)
+        public static string FileSize(this string filePath)
         {
-            try
-            {
-                long answer = ObjectManager.GetSizeOfFile(path);
-                string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
-                return answerStringified;   
-            }
-            catch(ArgumentException)
-            {
-                long answer = ObjectManager.GetSizeOfDirectory(path);
-                string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
-                return answerStringified;
-            }
+            long answer = ObjectManager.GetSizeOfFile(filePath);
+            string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
+            return answerStringified;
+        }
+
+        public static string FolderSize(this string folderPath)
+        {
+            long answer = ObjectManager.GetSizeOfDirectory(folderPath);
+            string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
+            return answerStringified;
         }
 
         public static string LastAccess(this string path)

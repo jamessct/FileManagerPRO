@@ -28,7 +28,7 @@ namespace MyApp
             string fileSize;
 
             //Act
-            fileSize = path.Size();
+            fileSize = path.FileSize();
 
             //Assert
             Assert.Equal(expected, fileSize);
