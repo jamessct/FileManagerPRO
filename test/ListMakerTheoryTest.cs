@@ -21,7 +21,7 @@ namespace MyApp
                 DataObject item = new DataObject();
                 item.Path = file;
                 item.Name = file.Name();
-                item.Size = file.FileSize();
+                item.Size = file.Size();
                 item.LastAccess = file.LastAccess();
                 fileList.Add(item);
             }
@@ -49,7 +49,7 @@ namespace MyApp
                 DataObject item = new DataObject();
                 item.Path = folder;
                 item.Name = folder.Name();
-                item.Size = folder.FolderSize();
+                item.Size = folder.Size();
                 item.LastAccess = folder.LastAccess();
                 folderList.Add(item);
             }

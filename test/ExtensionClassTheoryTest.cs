@@ -7,7 +7,7 @@ namespace MyApp
     {
         [Theory]
         [InlineDataAttribute(@"c:\Projects\index.txt")]
-        public void CanGetFileName(string path)
+        public void CanGetObjectName(string path)
         {
             //Assign
             string expectedResult = "index.txt";
@@ -21,32 +21,17 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\test4.txt")]
-        public void CanGetFileSize(string path)
+        public void CanGetSizeOfObject(string path)
         {
             //Assign
             string expected = "0.01KB";
             string fileSize;
 
             //Act
-            fileSize = path.FileSize();
+            fileSize = path.Size();
 
             //Assert
             Assert.Equal(expected, fileSize);
-        }
-
-        [Theory]
-        [InlineDataAttribute(@"c:\Logs")]
-        public void CanGetFolderSize(string path)
-        {
-            //Assign
-            string expected = "16.2MB";
-            string folderSize;
-
-            //Act
-            folderSize = path.FolderSize();
-
-            //Assert
-            Assert.Equal(expected, folderSize);
         }
 
         [Theory]

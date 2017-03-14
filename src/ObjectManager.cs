@@ -309,7 +309,7 @@ namespace ConsoleApplication
             {
                 DataObject obj = new DataObject();
                 obj.Name = file.Name();
-                obj.Size = file.FileSize();
+                obj.Size = file.Size();
                 obj.LastAccess = file.LastAccess();
                 fileList.Add(obj);
             }
@@ -321,7 +321,7 @@ namespace ConsoleApplication
             {
                 DataObject obj = new DataObject();
                 obj.Name = folder.Name();
-                obj.Size = folder.FolderSize();
+                obj.Size = folder.Size();
                 obj.LastAccess = folder.LastAccess();
                 folderList.Add(obj);
             }

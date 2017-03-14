@@ -1,3 +1,4 @@
+using System;
 using ConsoleApplication;
 
 namespace ExtensionMethods
@@ -9,19 +10,35 @@ namespace ExtensionMethods
             string answer = ObjectManager.RemovePathFromName(filePath);
             return answer;
         }
-        public static string FileSize(this string filePath)
-        {
-            long answer = ObjectManager.GetSizeOfFile(filePath);
-            string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
-            return answerStringified;
-        }
 
-        public static string FolderSize(this string folderPath)
+        public static string Size(this string path)
         {
-            long answer = ObjectManager.GetSizeOfDirectory(folderPath);
-            string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
-            return answerStringified;
+            try
+            {
+                long answer = ObjectManager.GetSizeOfFile(path);
+                string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
+                return answerStringified;   
+            }
+            catch(ArgumentException)
+            {
+                long answer = ObjectManager.GetSizeOfDirectory(path);
+                string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
+                return answerStringified;
+            }
         }
+        // public static string FileSize(this string filePath)
+        // {
+        //     long answer = ObjectManager.GetSizeOfFile(filePath);
+        //     string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
+        //     return answerStringified;
+        // }
+
+        // public static string FolderSize(this string folderPath)
+        // {
+        //     long answer = ObjectManager.GetSizeOfDirectory(folderPath);
+        //     string answerStringified = Utilities.SelectAppropriateFileSizeFormat(answer);
+        //     return answerStringified;
+        // }
 
         public static string LastAccess(this string path)
         {

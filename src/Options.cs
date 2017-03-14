@@ -32,16 +32,19 @@ namespace ConsoleApplication
                         foreach (string file in files)
                         {
                             DataObject obj = new DataObject();
+                            obj.Path = file;
                             obj.Name = file.Name();
-                            obj.Size = file.FileSize();
+                            obj.Size = file.Size();
                             obj.LastAccess = file.LastAccess();
                             fileList.Add(obj);
                         }
 
+                        
+
                         string[] table = list.CreateTable(fileList);
 
                         tableMaker.PrintTableToConsole(table);
-                        string listSize = input.FolderSize();
+                        string listSize = input.Size();
 
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + listSize);
                         Console.WriteLine();
@@ -75,8 +78,9 @@ namespace ConsoleApplication
                         foreach(string folder in folders)
                         {
                             DataObject obj = new DataObject();
+                            obj.Path = folder;
                             obj.Name = folder.Name();
-                            obj.Size = folder.FolderSize();
+                            obj.Size = folder.Size();
                             obj.LastAccess = folder.LastAccess(); 
                             folderList.Add(obj);
                         }

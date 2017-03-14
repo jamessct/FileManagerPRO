@@ -24,13 +24,14 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\index.txt")]
-        public void CanGetNameOfDataObject(string filePath)
+        public void CanSetNameOfDataObject(string filePath)
         {
             //Assign
             DataObject file = new DataObject();
             string expectedResult = "index.txt";
 
             //Act
+            file.Path = filePath;
             file.Name = filePath.Name();
             string result = file.Name;
 
@@ -39,32 +40,34 @@ namespace MyApp
         }
 
         [Theory]
-        [InlineDataAttribute(@"c:\Projects\Tests\index.txt")]
-        public void CanGetSizeOfFile(string filePath)
+        [InlineDataAttribute(@"c:\Vision Australia")]
+        public void CanSetSizeOfObject(string folderPath)
         {
             //Assign
-            DataObject file = new DataObject();
-            string expectedResult = "2.92KB";
-
+            DataObject folder = new DataObject();
+            string expectedResult = "1.12MB";
+            folder.Path = folderPath;
             //Act
-            file.Size = filePath.FileSize();
-            string result = file.Size;
+            folder.Size = folderPath.Size();
+            string result = folderPath.Size();
 
             //Assert
             Assert.Equal(expectedResult, result);
         }
 
         [Theory]
-        [InlineDataAttribute(@"c:\Projects\Tests")]
-        public void CanGetSizeOfFolder(string folderPath)
+        [InlineDataAttribute(@"c:\Projects\testFile.cs")]
+        public void CanSetLastAccessOfDataObject(string path)
         {
             //Assign
-            DataObject folder = new DataObject();
-            string expectedResult = "4.35KB";
+            DataObject file = new DataObject();
+            file.Path = path;
+            string expectedResult = "2017/03/01 12:10:24.96";
 
             //Act
-            folder.Size = folderPath.FolderSize();
-            string result = folder.Size;
+
+            file.LastAccess = path.LastAccess();
+            string result = file.LastAccess;
 
             //Assert
             Assert.Equal(expectedResult, result);

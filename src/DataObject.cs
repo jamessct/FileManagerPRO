@@ -1,3 +1,5 @@
+using ExtensionMethods;
+
 namespace ConsoleApplication
 {
     public class DataObject : IStorageItem
@@ -26,7 +28,8 @@ namespace ConsoleApplication
             }
             set
             {
-                name = value;
+                //name = value;
+                name = Path.Name();
             }
         }
         public string Size
@@ -37,7 +40,8 @@ namespace ConsoleApplication
             }
             set
             {
-                size = value;
+                //size = value;
+                size = Path.Size();
             }
         }
         public string LastAccess
@@ -48,7 +52,8 @@ namespace ConsoleApplication
             }
             set
             {
-                lastAccess = value;
+                //lastAccess = value;
+                lastAccess = Path.LastAccess();
             }
         }
     }
