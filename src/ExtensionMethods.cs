@@ -3,7 +3,7 @@ using ConsoleApplication;
 
 namespace ExtensionMethods
 {
-    public static class FileSizeExtension
+    public static class ObjectExtensionClass
     {
         public static string Name(this string filePath)
         {

@@ -308,6 +308,7 @@ namespace ConsoleApplication
             foreach(string file in files)
             {
                 DataObject obj = new DataObject();
+                obj.Path = file;
                 obj.Name = file.Name();
                 obj.Size = file.Size();
                 obj.LastAccess = file.LastAccess();

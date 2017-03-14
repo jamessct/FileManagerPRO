@@ -1,3 +1,4 @@
+using System;
 using ExtensionMethods;
 
 namespace ConsoleApplication
@@ -30,6 +31,7 @@ namespace ConsoleApplication
             {
                 //name = value;
                 name = Path.Name();
+                //Console.WriteLine(Path.Size());
             }
         }
         public string Size
