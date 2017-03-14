@@ -10,7 +10,7 @@ namespace ConsoleApplication
         public string lastAccess;
         
         public string Path
-        {
+        {   
             get
             {
                 return path;

@@ -1,17 +1,61 @@
-//Going forward, FileObject and FolderObject will perhaps be changed into object classes
-//that inheret from DataObject...
-
-using System.Collections.Generic;
+using System;
+using ExtensionMethods;
 
 namespace ConsoleApplication
 {
-    public class FolderList
+    public class FolderObject
     {
-        public List<DataObject> Folders(DataObject folder)
+        public string path;
+        public string name;
+        public string size;
+        public string lastAccess;
+
+        public string Path
         {
-            List<DataObject> FolderList = new List<DataObject>();
-            FolderList.Add(folder);
-            return FolderList;
+            get
+            {
+                return path;
+            }
+            set
+            {
+                path = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = Path.Name();
+            }
+        }
+
+        public string Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = Path.Size();
+            }
+        }
+
+        public string LastAccess
+        {
+            get
+            {
+                return lastAccess;
+            }
+            set
+            {
+                lastAccess = Path.LastAccess();
+            }
         }
     }  
 }
