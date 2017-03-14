@@ -1,4 +1,3 @@
-using System;
 using ExtensionMethods;
 
 namespace ConsoleApplication
@@ -29,9 +28,7 @@ namespace ConsoleApplication
             }
             set
             {
-                //name = value;
                 name = Path.Name();
-                //Console.WriteLine(Path.Size());
             }
         }
         public string Size
@@ -42,7 +39,6 @@ namespace ConsoleApplication
             }
             set
             {
-                //size = value;
                 size = Path.Size();
             }
         }
@@ -54,7 +50,6 @@ namespace ConsoleApplication
             }
             set
             {
-                //lastAccess = value;
                 lastAccess = Path.LastAccess();
             }
         }
