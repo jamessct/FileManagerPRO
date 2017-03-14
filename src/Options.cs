@@ -50,7 +50,7 @@ namespace ConsoleApplication
                         Console.WriteLine();
                         DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
-                    catch(InvalidOperationException)
+                    catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");

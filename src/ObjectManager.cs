@@ -321,6 +321,7 @@ namespace ConsoleApplication
             foreach(string folder in folders)
             {
                 DataObject obj = new DataObject();
+                obj.Path = folder;
                 obj.Name = folder.Name();
                 obj.Size = folder.Size();
                 obj.LastAccess = folder.LastAccess();
