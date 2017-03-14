@@ -6,7 +6,8 @@ namespace ConsoleApplication
     {
         public string path;
         public string name;
-        public string lastAccess;        
+        public string lastAccess;   
+             
         public string Path
         {   
             get

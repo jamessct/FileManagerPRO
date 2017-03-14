@@ -4,11 +4,11 @@ using Xunit;
 
 namespace MyApp
 {
-    public class DataObjectTheoryTest
+    public class FileObjectTheoryTest
     {
         [Theory]
         [InlineDataAttribute(@"c:\Projects\index.txt")]
-        public void CanSetPathOfDataObejct(string filePath)
+        public void CanSetPathOfFileObject(string filePath)
         {
             //Assign
             DataObject file = new FileObject();
@@ -24,7 +24,7 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\index.txt")]
-        public void CanSetNameOfDataObject(string filePath)
+        public void CanSetNameOfFileObject(string filePath)
         {
             //Assign
             DataObject file = new FileObject();
@@ -40,16 +40,17 @@ namespace MyApp
         }
 
         [Theory]
-        [InlineDataAttribute(@"c:\Vision Australia")]
-        public void CanSetSizeOfObject(string folderPath)
+        [InlineDataAttribute(@"c:\Projects\testFile.cs")]
+        public void CanSetSizeOfFileObject(string filePath)
         {
             //Assign
-            DataObject folder = new FolderObject();
-            string expectedResult = "1.12MB";
-            folder.Path = folderPath;
+            DataObject file = new FileObject();
+            file.Path = filePath;
+            string expectedResult = "0KB";
+
             //Act
-            folder.Size = folderPath.FolderSize();
-            string result = folderPath.FolderSize();
+            file.Size = filePath.FileSize();
+            string result = file.Size;
 
             //Assert
             Assert.Equal(expectedResult, result);
@@ -57,16 +58,15 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\testFile.cs")]
-        public void CanSetLastAccessOfDataObject(string path)
+        public void CanSetLastAccessOfFileObject(string filePath)
         {
             //Assign
             DataObject file = new FileObject();
-            file.Path = path;
+            file.Path = filePath;
             string expectedResult = "2017/03/01 12:10:24.96";
 
             //Act
-
-            file.LastAccess = path.LastAccess();
+            file.LastAccess = filePath.LastAccess();
             string result = file.LastAccess;
 
             //Assert
