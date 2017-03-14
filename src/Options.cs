@@ -39,8 +39,6 @@ namespace ConsoleApplication
                             fileList.Add(obj);
                         }
 
-                        
-
                         string[] table = list.CreateTable(fileList);
 
                         tableMaker.PrintTableToConsole(table);

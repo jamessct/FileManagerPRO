@@ -63,6 +63,5 @@ namespace MyApp
             //Assert
             Assert.Equal(answer, expectedResult);
         }
-
     }
 }
