@@ -4,7 +4,7 @@ using System.Linq;
 using Xunit;
 using ConsoleApplication;
 
-namespace MyObjectManager
+namespace MyApp
 {
     public class TestFixture 
     {
@@ -100,7 +100,7 @@ namespace MyObjectManager
         public void CanGenerateListOfSubfolders(string folderPath)
         {
             //Assign
-            int expectedLength = 6;
+            int expectedLength = 5;
 
             //Act
             string[] subfolderList = ObjectManager.ListSubfoldersInDirectory(folderPath);
