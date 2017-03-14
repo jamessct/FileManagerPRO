@@ -295,7 +295,7 @@ namespace ConsoleApplication
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
 
-            string indexPath = folderPath + "\\Index.txt";
+            string indexPath = folderPath + "\\index.txt";
             FileStream f = File.Create(indexPath);
             f.Dispose();
 
