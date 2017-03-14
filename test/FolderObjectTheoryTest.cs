@@ -58,7 +58,7 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Vision Australia")]
-        public void CansetLastAccessOfFolderObject(string folderPath)
+        public void CanSetLastAccessOfFolderObject(string folderPath)
         {
             //Assign
             DataObject folder = new FolderObject();
