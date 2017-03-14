@@ -1,5 +1,7 @@
-using ConsoleApplication;
+using System;
 using System.Collections.Generic;
+using ConsoleApplication;
+using ExtensionMethods;
 using Xunit;
 
 namespace MyApp
@@ -7,20 +9,60 @@ namespace MyApp
     public class ListMakerTheoryTest
     {
         [Theory]
-        [InlineDataAttribute(new string[] {@"c:\Projects\Tests\IndexTests\index.txt", @"c:\Projects\Tests\IndexTests\test1.txt", @"c:\Projects\Tests\IndexTests\test2.txt"}, @"c:\Projects\Tests")]
-        public void CanCreateArrayOfFilesForTable(string[] files, string input)
+        [InlineDataAttribute(0, new string[] {@"c:\Projects\Tests\IndexTests\index.txt", @"c:\Projects\Tests\IndexTests\test1.txt", @"c:\Projects\Tests\IndexTests\test2.txt"})]
+        public void CanCreateArrayOfFilesForTable(int no, string[] files)
         {
             //Assign
             ListMaker list = new ListMaker();
             List<DataObject> fileList = new List<DataObject>();
-            int expectedArrayLength = 6;
+            
+            foreach (string file in files)
+            {
+                DataObject item = new DataObject();
+                item.Path = file;
+                item.Name = file.Name();
+                item.Size = file.FileSize();
+                item.LastAccess = file.LastAccess();
+                fileList.Add(item);
+            }
+
+            int expectedResult = 6;
             
             //Act
             string[] result = list.CreateTable(fileList);
             int answer = result.Length;
 
             //Assert
-            Assert.Equal(expectedArrayLength, answer);
+            Assert.Equal(expectedResult, answer);
         }
+
+        [Theory]
+        [InlineDataAttribute(0, new string[] {@"c:\Projects", @"c:\Vision Australia", @"c:\EmptyFolder"})]
+        public void CanCreateArrayOfFoldersForTable(int no, string[] folders)
+        {
+            //Assign
+            ListMaker list = new ListMaker();
+            List<DataObject> folderList = new List<DataObject>();
+
+            foreach (string folder in folders)
+            {
+                DataObject item = new DataObject();
+                item.Path = folder;
+                item.Name = folder.Name();
+                item.Size = folder.FolderSize();
+                item.LastAccess = folder.LastAccess();
+                folderList.Add(item);
+            }
+
+            int expectedResult = 6;
+
+            //Act
+            string[] result = list.CreateTable(folderList);
+            int answer = result.Length;
+
+            //Assert
+            Assert.Equal(answer, expectedResult);
+        }
+
     }
 }
