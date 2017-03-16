@@ -199,14 +199,6 @@ namespace MyApp
             Assert.Equal(exception.Message, expectedException);
         }
 
-        // load a list of files in the folder [DONE]
-
-        // for a single file get it file size [DONE]
-
-        // caculate the size of a single list of files ignoring subfolders [DONE]
-
-        // calculate the size of a subfolder including [DONE]
-
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\test1.txt")]
         public void CanCreateNewFile_DoesntAlreadyExist(string filePath)
@@ -311,7 +303,7 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\test4.txt")]
-        public void CanReadFromFile(string filePath)
+        public void CanReadTextFromFile(string filePath)
         {
             //Assign
             string text;
