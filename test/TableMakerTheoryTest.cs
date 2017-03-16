@@ -1,7 +1,5 @@
-using System;
 using Xunit;
 using Xunit.Abstractions;
-using Xunit.Sdk;
 using  ConsoleApplication;
 
 namespace MyApp

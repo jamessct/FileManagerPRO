@@ -1,3 +1,6 @@
  /obj
  /bin
  /.vscode
+
+ /test/OutputManagerTheoryTest.cs
+ /test/MyTestCaseOrderer.cs
