@@ -1,10 +1,19 @@
+using System;
 using Xunit;
+using Xunit.Abstractions;
+using Xunit.Sdk;
 using  ConsoleApplication;
 
 namespace MyApp
 {
     public class TableMakerTheoryTest
     {
+        private readonly ITestOutputHelper output;
+
+        public TableMakerTheoryTest(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
         [Theory]
         [InlineDataAttribute("testing", "1", "2")]
         public void CanCreateRow(string test, string test1, string test2)
@@ -20,5 +29,7 @@ namespace MyApp
             //Assert
             Assert.Equal(expected, result);
         }
+
+        //Would like a test for TableMaker.PrintTableToConsole()
     }
 }
