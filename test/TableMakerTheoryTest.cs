@@ -13,12 +13,11 @@ namespace MyApp
             this.output = output;
         }
         [Theory]
-        [InlineDataAttribute("testing", "1", "2")]
-        public void CanCreateRow(string test, string test1, string test2)
+        [InlineDataAttribute(0, new string[] {"testing", "1", "2"})]
+        public void CanCreateRow(int decoy, string[] row)
         {
             //Assign
             TableMaker table = new TableMaker();
-            string[] row = {test, test1, test2};
             string expected = "|              testing              |                 1                 |                 2                 |";
 
             //Act
@@ -27,7 +26,5 @@ namespace MyApp
             //Assert
             Assert.Equal(expected, result);
         }
-
-        //Would like a test for TableMaker.PrintTableToConsole()
     }
 }
