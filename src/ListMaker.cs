@@ -7,7 +7,6 @@ namespace ConsoleApplication
         public string[] CreateTable(List<DataObject> ObjectList)
         {
             TableMaker table = new TableMaker();
-
             List<string> ObjList = new List<string>();
             List<string> result = new List<string>();
 

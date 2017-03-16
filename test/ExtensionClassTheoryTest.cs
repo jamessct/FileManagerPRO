@@ -7,7 +7,7 @@ namespace MyApp
     {
         [Theory]
         [InlineDataAttribute(@"c:\Projects\index.txt")]
-        public void CanGetObjectName(string path)
+        public void CanGetNameOfObject(string path)
         {
             //Assign
             string expectedResult = "index.txt";
@@ -21,17 +21,31 @@ namespace MyApp
 
         [Theory]
         [InlineDataAttribute(@"c:\Projects\Tests\test4.txt")]
-        public void CanGetSizeOfObject(string path)
+        public void CanGetSizeOfFile(string filePath)
         {
             //Assign
-            string expected = "0.01KB";
-            string fileSize;
+            string expectedResult = "0.01KB";
 
             //Act
-            fileSize = path.FileSize();
+            string fileSize = filePath.FileSize();
 
             //Assert
-            Assert.Equal(expected, fileSize);
+            Assert.Equal(expectedResult, fileSize);
+        }
+
+        [Theory]
+        [InlineDataAttribute(@"c:\Program Files (x86)\Wolfenstein - Enemy Territory")]
+        public void CanGetSizeOfFolder(string folderPath)
+        {
+            //Assign
+            string expectedResult = "544.43MB";
+
+            //Act
+            string folderSize = folderPath.FolderSize();
+
+            //Assert
+            Assert.Equal(expectedResult, folderSize);
+
         }
 
         [Theory]
