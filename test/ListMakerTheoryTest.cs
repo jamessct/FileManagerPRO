@@ -35,32 +35,32 @@ namespace MyApp
             Assert.Equal(expectedResult, answer);
         }
 
-        [Theory]
-        [InlineDataAttribute(0, new string[] {@"c:\Projects", @"c:\Vision Australia", @"c:\EmptyFolder"})]
-        public void CanCreateArrayOfFoldersForTable(int no, string[] folders)
-        {
-            //Assign
-            ListMaker list = new ListMaker();
-            List<DataObject> folderList = new List<DataObject>();
+        // [Theory]
+        // [InlineDataAttribute(0, new string[] {@"c:\Projects", @"c:\Vision Australia", @"c:\EmptyFolder"})]
+        // public void CanCreateArrayOfFoldersForTable(int no, string[] folders)
+        // {
+        //     //Assign
+        //     ListMaker list = new ListMaker();
+        //     List<DataObject> folderList = new List<DataObject>();
 
-            foreach (string folder in folders)
-            {
-                DataObject item = new FolderObject();
-                item.Path = folder;
-                item.Name = folder.Name();
-                item.Size = folder.FolderSize();
-                item.LastAccess = folder.LastAccess();
-                folderList.Add(item);
-            }
+        //     foreach (string folder in folders)
+        //     {
+        //         DataObject item = new FolderObject();
+        //         item.Path = folder;
+        //         item.Name = folder.Name();
+        //         item.Size = folder.FolderSize();
+        //         item.LastAccess = folder.LastAccess();
+        //         folderList.Add(item);
+        //     }
 
-            int expectedResult = 6;
+        //     int expectedResult = 6;
 
-            //Act
-            string[] result = list.CreateTable(folderList);
-            int answer = result.Length;
+        //     //Act
+        //     string[] result = list.CreateTable(folderList);
+        //     int answer = result.Length;
 
-            //Assert
-            Assert.Equal(answer, expectedResult);
-        }
+        //     //Assert
+        //     Assert.Equal(answer, expectedResult);
+        // }
     }
 }

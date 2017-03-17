@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Xunit;
 using ConsoleApplication;
+using ExtensionMethods;
 
 namespace MyApp
 {
@@ -551,7 +552,21 @@ namespace MyApp
 
             //Assert
             Assert.Equal(fileName, expectedResult);
+        }
 
+        [Theory]
+        [InlineDataAttribute(@"c:\Projects\index.txt")]
+        public void CanTruncateFile(string filePath)
+        {
+            //Assign
+            string expectedResult = "0KB";
+
+            //Act
+            ObjectManager.TruncateFile(filePath);
+            string fileSize = filePath.FileSize();
+
+            //Assert
+            Assert.Equal(expectedResult, fileSize);
         }
     }
 }
