@@ -332,28 +332,28 @@ namespace ConsoleApplication
                     DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
-                case 7:
-                {
-                    Console.Clear();
-                    Console.WriteLine("Enter the path of the file that you would like to open:");
-                    input = Console.ReadLine();
+                // case 7:
+                // {
+                //     Console.Clear();
+                //     Console.WriteLine("Enter the path of the file that you would like to open:");
+                //     input = Console.ReadLine();
 
-                    try
-                    {
-                        ObjectManager.OpenFile(input);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("SUCCESS! The file was opened.");
-                    }
-                    catch(ArgumentException)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! This file doesn't exist!");
-                    }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
-                    break;
-                }
+                //     try
+                //     {
+                //         ObjectManager.OpenFile(input);
+                //         Console.ForegroundColor = ConsoleColor.Green;
+                //         Console.WriteLine("SUCCESS! The file was opened.");
+                //     }
+                //     catch(ArgumentException)
+                //     {
+                //         Console.ForegroundColor = ConsoleColor.Red;
+                //         Console.WriteLine("ERROR! This file doesn't exist!");
+                //     }
+                //     DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                //     break;
+                // }
                 //Return to menu
-                case 8:
+                case 7:
                 {
                     Console.Clear();
                     Console.WriteLine("MAIN MENU");

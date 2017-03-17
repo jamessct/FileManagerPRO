@@ -104,13 +104,6 @@ namespace ConsoleApplication
             return bytes;
         }
 
-        public static void OpenFile(string filePath)
-        {
-            ThrowExceptionIfFileDoesntExist(filePath);
-
-            FileStream stream = File.OpenRead(filePath);
-        }
-
         public static void TruncateFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
