@@ -104,11 +104,18 @@ namespace ConsoleApplication
             return bytes;
         }
 
-        public static void CanOpenFile(string filePath)
+        public static void OpenFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
-            FileStream stream = File.Open(filePath, FileMode.Create);
+            FileStream stream = File.OpenRead(filePath);
+        }
+
+        public static void TruncateFile(string filePath)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+
+            FileStream stream = File.Open(filePath, FileMode.Truncate);
         }
 
         public static bool CheckFolderExists(string folderPath)

@@ -46,14 +46,13 @@ namespace ConsoleApplication
 
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + listSize);
                         Console.WriteLine();
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }   
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }   
                 case 1: 
@@ -89,14 +88,13 @@ namespace ConsoleApplication
                         
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
                         Console.WriteLine();
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
-                    }  
+                    } 
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1); 
                     break;
                 }
                 case 2:
@@ -126,15 +124,14 @@ namespace ConsoleApplication
                         ObjectManager.CreateIndexFile(input);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your new index file has been created at " + input + "\\index.txt");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Invalid user input!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 case 5:
@@ -172,15 +169,14 @@ namespace ConsoleApplication
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Could not create new file!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Either the file already exists or you have entered an invalid file path!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);;
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Delete File
@@ -203,14 +199,13 @@ namespace ConsoleApplication
                         ObjectManager.RemoveFile(input);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! File has been removed");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! This file path does not exist!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Move File
@@ -227,15 +222,14 @@ namespace ConsoleApplication
                         ObjectManager.MoveFile(input1, input2);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("Success! Your file has been moved");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to move doesn't exist, OR there is already a file at the destination path, OR you have entered an invalid file path!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     } 
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Rename file
@@ -275,14 +269,13 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(ObjectManager.ReadTextFromFile(input));
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to read doesn't exist!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Write text to file
@@ -299,14 +292,13 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green;
                         ObjectManager.WriteTextToFile(input1, input2);
                         Console.WriteLine("SUCCESS! Your text has been written to the file");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to write to doesn't exist!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }  
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //search file for text
@@ -323,20 +315,21 @@ namespace ConsoleApplication
                         if(ObjectManager.SearchForTextInFile(input1, input2) == true)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Clear();
                             Console.WriteLine(input1 + " DOES include the phrase '" + input2 + "'");
                             DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                         }
 
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Clear();
                         Console.WriteLine(input1 + " does NOT contain the phrase '" + input2 + "'");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! File path cannot be found!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 case 7:
@@ -347,10 +340,9 @@ namespace ConsoleApplication
 
                     try
                     {
-                        ObjectManager.CanOpenFile(input);
+                        ObjectManager.OpenFile(input);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! The file was opened.");
-                        //DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
@@ -387,14 +379,13 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green;
                         ObjectManager.CreateNewFolder(input);
                         Console.WriteLine("SUCCESS! New folder created at " + input);
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The requested directory path is invalid, OR already exists!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Delete Folder
@@ -423,14 +414,13 @@ namespace ConsoleApplication
 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The specified folder could not be removed.");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to remove does not exist");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Move FOLDER
@@ -447,15 +437,14 @@ namespace ConsoleApplication
                         ObjectManager.MoveFolder(input1, input2);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your folder has been moved to " + input2);
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to move does not exist, OR the destination path already exists!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Rename FOLDER
@@ -480,14 +469,13 @@ namespace ConsoleApplication
                         ObjectManager.RenameFolder(input1, input2);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your folder has been renamed '" + input2 + "'!");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
                     catch(ArgumentException)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to move does not exist, OR the destination path already exists.");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
                 //Return to menu
