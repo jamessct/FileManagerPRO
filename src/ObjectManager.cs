@@ -90,6 +90,7 @@ namespace ConsoleApplication
             return lineCount;
         }
 
+        //Not totally sure what the following 2 methods could be used for practically, but here they are anyway.
         public static byte[] ReadBytesFromFile(string filePath)
         {
             byte[] bytes;
@@ -100,6 +101,12 @@ namespace ConsoleApplication
             {
                 Console.WriteLine(bytes);
             }
+
+            Console.WriteLine("OR");
+
+            Console.WriteLine(bytes[0]);
+            Console.WriteLine(bytes[1]);
+            Console.WriteLine(bytes[2]);
             
             return bytes;
         }
@@ -172,7 +179,10 @@ namespace ConsoleApplication
             {
                 throw new ArgumentException("There are no subfolders in this directory");
             }
-            else return list;
+            else
+            {
+                return list;
+            } 
         }
 
         public static long GetSizeOfFileList(string folderPath)
