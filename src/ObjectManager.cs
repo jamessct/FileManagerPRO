@@ -77,14 +77,38 @@ namespace ConsoleApplication
 
         public static void RemoveTextFromFile(string filePath)
         {
+            ThrowExceptionIfFileDoesntExist(filePath);
+
             File.WriteAllText(filePath, "");
         }
 
         public static int CountLinesInFile(string filePath)
         {
-            int lineCount = File.ReadAllLines(filePath).Length;
+            ThrowExceptionIfFileDoesntExist(filePath);
 
+            int lineCount = File.ReadAllLines(filePath).Length;
             return lineCount;
+        }
+
+        public static byte[] ReadBytesFromFile(string filePath)
+        {
+            byte[] bytes;
+            
+            bytes = File.ReadAllBytes(filePath);
+
+            foreach (byte b in bytes)
+            {
+                Console.WriteLine(bytes);
+            }
+            
+            return bytes;
+        }
+
+        public static void CanOpenFile(string filePath)
+        {
+            ThrowExceptionIfFileDoesntExist(filePath);
+
+            FileStream stream = File.Open(filePath, FileMode.Create);
         }
 
         public static bool CheckFolderExists(string folderPath)

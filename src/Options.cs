@@ -339,8 +339,29 @@ namespace ConsoleApplication
                     }
                     break;
                 }
-                //Return to menu
                 case 7:
+                {
+                    Console.Clear();
+                    Console.WriteLine("Enter the path of the file that you would like to open:");
+                    input = Console.ReadLine();
+
+                    try
+                    {
+                        ObjectManager.CanOpenFile(input);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("SUCCESS! The file was opened.");
+                        //DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    }
+                    catch(ArgumentException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR! This file doesn't exist!");
+                    }
+                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    break;
+                }
+                //Return to menu
+                case 8:
                 {
                     Console.Clear();
                     Console.WriteLine("MAIN MENU");
