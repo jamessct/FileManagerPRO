@@ -71,14 +71,14 @@ namespace MyApp
         public void CanLoadListOfFilesInFolder(string folderPath)
         {
             //Assign
-            int fileListLength;
+            int expectedResult = 84;
 
             //Act
             var fileList = ObjectManager.ListFilesInDirectory(folderPath);
-            fileListLength = fileList.Length;
+            int fileListLength = fileList.Length;
 
             //Assert
-            Assert.Equal(fileListLength, 84);
+            Assert.Equal(fileListLength, expectedResult);
         }
 
         [Theory]
@@ -115,11 +115,10 @@ namespace MyApp
         public void CanGetSizeOfFile(string filePath)
         {
             //Assign
-            long fileSize;
             string expectedSize = "68KB";
 
             //Act
-            fileSize = ObjectManager.GetSizeOfFile(filePath);
+            long fileSize = ObjectManager.GetSizeOfFile(filePath);
             string answer = Utilities.SelectAppropriateFileSizeFormat(fileSize);
 
             //Assert
@@ -145,11 +144,10 @@ namespace MyApp
         public void CalculateSizeOfListOfFiles_ExcludingSubfolders(string folderPath)
         {
             //Assign
-            long fileListSize;
             string expectedSize = "16.2MB";
 
             //Act
-            fileListSize = ObjectManager.GetSizeOfFileList(folderPath);
+            long fileListSize = ObjectManager.GetSizeOfFileList(folderPath);
             string answer = Utilities.SelectAppropriateFileSizeFormat(fileListSize);
 
             //Assert
@@ -175,11 +173,10 @@ namespace MyApp
         public void CalculateSizeOfListOfFiles_IncludingSubfolders(string folderPath)
         {
             //Assign
-            long totalSizeOfDirectory;
             string expectedSize = "1.12MB";
 
             //Act
-            totalSizeOfDirectory = ObjectManager.GetSizeOfDirectory(folderPath);
+            long totalSizeOfDirectory = ObjectManager.GetSizeOfDirectory(folderPath);
             string answer = Utilities.SelectAppropriateFileSizeFormat(totalSizeOfDirectory);
 
             //Assert
@@ -205,11 +202,10 @@ namespace MyApp
         public void CanCreateNewFile_DoesntAlreadyExist(string filePath)
         {
             //Assign
-            bool fileExists;
 
             //Act
             ObjectManager.CreateNewFile(filePath);
-            fileExists = ObjectManager.CheckFileExists(filePath);
+            bool fileExists = ObjectManager.CheckFileExists(filePath);
 
             //Assert
             Assert.True(fileExists);
@@ -248,11 +244,10 @@ namespace MyApp
         public void CanRemoveFile(string filePath)
         {
             //Assign
-            bool fileExists;
 
             //Act
             ObjectManager.RemoveFile(filePath);
-            fileExists = ObjectManager.CheckFileExists(filePath);
+            bool fileExists = ObjectManager.CheckFileExists(filePath);
 
             //Assert
             Assert.False(fileExists);
@@ -277,11 +272,10 @@ namespace MyApp
         public void CanMoveFile(string filePath, string newPath)
         {
             //Assign
-            bool fileExists;
 
             //Act
             ObjectManager.MoveFile(filePath, newPath);
-            fileExists = ObjectManager.CheckFileExists(@"c:\Projects\Tests\Test4\MovedFile.txt");
+            bool fileExists = ObjectManager.CheckFileExists(@"c:\Projects\Tests\Test4\MovedFile.txt");
 
             //Assert
             Assert.True(fileExists);
@@ -292,11 +286,10 @@ namespace MyApp
         public void CanRenameFile(string oldPath, string newName)
         {
             //Assign
-            bool fileExists;
 
             //Act
             ObjectManager.RenameFile(oldPath, newName);
-            fileExists = ObjectManager.CheckFileExists(@"c:\Projects\Tests\Renamed");
+            bool fileExists = ObjectManager.CheckFileExists(@"c:\Projects\Tests\Renamed");
 
             //Assert
             Assert.True(fileExists);
@@ -307,11 +300,10 @@ namespace MyApp
         public void CanReadTextFromFile(string filePath)
         {
             //Assign
-            string text;
             string expectedResult = "testing 1, 2";
 
             //Act
-            text = ObjectManager.ReadTextFromFile(filePath);
+            string text = ObjectManager.ReadTextFromFile(filePath);
 
             //Assert
             Assert.Equal(text, expectedResult);
@@ -322,10 +314,9 @@ namespace MyApp
         public void CanSearchForTextInFile_TextPresent(string filePath, string searchQuery)
         {
             //Assign
-            bool answer;
 
             //Act
-            answer = ObjectManager.SearchForTextInFile(filePath, searchQuery);
+            bool answer = ObjectManager.SearchForTextInFile(filePath, searchQuery);
 
             //Assert
             Assert.True(answer);
@@ -336,10 +327,9 @@ namespace MyApp
         public void CanSearchForTextInFile_TextNotPresent(string filePath, string searchQuery)
         {
             //Assign
-            bool answer;
 
             //Act
-            answer = ObjectManager.SearchForTextInFile(filePath, searchQuery);
+            bool answer = ObjectManager.SearchForTextInFile(filePath, searchQuery);
 
             //Assert
             Assert.False(answer);
@@ -350,11 +340,10 @@ namespace MyApp
         public void CanCountLinesInTextFile(string filePath)
         {
             //Assign
-            int answer;
             int expectedResult = 1;
 
             //Act
-            answer = ObjectManager.CountLinesInFile(filePath);
+            int answer = ObjectManager.CountLinesInFile(filePath);
 
             //Assert
             Assert.Equal(answer, expectedResult);
@@ -365,12 +354,11 @@ namespace MyApp
         public void CanWriteToFile(string filePath, string text)
         {
             //Assign
-            string finalText;
             string expectedResult = "some text";
 
             //Act
             ObjectManager.WriteTextToFile(filePath, text);
-            finalText = ObjectManager.ReadTextFromFile(filePath);
+            string finalText = ObjectManager.ReadTextFromFile(filePath);
 
             //Assert
             Assert.Equal(finalText, expectedResult);
@@ -397,11 +385,10 @@ namespace MyApp
         public void CanGetTimeStampForLastAccess(string filePath)
         {
             //Access
-            string answer;
             string expectedResult = "2017/01/25 09:32:30.52";
 
             //Act
-            answer = ObjectManager.GetTimeStampForLastAccess(filePath);
+            string answer = ObjectManager.GetTimeStampForLastAccess(filePath);
 
             //Assert
             Assert.Equal(answer, expectedResult);
@@ -412,11 +399,10 @@ namespace MyApp
         public void CanCreateNewFolder(string newFolderPath)
         {
             //Assign
-            bool folderExists;
 
             //Act
             ObjectManager.CreateNewFolder(newFolderPath);
-            folderExists = ObjectManager.CheckFolderExists(newFolderPath);
+            bool folderExists = ObjectManager.CheckFolderExists(newFolderPath);
 
             //Assert
             Assert.True(folderExists);
@@ -427,11 +413,10 @@ namespace MyApp
         public void CanRemoveFolder_FolderEmpty(string folderPath, bool recursive)
         {
             //Assign
-            bool folderExists;
 
             //Act
             ObjectManager.RemoveFolder(folderPath, recursive);
-            folderExists = ObjectManager.CheckFolderExists(folderPath);
+            bool folderExists = ObjectManager.CheckFolderExists(folderPath);
 
             //Assert
             Assert.False(folderExists);
@@ -442,11 +427,10 @@ namespace MyApp
         public void CanRemoveFolder_FolderNotEmpty(string folderPath, string filePath, bool recursive)
         {
             //Assign
-            bool folderExists;
 
             //Act
             ObjectManager.RemoveFolder(folderPath, recursive);
-            folderExists = ObjectManager.CheckFolderExists(folderPath);
+            bool folderExists = ObjectManager.CheckFolderExists(folderPath);
 
             //Assert
             Assert.False(folderExists);
@@ -485,11 +469,10 @@ namespace MyApp
         public void CanRenameFolder(string oldPath, string newName)
         {
             //Assign
-            bool result;
 
             //Act
             ObjectManager.RenameFolder(oldPath, newName);
-            result = ObjectManager.CheckFolderExists(@"c:\NewFolderino");
+            bool result = ObjectManager.CheckFolderExists(@"c:\NewFolderino");
 
             //Assert
             Assert.True(result);
