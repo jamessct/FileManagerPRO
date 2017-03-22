@@ -7,7 +7,7 @@ namespace ConsoleApplication
         public static void Main(string[] args)
         {   
             Console.Clear();
-            Console.Title = "File Manager PRO 2.1";
+            Console.Title = "File Manager PRO 2.1.1";
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("   ___ _ _                                                     ___  __    ___   ____    ___  ");
             Console.WriteLine("  / __(_) | ___    /\\/\\   __ _ _ __   __ _  __ _  ___ _ __    / _ \\/__\\  /___\\ |___ \\  / _ \\ ");
