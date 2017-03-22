@@ -10,10 +10,8 @@ namespace ConsoleApplication
         public static string GetTimeStampForLastAccess(string filePath)
         {
             FileInfo info = new FileInfo(filePath);
-            
             DateTime time = info.LastAccessTime;
-            var answer = time.ToString("yyyy/MM/dd HH:mm:ss.ff");
-            return answer;
+            return time.ToString("yyyy/MM/dd HH:mm:ss.ff");
         }
         
         public static bool CheckFileExists(string filePath)
@@ -39,20 +37,14 @@ namespace ConsoleApplication
         public static long GetSizeOfFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-            
             FileInfo file = new FileInfo(filePath);
-            long fileSize = file.Length;
-
-            return fileSize;
+            return file.Length;;
         }
 
         public static string ReadTextFromFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-
-            string text = File.ReadAllText(filePath);
-
-            return text;
+            return File.ReadAllText(filePath);
         }
 
         public static bool SearchForTextInFile(string filePath, string textQuery)
@@ -64,57 +56,36 @@ namespace ConsoleApplication
             {
                 return true;
             }
-
             return false;
         }
 
         public static void WriteTextToFile(string filePath, string text)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-
             File.WriteAllText(filePath, text);
         }
 
         public static void RemoveTextFromFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-
             File.WriteAllText(filePath, "");
         }
 
         public static int CountLinesInFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-
-            int lineCount = File.ReadAllLines(filePath).Length;
-            return lineCount;
+            return File.ReadAllLines(filePath).Length;
         }
 
         //Not totally sure what the following 2 methods could be used for practically, but here they are anyway.
         public static byte[] ReadBytesFromFile(string filePath)
         {
-            byte[] bytes;
-            
-            bytes = File.ReadAllBytes(filePath);
-
-            foreach (byte b in bytes)
-            {
-                Console.WriteLine(bytes);
-            }
-
-            Console.WriteLine("OR");
-
-            Console.WriteLine(bytes[0]);
-            Console.WriteLine(bytes[1]);
-            Console.WriteLine(bytes[2]);
-            
-            return bytes;
+            return File.ReadAllBytes(filePath);
         }
 
         public static void TruncateFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-
             FileStream stream = File.Open(filePath, FileMode.Truncate);
         }
 
@@ -141,7 +112,6 @@ namespace ConsoleApplication
         public static long GetSizeOfDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
-
             long totalSize = 0;
             string[] contents = Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories);
 
@@ -150,13 +120,11 @@ namespace ConsoleApplication
                 FileInfo file = new FileInfo(name);
                 totalSize = totalSize + file.Length;
             }
-
             return totalSize;
         }
         public static string[] ListFilesInDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
-
             string[] list = Directory.GetFiles(folderPath);
 
             if(list.Length == 0)
@@ -172,7 +140,6 @@ namespace ConsoleApplication
         public static string[] ListSubfoldersInDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
-
             string[] list = Directory.GetDirectories(folderPath);
 
             if(list.Length == 0)
@@ -188,7 +155,6 @@ namespace ConsoleApplication
         public static long GetSizeOfFileList(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
-
             long totalSize = 0;
             string[] fileList = Directory.GetFiles(folderPath);
 
@@ -212,7 +178,6 @@ namespace ConsoleApplication
         public static void RemoveFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-
             File.Delete(filePath);
         }
 
@@ -224,24 +189,20 @@ namespace ConsoleApplication
             {
                 throw new ArgumentException("A file already exists at the destination path!");
             }
-
             File.Move(filePath, destinationPath);
         }
 
         public static void RenameFile(string oldPath, string newName)
         {
             ThrowExceptionIfFileDoesntExist(oldPath);
-
             int newPathLength = oldPath.LastIndexOf("\\") + 1;
-            int folderCount = (oldPath.Length - newPathLength);
-            string slicedString = oldPath.Remove(newPathLength, folderCount);
-            string newPath = slicedString + newName;
+            int folderCount = oldPath.Length - newPathLength;
+            string newPath = (oldPath.Remove(newPathLength, folderCount)) + newName;
 
             if (File.Exists(newPath) == true || !newPath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at the destination path");
             }
-
             File.Move(oldPath, newPath);
         }
 
@@ -251,7 +212,6 @@ namespace ConsoleApplication
             {
                 throw new ArgumentException("Invalid input");
             }
-
             Directory.CreateDirectory(newFolderPath);
         }
 
@@ -271,7 +231,6 @@ namespace ConsoleApplication
         public static void RemoveFolder(string folderPath, bool recursive)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
-
             DirectoryInfo directory = new DirectoryInfo(folderPath);
             string[] list = Directory.GetFiles(folderPath);
 
@@ -302,11 +261,9 @@ namespace ConsoleApplication
         public static void RenameFolder(string oldPath, string newName)
         {
             ThrowExceptionIfFolderDoesntExist(oldPath);
-
             int newPathLength = oldPath.LastIndexOf(@"\") + 1;
             int folderCount = (oldPath.Length - newPathLength);
-            string slicedString = oldPath.Remove(newPathLength, folderCount);
-            string newPath = slicedString + newName;
+            string newPath = (oldPath.Remove(newPathLength, folderCount)) + newName;
 
             if (Directory.Exists(newPath) == true)
             {
@@ -321,21 +278,17 @@ namespace ConsoleApplication
         public static string RemovePathFromName(string path)
         {
             int pathLength = path.LastIndexOf(@"\") + 1;
-            string answer = path.Remove(0, pathLength);
-            return answer;
+            return path.Remove(0, pathLength);
         }
 
         public static void CreateIndexFile(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
-
+            TableMaker table = new TableMaker();
+            ListMaker list = new ListMaker();
             string indexPath = folderPath + "\\index.txt";
             FileStream f = File.Create(indexPath);
             f.Dispose();
-
-            TableMaker table = new TableMaker();
-            ListMaker list = new ListMaker();
-
             string[] files = Directory.GetFiles(folderPath);
             List<DataObject> fileList = new List<DataObject>();
 

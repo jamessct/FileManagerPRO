@@ -10,22 +10,19 @@ namespace ConsoleApplication
             {
                 double megabytes = (bytes / 1048576f);
                 double rounded = Math.Round(megabytes, 2);
-                string answer = (rounded + "MB");
-                return answer;
+                return (rounded + "MB");
             }
             if (bytes > 1073741824)
             {
                 double gigabytes = (bytes / 1073741824f);
                 double rounded = Math.Round(gigabytes, 2);
-                string answer = (rounded + "GB");
-                return answer;
+                return (rounded + "GB");
             }
             else
             {
                 double kilobytes = (bytes / 1024f);
                 double rounded = Math.Round(kilobytes, 2);
-                string answer = (rounded + "KB");
-                return answer;
+                return (rounded + "KB");
             }
         }
     }

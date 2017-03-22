@@ -20,9 +20,7 @@ namespace ConsoleApplication
                 result.Add(table.PrintLine());
                 ObjList.Clear();
             }
-
-            string[] formattedResult = result.ToArray();
-            return formattedResult;
+            return result.ToArray();
         }
     }
 }
